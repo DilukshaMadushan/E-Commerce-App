@@ -64,7 +64,7 @@ const TabScreen = createMaterialBottomTabNavigator(
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           //Your icon component for example => 
-          <Icon name="picture-o" size={20} color="black" />
+          <Icon name="shopping-cart" size={20} color="black" />
         )
       }},
     Account: { screen : accountScreen ,

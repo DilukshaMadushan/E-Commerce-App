@@ -23,12 +23,16 @@ import searchScreen from './src/Screens/searchScreen';
 import accountScreen from './src/Screens/accountScreen';
 import mycartScreen from './src/Screens/mycartScreen';
 
-import sideBar from './src/Components/sideBar';
 
-import {StackNavigator} from 'react-navigation';
+import sideBar from './src/components/sideBar';
+
 
 import login from './src/Screens/loginScreen';
 import register from './src/Screens/registerScreen';
+
+
+import ItemsScreen from './src/Screens/categoryItemsScreen';
+import ItemViewScreen from './src/Screens/ItemViewScreen';
 
 
 const TabScreen = createMaterialBottomTabNavigator(
@@ -143,8 +147,10 @@ const App = createStackNavigator({
       
     })
   },
+  //Category,Items
+  Items : ItemsScreen,
+  ItemView : ItemViewScreen,
 
-  
 });
 
 const AuthStack = createStackNavigator({
@@ -159,8 +165,9 @@ const AuthStack = createStackNavigator({
 
   Register : {
     screen : register
-  }
+    },
 },
+
 {
   initialRouteName: 'Login'
 });

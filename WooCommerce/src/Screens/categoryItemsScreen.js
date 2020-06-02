@@ -9,9 +9,9 @@ import {
 import { connect } from "react-redux";
 import Color from '../common/Color';
 
-import Categories from '../components/ColumnCategories';
+import CategoryItems from '../components/CategoryItems';
 
- class categoryScreen extends React.Component {
+ class ItemsScreen extends React.Component {
 
   render() {
     const { width } = Dimensions.get('window');
@@ -21,8 +21,8 @@ import Categories from '../components/ColumnCategories';
         <View style={{flex:1}}>
           <ScrollView
             style={styles.categoryScreen}>
-              <Categories/>
-              <Text onPress={()=>this.props.navigation.navigate('Items')} style={{fontSize:25}}>Can Go(Screen)</Text>
+            <CategoryItems/>
+            <Text onPress={()=>this.props.navigation.navigate('ItemView')} style={{fontSize:25}}>Can Go(Screen)</Text>
           </ScrollView>
         </View>
     );
@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default categoryScreen;
+export default ItemsScreen;

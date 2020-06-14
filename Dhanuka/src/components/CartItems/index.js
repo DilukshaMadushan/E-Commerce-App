@@ -9,11 +9,8 @@ import styles from "./styles";
 import { Icon } from 'react-native-elements';
 
 
-const { width, height } = Dimensions.get("window");
-
-class CartItems extends Component {
-
-    render() {
+function   CartItems(){
+    
       return (
         <View style={styles.container}>
             <View style={styles.Upper}>
@@ -59,9 +56,7 @@ class CartItems extends Component {
                 <SelectedItem/>
             </View>
         </View>
-
       );
     }
-  }
     
   export default CartItems;

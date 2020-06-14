@@ -7,11 +7,7 @@ import styles from "./styles";
 import { Icon } from 'react-native-elements';
 
 
-const { width, height } = Dimensions.get("window");
-
-class EmptyCart extends Component {
-
-    render() {
+function  EmptyCart() {
       return (
         <View style={styles.container}>
             <View>
@@ -34,6 +30,6 @@ class EmptyCart extends Component {
 
       );
     }
-  }
+
     
   export default EmptyCart;

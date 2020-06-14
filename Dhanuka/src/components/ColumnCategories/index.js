@@ -6,7 +6,6 @@ import styles from './styles';
 import Images from "../../common/Images";
 
 
-
 const DATA = [
   {
     id: '1',
@@ -35,11 +34,10 @@ const DATA = [
 ];
 
 
-function Item({ title,uri,id,product,}) {
-
+function Item({title,uri,id,product,}) {
 
   return (
-    <TouchableOpacity style={styles.item}
+    <View style={styles.item}
                       activeOpacity={0.7}
                       >
       <Image style={styles.imagecategories} source={uri}></Image>
@@ -50,31 +48,29 @@ function Item({ title,uri,id,product,}) {
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.product}>{product}</Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 }
 
-class Categories extends React.Component {
 
-  render() {
+function Categories({navigation}){
     return (
       <View style={{alignItems:'center'}}>
         <FlatList
           data={DATA}
-          renderItem={({ item }) => 
+          renderItem={({ item }) =>
+          <TouchableOpacity onPress={()=>navigation.navigate('Items')}>
             <Item title={item.title} 
                   uri={item.uri} id={item.id}
-                  product={item.product}/>
+                  product={item.product}
+                  />
+          </TouchableOpacity> 
               }
           keyExtractor={item => item.id}
         />
-        <TouchableOpacity onPress={()=>this.props.navigation.navigate('Login')}>
-          <Text style={{fontSize:25}}>Can't Go(Component)</Text>
-        </TouchableOpacity>
       </View>
     );
   }
-}
   
 export default Categories;
 

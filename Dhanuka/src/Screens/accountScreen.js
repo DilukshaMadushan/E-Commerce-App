@@ -24,7 +24,7 @@ import Images from '../common/Images';
             <Image source={Images.default_Item}
                   style={styles.ProfileImage}/>
             <View style={styles.Profileright}>
-                <Text style={{fontSize:30}}>Name</Text>
+                <Text style={{fontSize:30}}>Guest</Text>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('Login')}>
                   <Text style={{fontSize:20,color:'grey'}}>Login</Text>
                 </TouchableOpacity>
@@ -40,10 +40,10 @@ import Images from '../common/Images';
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   accountScreen: {
-    paddingTop:10,
+    paddingTop:5,
   },
   Upper:{
-    backgroundColor:'rgba(0,0,0,0.04)',
+    backgroundColor:'#fff',
     width:width,
     height:0.5*width,
     flexDirection:'row',

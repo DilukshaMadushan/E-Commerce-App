@@ -11,11 +11,10 @@ export default class registerScreen extends React.Component {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.CardView}>
-          <View style={{flexDirection:'row',alignSelf:'center',marginBottom:30}}>
+          <View style={{alignSelf:'center',marginBottom:30}}>
             <Image source={Images.logo}
                    style={styles.Logo}>
             </Image>
-            <Text style={{textAlign:'center',alignSelf:'center',fontSize:25,paddingStart:10,fontWeight:"500"}}>Sign In</Text>
           </View>  
             <View style={styles.TextView}>
               <TextInput  style={styles.TextInput}
@@ -47,12 +46,12 @@ export default class registerScreen extends React.Component {
             </TouchableOpacity>
             <View style={{flexDirection:'row',paddingTop:10,alignSelf:'center'}}>
               <Text style={{alignSelf:'center'}}>Already a member??</Text>
-              <TouchableOpacity activeOpacity={0.1}>
+              <TouchableOpacity activeOpacity={0.1}
+                                onPress={()=>this.props.navigation.navigate('Login')} >
                   <Text style={{color:'black',
                                 paddingStart:5,
                                 fontWeight:'bold',
                                 fontSize:20}}
-                        onPress={()=>this.props.navigation.navigate('Login')} 
                                 >Login</Text>
               </TouchableOpacity>
             </View>
@@ -73,8 +72,8 @@ const styles = StyleSheet.create({
     marginVertical:50,
   },
   Logo:{
-    width:0.12*width,
-    height:0.12*width,
+    width:0.52*width,
+    height:0.2*width,
     alignSelf:'center'
   },
   TextView:{
@@ -99,6 +98,6 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'center',
     borderRadius:30,
-    backgroundColor:'#191970'
+    backgroundColor:'rgba(0, 179, 155,0.7)'
   },
 });

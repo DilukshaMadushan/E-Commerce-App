@@ -6,21 +6,17 @@ import {
   Image, 
   Dimensions,
   TouchableOpacity, 
-  ImageStore
 } from 'react-native';
 
 import styles from './styles';
 import { Icon } from 'react-native-elements';
 
-class ProfileItems extends React.Component {
-
   
-  render() {
-    const { width } = Dimensions.get('window');
+function ProfileItems(){
     return (
       <View>
         <View style={styles.List}>
-          <TouchableOpacity 
+          <TouchableOpacity  
             style={styles.ListItem}>
             <Icon name='heart'
                 containerStyle={styles.ItemIcon}
@@ -83,7 +79,7 @@ class ProfileItems extends React.Component {
           <TouchableOpacity 
             style={styles.ListItem}>
             <Icon name='info'
-                containerStyle={styles.ItemIcon}
+                containerStyle={styles.ItemIcon,{paddingStart:22}}
                 type='font-awesome'
                 color={'black'}/>
             <Text style={{flex:1,textAlign:'center'}}>About Us</Text>
@@ -96,6 +92,5 @@ class ProfileItems extends React.Component {
       </View>
     );
   }
-}
 
 export default ProfileItems;

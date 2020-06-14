@@ -1,38 +1,35 @@
 import React, { Component } from 'react';
-import { StyleSheet,
-   Text, 
-   View, 
-   ActivityIndicator,
-   StatusBar,
-   AsyncStorage,
-   Button,
-   Dimensions,
-   TouchableOpacity, } from 'react-native';   //Text = <p>    View = <div>
+import { 
+  StyleSheet,
+  Text, 
+  View, 
+  ActivityIndicator,
+  StatusBar,
+  AsyncStorage,
+  Button,
+  Dimensions,
+  TouchableOpacity,
+  Image} from 'react-native';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
+import Images from './src/common/Images';
 
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
-import { createDrawerNavigator } from 'react-navigation-drawer';
-import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
+import {createDrawerNavigator } from 'react-navigation-drawer';
 import {createStackNavigator} from 'react-navigation-stack';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 
 import homeScreen from './src/Screens/homeScreen';
 import categoryScreen from './src/Screens/categoryScreen';
 import searchScreen from './src/Screens/searchScreen';
 import accountScreen from './src/Screens/accountScreen';
 import mycartScreen from './src/Screens/mycartScreen';
-
-
-import sideBar from './src/components/Sidebar/sideBar';
-
 import loginScreen from './src/Screens/loginScreen';
 import registerScreen from './src/Screens/registerScreen';
-
-
 import ItemsScreen from './src/Screens/categoryItemsScreen';
 import ItemViewScreen from './src/Screens/ItemViewScreen';
 
+import sideBar from './src/components/Sidebar/sideBar';
 
 
 const TabScreen = createMaterialBottomTabNavigator(
@@ -40,48 +37,40 @@ const TabScreen = createMaterialBottomTabNavigator(
     Home: { screen: homeScreen ,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          //Your icon component for example => 
-          <Icon name="home" size={23} color="black" />
+          <Icon name="home" size={23} color="#696969" />
         )
-
       } 
     },
     Category: { screen: categoryScreen ,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          //Your icon component for example => 
-          <Icon name="tv" size={20} color="black" />
+          <Icon name="th-large" size={20} color="#696969" />
         )
       } },
     Search: { screen : searchScreen ,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          //Your icon component for example => 
-          <Icon name="search" size={20} color="black" />
+          <Icon name="search" size={20} color="#696969" />
         )
       }},
     Mycart: { screen : mycartScreen ,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          //Your icon component for example => 
-          <Icon name="shopping-cart" size={20} color="black" />
+          <Icon name="shopping-cart" size={20} color="#696969" />
         )
       }},
     Account: { screen : accountScreen ,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          //Your icon component for example => 
-          <Icon name="user" size={22} color="black" />
+          <Icon name="user" size={21} color="#696969" />
         )
       }}
   },
   {
-    tabBarOptions: {
-      style: {
-      height: 55,
-      backgroundColor: '#FFFFFF'
-      }
-    }
+    initialRouteName : "Home",
+    activeColor : "#D3D3D3",
+    barStyle: { backgroundColor: '#FFFFFF' },
+    
   }
   // {
   //   lazy: true,
@@ -107,53 +96,54 @@ const TabScreen = createMaterialBottomTabNavigator(
   //   },
   // }
 );
-
-
-
 //making a StackNavigator to export as default
 const App = createStackNavigator({
   TabScreen: {
     screen: TabScreen,
     navigationOptions: ({ navigation, screenProps })=> ({
-      
       headerStyle: {
         backgroundColor: '#FFFFFF',
       },
-      headerTintColor: '#633689',
-      title: 'Fluxstore',
-      
+      //headerTintColor: '#633689',
+      title: '',
       headerLeft : (<View>
+                      <View style={{flexDirection:"row"}}>
                         <TouchableOpacity
-                                //style={{paddingTop:10,paddingRight:20}}
-                                activeOpacity = { .5 }
-                                onPress={()=>{
-                                  navigation.openDrawer();
-                                    
-                                }}  
-                            >
-                              <View style={{paddingRight:10}}>
-                               
-                                <Icon
-                                  //style={{flex:1}}
-                                  name="navicon"
-                                  size={30}
-                                  color="purple"
-                                  />
-                              </View>
-                            </TouchableOpacity>
-                        
+                            style={{flex:1}}
+                            activeOpacity = { .5 }
+                            onPress={()=>{navigation.openDrawer();}}  >
+                            <View>
+                              <Image source={Images.top_side_icon}
+                              style = {{width:18,
+                                        height:18,
+                                        marginLeft:10,
+                                        marginTop:10, }}/>
+                                  {/* <Icon
+                                    //style={{flex:1}}
+                                    name="navicon"
+                                    size={30}
+                                    color="purple"
+                                    /> */}
+                            </View>
+                        </TouchableOpacity>
+                            <View style={{flex:1}}>
+                              <Image style = {{width:150,
+                                               height:40,
+                                               marginLeft:width/5 }}
+                                     resizeMode="contain"
+                                     source={Images.logo}/>
+                            </View>
+                      </View>
                     </View>
         )
-      
     })
   },
-  //Category,Items
+  //Category_Items,Items_view
   Items : ItemsScreen,
   ItemView : ItemViewScreen,
-  //Regi,Logi
+  //Register,Login
   Login : loginScreen,
   Register : registerScreen
-
 });
 
 const AuthStack = createStackNavigator({
@@ -164,13 +154,10 @@ const AuthStack = createStackNavigator({
       //gestureEnabled: false,
     })
   },
-
-
   Register : {
     screen : registerScreen
     },
 },
-
 {
   initialRouteName: 'Login'
 });
@@ -213,10 +200,7 @@ class AuthLoadingScreen extends Component{
 
           this.props.navigation.navigate('Drawer');
         }
-
       }
-    
-    
   }
 
   render(){
@@ -226,11 +210,8 @@ class AuthLoadingScreen extends Component{
           <StatusBar barStyle="default"/>
       </View>
     );
+   }
   }
-}
-
-
-
 
 const { width } = Dimensions.get('window');
 const Drawer = createDrawerNavigator(
@@ -241,8 +222,6 @@ const Drawer = createDrawerNavigator(
                               title: 'Fluxstore'
                             })
                           },
-                          
-
                         },
                         {
                           contentComponent:  sideBar,
@@ -253,7 +232,6 @@ const Drawer = createDrawerNavigator(
                           activeTintColor:'#e91e63'
                           },
                         }
-
 );
 
 export default createAppContainer(createSwitchNavigator(
@@ -261,12 +239,10 @@ export default createAppContainer(createSwitchNavigator(
     AuthLoading : AuthLoadingScreen,
     Drawer : Drawer,
     Auth : AuthStack,
-
   },
   {
     initialRouteName: 'Drawer'
   }
-
 ));
 
 

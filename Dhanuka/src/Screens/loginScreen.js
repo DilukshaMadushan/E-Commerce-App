@@ -7,19 +7,14 @@ import Images from '../common/Images';
 export default class loginScreen extends React.Component {
 
   render() {
-    const { width } = Dimensions.get('window');
+
     return (
       <ScrollView style={styles.container}>
         <View style={styles.CardView}>
-          <View style={{flexDirection:'row',alignSelf:'center',marginBottom:60}}>
+          <View style={{alignSelf:'center',marginBottom:60}}>
             <Image source={Images.logo}
                    style={styles.Logo}>
             </Image>
-            <Text style={{textAlign:'center',
-                          alignSelf:'center',
-                          fontSize:25,
-                          paddingStart:10,
-                          fontWeight:"500"}}>Login In</Text>
           </View>  
             <View style={styles.TextView}>
               <Icon name='user'
@@ -43,16 +38,16 @@ export default class loginScreen extends React.Component {
             </View>
             <TouchableOpacity style={styles.Button}
                               activeOpacity={0.5}>
-              <Text style={{color:'#fff',fontWeight:'bold',fontSize:20}}>Sign In</Text>
+              <Text style={{color:'#fff',fontWeight:'bold',fontSize:20}}>Log In</Text>
             </TouchableOpacity>
             <View style={{flexDirection:'row',paddingTop:10,alignSelf:'center'}}>
               <Text style={{alignSelf:'center'}}>Don't have an account?</Text>
-              <TouchableOpacity activeOpacity={0.5}>
+              <TouchableOpacity activeOpacity={0.5}
+                                onPress={()=>this.props.navigation.navigate('Register')} >
                   <Text style={{color:'black',
                                 paddingStart:5,
                                 fontWeight:'bold',
-                                fontSize:20}}
-                        onPress={()=>this.props.navigation.navigate('Register')}        
+                                fontSize:20}}       
                                 >Register</Text>
               </TouchableOpacity>
             </View>
@@ -73,8 +68,8 @@ const styles = StyleSheet.create({
     marginVertical:50,
   },
   Logo:{
-    width:0.12*width,
-    height:0.12*width,
+    width:0.52*width,
+    height:0.2*width,
     alignSelf:'center'
   },
   TextView:{
@@ -99,6 +94,6 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'center',
     borderRadius:30,
-    backgroundColor:'#191970'
+    backgroundColor:'rgba(0, 179, 155,0.7)'
   },
 });

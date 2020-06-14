@@ -56,13 +56,14 @@ const styles = StyleSheet.create({
   },
   SearchBack:{
     opacity:0.4,
-    top:'40%',
+    top:'45%',
     alignSelf:'center',
     position:'absolute',
     alignItems:'center'
   },
   SearchImage:{
-    width:0.4*width,
-    height:0.4*width,
+    width:0.53*width,
+    height:0.2*width,
+    marginBottom:20
   },
 });

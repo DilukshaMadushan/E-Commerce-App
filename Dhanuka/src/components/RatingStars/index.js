@@ -27,7 +27,7 @@ class RatingStars extends Component {
         starSize={18}
         rating={this.state.starCount}
         selectedStar={(rating) => this.onStarRatingPress(rating)}
-        fullStarColor={'rgba(0, 179, 155, 1)'}
+        fullStarColor={'rgba(0,179,155,1)'}
       />
     );
   }

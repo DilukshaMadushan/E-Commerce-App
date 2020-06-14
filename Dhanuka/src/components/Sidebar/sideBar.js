@@ -14,7 +14,7 @@ export default class home extends React.Component {
             <Image source={Images.default_Item}
                   style={styles.ProfileImage}/>
             <View style={styles.Profileright}>
-                <Text style={{fontSize:25}}>Name</Text>
+                <Text style={{fontSize:25}}>Guest</Text>
             </View>
           </View>
           <TouchableOpacity style={styles.list}>

@@ -41,10 +41,10 @@ function Item({id,ItemName,ItemPrice,uri}) {
   return (
       <View style={{flexDirection:'row',
                     marginTop:7,
-                    borderTopWidth:1,
+                    borderTopWidth:0.3,
                     borderBottomWidth:1,
                     paddingVertical:10,
-                    borderColor:'grey',
+                    borderColor:'rgba(184,184,184,1)',
                     width:width,
                     backgroundColor:'#fff',}}>
         <Image style={styles.ItemImage} source={uri}></Image>
@@ -87,9 +87,7 @@ function Item({id,ItemName,ItemPrice,uri}) {
 
 const { width, height } = Dimensions.get("window");
 
-class SelectedItem extends Component {
-
-    render() {
+function SelectedItem () {
       return (
         <View style={styles.container}>
           <View style={styles.TotalPrice}>
@@ -110,6 +108,5 @@ class SelectedItem extends Component {
 
       );
     }
-  }
     
   export default SelectedItem;

@@ -12,19 +12,12 @@ import Color from '../common/Color';
 import CategoryItems from '../components/CategoryItems';
 
  class ItemsScreen extends React.Component {
-
   render() {
-    const { width } = Dimensions.get('window');
-    const { categories, onViewProductScreen } = this.props;
-
     return (
-        <View style={{flex:1}}>
           <ScrollView
             style={styles.categoryScreen}>
-            <CategoryItems/>
-            <Text onPress={()=>this.props.navigation.navigate('ItemView')} style={{fontSize:25}}>Can Go(Screen)</Text>
+            <CategoryItems navigation={this.props.navigation}/>
           </ScrollView>
-        </View>
     );
   }
 }

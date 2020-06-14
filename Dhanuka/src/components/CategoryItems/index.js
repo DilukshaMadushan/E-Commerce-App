@@ -8,7 +8,6 @@ import Wishlist from "../Wishlist";
 import RatingStars from "../RatingStars";
 import { Icon } from 'react-native-elements';
 
-
 const DATA = [
   {
     id: '1',
@@ -60,18 +59,16 @@ const DATA = [
   },
 ];
 
-
-function Item({id,ItemName,ItemPrice,uri}) {
+function Item({ItemName,ItemPrice,uri,navigation}) {
   return (
-    <View style={styles.item}
-                      activeOpacity={0.7}>
+    <View style={styles.item} activeOpacity={0.7}>
       <View style={styles.itemView}>
-        <TouchableOpacity activeOpacity={0.5}>
+        <TouchableOpacity activeOpacity={0.5} onPress={()=>navigation.navigate('ItemView')}>
           <Image style={styles.itemImage} source={uri}></Image>
         </TouchableOpacity>
-        <SafeAreaView style={{position:'absolute',alignSelf:'flex-end',top:0}}>
+        <View style={{position:'absolute',alignSelf:'flex-end',top:0}}>
           <Wishlist/>
-        </SafeAreaView>
+        </View>
       </View>
       <Text style={styles.ItemName}>{ItemName}</Text>
       <Text style={styles.ItemPrice}>{ItemPrice}</Text>
@@ -90,9 +87,7 @@ function Item({id,ItemName,ItemPrice,uri}) {
   );
 }
 
-class CategoryItems extends Component {
-
-  render() {
+function CategoryItems({navigation}) {
     return (
       <View style={{paddingBottom:10,paddingTop:10}}>
         <FlatList
@@ -102,14 +97,13 @@ class CategoryItems extends Component {
           <Item ItemName={item.ItemName} 
                 uri={item.uri} 
                 id={item.id}
-                ItemPrice={item.ItemPrice}/>}
+                ItemPrice={item.ItemPrice}
+                navigation={navigation}/>}
           keyExtractor={item => item.id}
         />
-        <Text onPress={()=>this.props.navigation.navigate('ItemView')} style={{fontSize:25}}>Can't Go(Component)</Text>
       </View>
     );
   }
-}
   
 export default CategoryItems;
 

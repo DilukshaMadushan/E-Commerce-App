@@ -6,7 +6,7 @@ export default StyleSheet.create({
   item: {
     width:0.9*width,
     height: 0.4*width,
-    marginBottom:15,
+    marginTop:10,
     justifyContent:'center',
   },
   

@@ -9,8 +9,8 @@ import styles from "./styles";
 import { Icon } from 'react-native-elements';
 
 
-function   CartItems(){
-    
+class CartItems extends React.Component{
+    render(){
       return (
         <View style={styles.container}>
             <View style={styles.Upper}>
@@ -58,5 +58,6 @@ function   CartItems(){
         </View>
       );
     }
+}
     
   export default CartItems;

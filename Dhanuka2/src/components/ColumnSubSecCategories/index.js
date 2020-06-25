@@ -8,18 +8,31 @@ import {
   TouchableOpacity, 
 } from 'react-native';
 
+import { withNavigation } from 'react-navigation'; 
+
 import styles from './styles';
 import { Icon } from 'react-native-elements';
 
-  
 
 class SubSecCategories extends React.Component{
+
+  state = {
+    SubSecCategorylist:[]
+  }
+
+  componentWillMount(){
+     this.setState({SubSecCategorylist:this.props.SubSecCategorylist});
+     console.log(this.props.name);
+  }
 
  render(){
     return (
         <View style={styles.List}>
            {this.props.SubSecCategorylist.map((item,index) => (
-              <TouchableOpacity 
+              <TouchableOpacity
+                onPress = {()=>{
+                  this.props.navigation.navigate('Items',{"id":item.id});
+                }} 
                 key = {item.id}
                 style = {styles.ListItem}>
                     <Text style={{flex:1,paddingStart:25,textAlign:'center',fontSize:15,fontWeight:'bold'}}>
@@ -37,4 +50,4 @@ class SubSecCategories extends React.Component{
   }
 }
 
-export default SubSecCategories;
+export default withNavigation(SubSecCategories);

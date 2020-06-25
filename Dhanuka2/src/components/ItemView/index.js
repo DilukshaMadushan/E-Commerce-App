@@ -15,6 +15,14 @@ class ItemView extends Component {
           status:false,
           }
       }
+
+    state={
+      item:null
+    }
+
+    componentWillMount(){
+      this.setState({item:this.props.item});
+    }
     
     Tabs( width ,height) {
         if (this.state.status === false) {
@@ -38,9 +46,9 @@ class ItemView extends Component {
     render() {
       return (
         <View style={{paddingBottom:10,paddingTop:10}}>
-            <Image style={styles.ItemImage} source={Images.default_Item}></Image>
-            <Text style={styles.ItemName}>Cloth  01</Text>
-            <Text style={styles.ItemPrice}>100$</Text>
+            <Image style={styles.ItemImage} source={{uri:this.state.item.images[0].src}}></Image>
+            <Text style={styles.ItemName}>{this.state.item.name}</Text>
+            <Text style={styles.ItemPrice}>Rs. {this.state.item.price}</Text>
             <View style={styles.ItemReviews}>
                 <Text style={styles.ReviewNumber}>(0.5)</Text>
                 <Text style={styles.Review}>Reviews</Text>

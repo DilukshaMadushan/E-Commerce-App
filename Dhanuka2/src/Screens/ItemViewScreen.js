@@ -20,7 +20,7 @@ import ItemView from '../components/ItemView';
         <View style={{flex:1}}>
           <ScrollView
             style={styles.categoryScreen}>
-            <ItemView/>
+            <ItemView item={this.props.navigation.getParam('item')}/>
           </ScrollView>
         </View>
     );

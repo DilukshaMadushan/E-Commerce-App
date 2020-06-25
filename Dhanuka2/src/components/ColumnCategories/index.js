@@ -27,10 +27,10 @@ function Item({title,uri,id,product}) {
   );
 }
 
-function SubCategorylist({CategoryList,status,id}){
+function SubCategorylist({CategoryList,status,SubCategoryList}){
   if(status===1){
     return(
-      <SubCategories CategoryList={CategoryList} id={id}/>
+      <SubCategories CategoryList={CategoryList} SubCategoryList={SubCategoryList}/>
     );
   }else(status===0)
     return(
@@ -42,6 +42,7 @@ class Categories extends React.Component{
 
   state = {
     CategoryList:[],
+    MainCategoryList:[],
     SubCategoryStatus:[0,0,0,0,0,0,0,0,0,0],
     SubCategoryList:[],
   }
@@ -62,8 +63,9 @@ class Categories extends React.Component{
       })
     .then((response) => response.json())
     .then((json) => {
-       console.log(json);
+       //console.log(json);
        this.setState({CategoryList:json});
+       this.setState({MainCategoryList:json.filter(function(cat){return cat.parent == 0;})})
   
     })
   }
@@ -72,27 +74,36 @@ class Categories extends React.Component{
     return (
       <View style={{alignSelf:'center',paddingBottom:15}}>
         <FlatList
-          data={this.state.CategoryList.filter(function(cat){return cat.parent == 0;})}
+          data={this.state.MainCategoryList}
           renderItem={({ item }) =>
           <View>
             <TouchableOpacity
-                onPress = {()=>{    const index = this.state.CategoryList.indexOf(item);
-                                if (this.state.SubCategoryStatus[index]==0){
-                                    const dup_array = this.state.SubCategoryStatus;
-                                          dup_array[index] = 1;
-                                          this.setState({SubCategoryStatus:dup_array});
-                                }else{const dup_array = this.state.SubCategoryStatus;
-                                          dup_array[index] = 0;
-                                          this.setState({SubCategoryStatus:dup_array});}}}>
+                onPress = {()=>{
+                                if (this.state.CategoryList.filter(function(cat){return cat.parent == item.id;}).length==0){
+                                    this.props.navigation.navigate('Items',{"id":item.id});
+                                }else{
+                                  const index = this.state.MainCategoryList.indexOf(item);
+                                  if (this.state.SubCategoryStatus[index]==0){
+                                      const dup_array = this.state.SubCategoryStatus;
+                                            dup_array[index] = 1;
+                                            this.setState({SubCategoryStatus:dup_array});
+                                  }else{const dup_array = this.state.SubCategoryStatus;
+                                            dup_array[index] = 0;
+                                            this.setState({SubCategoryStatus:dup_array});
+                                  }
+                                }
+                                          
+                                          }}>
               <Item title={item.name} 
                     uri={Images.default_Category_1} 
-                    id={this.state.CategoryList.indexOf(item)}
+                    id={this.state.MainCategoryList.indexOf(item)}
                     product={item.count}
                     />
             </TouchableOpacity>
-            <SubCategorylist status={this.state.SubCategoryStatus[this.state.CategoryList.indexOf(item)]} 
+            <SubCategorylist status={this.state.SubCategoryStatus[this.state.MainCategoryList.indexOf(item)]} 
                              CategoryList={this.state.CategoryList}
-                             id={item.id}/>
+                             SubCategoryList = {this.state.CategoryList.filter(function(cat){return cat.parent == item.id;})}
+                             />
           </View> 
               }
           keyExtractor={item => item.id}

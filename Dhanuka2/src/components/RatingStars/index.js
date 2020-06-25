@@ -19,12 +19,12 @@ class RatingStars extends Component {
   render() {
     return (
       <StarRating
-        disabled={false}
         emptyStar={'ios-star-outline'}
         fullStar={'ios-star'}
         iconSet={'Ionicons'}
         maxStars={5}
-        starSize={18}
+        starSize={19}
+        starStyle={{paddingEnd:1}}
         rating={this.state.starCount}
         selectedStar={(rating) => this.onStarRatingPress(rating)}
         fullStarColor={'rgba(0,179,155,1)'}

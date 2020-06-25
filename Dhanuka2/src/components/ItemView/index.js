@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { View, FlatList, Image, Text,TouchableOpacity,Dimensions, StatusBarIOS } from "react-native";
 import { connect } from "react-redux";
-
 import Images from "../../common/Images";
 import styles from "./styles";
+import RatingStars from "../RatingStars";
+import DropDownMenu from '../DropDownMenu';
 
 
 const { width, height } = Dimensions.get("window");
@@ -50,13 +51,16 @@ class ItemView extends Component {
             <Text style={styles.ItemName}>{this.state.item.name}</Text>
             <Text style={styles.ItemPrice}>Rs. {this.state.item.price}</Text>
             <View style={styles.ItemReviews}>
-                <Text style={styles.ReviewNumber}>(0.5)</Text>
+                <RatingStars/>
+                <Text style={styles.ReviewNumber}> (0.5)  </Text>
                 <Text style={styles.Review}>Reviews</Text>
             </View>
+            <DropDownMenu/>
 
             <View style={{width:width,
                           flexDirection:'row',
                           marginTop:10,
+                          paddingRight:20,
                           alignItems:'center',
                           justifyContent:'center',}}>
                 <TouchableOpacity activeOpacity={0.5}

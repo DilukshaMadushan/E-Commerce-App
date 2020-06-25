@@ -5,24 +5,22 @@ const { width, height } = Dimensions.get("window");
 export default StyleSheet.create({
   item: {
     width:'50%',
-    height:0.8*width,
-    paddingBottom:90,
-    paddingHorizontal:5,
-    borderRadius:10,
-
+    height:0.9*width,
+    paddingHorizontal:10,
+    paddingBottom:80,
+    marginBottom:10,
   },
   itemView:{
     justifyContent:'center',
-    borderRadius:10,
+    borderRadius:0,
   },
   itemImage:{
     width:'100%',
-    height:'100%',
-    alignSelf:'center',
+    height:'95%',
     borderRadius:5
   },
   ItemName:{
-    fontSize:18,
+    fontSize:15,
     fontWeight:'500',
     color:'black',
     alignSelf:'center'
@@ -31,7 +29,7 @@ export default StyleSheet.create({
     alignSelf:'flex-start',
     fontSize:15,
     color:'grey',
-    paddingVertical:2
+    paddingTop:5
     
   },
   wishlist:{

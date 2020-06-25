@@ -23,11 +23,11 @@ class Wishlist extends Component {
     return (
       <TouchableOpacity
         onPressIn={(click) => this.onWishlistPress(click)}>
-        <Icon name='heart'
+        <Icon name={this.state.State ? 'heart' : 'heart-o'}
               containerStyle={styles.Wishlist}
               type='font-awesome'
-              size={22}
-              color={this.state.State ? 'red' : '#fff'}/>
+              size={24}
+              color={this.state.State ? 'red' : 'grey'}/>
       </TouchableOpacity>
     );
   }

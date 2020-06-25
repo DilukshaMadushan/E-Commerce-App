@@ -16,7 +16,7 @@ export default StyleSheet.create({
     },
     ItemPrice:{
         fontSize:17,
-        paddingTop:5,
+        paddingTop:10,
         alignSelf:'center',
         color:'grey'
     },
@@ -24,16 +24,15 @@ export default StyleSheet.create({
         flexDirection:'row',
         paddingTop:5,
         alignSelf:'center',
+        alignItems:'flex-end'
     },
     Review:{
         fontSize:17,
         paddingTop:5,
-        alignSelf:'center',
     },
     ReviewNumber:{
         fontSize:17,
         paddingTop:5,
-        alignSelf:'center',
     },
     ItemTab:{
         width:'50%',

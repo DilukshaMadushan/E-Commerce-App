@@ -1,19 +1,19 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
 import { View, FlatList, Image, Text,TouchableOpacity,Dimensions,ScrollView } from "react-native";
-
-import SelectedItem from '../SelectedItem';
-
+import { connect } from "react-redux";
+import Images from "../../common/Images";
 import styles from "./styles";
 import { Icon } from 'react-native-elements';
+import DeliveryTextInputs from '../DeliveryTextInputs';
 
 
-class CartItems extends Component{
+class DeliveryInfo extends React.Component{
     render(){
       return (
         <View style={styles.container}>
             <View style={styles.Upper}>
                 <View style={styles.Cross}>
-                    <View style={{flex:1,}}></View>
+                    <View style={{flex:1,backgroundColor:'rgba(0, 179, 155,1)'}}></View>
                     <View style={{flex:1,}}></View>
                     <View style={{flex:1,}}></View>
                 </View>
@@ -28,11 +28,11 @@ class CartItems extends Component{
                 </View>
                 <View style={styles.UpperItems}>
                     <Text>Delivery</Text>
-                    <View style={styles.IconView}>
+                    <View style={styles.IconView,styles.Border}>
                         <Icon name='paper-plane'
                             size={15}
                             type='font-awesome'
-                            color={'black'}/>
+                            color={'rgba(0, 179, 155,1)'}/>
                     </View>
                 </View>
                 <View style={styles.UpperItems}>
@@ -55,15 +55,14 @@ class CartItems extends Component{
                 </View>
             </View>
             <View style={styles.TotalPrice}>
-                <Text style={{fontSize:20,flex:1}}>Total Price</Text>
-                <Text style={{fontSize:20,}}>$1000</Text>
+                <Text style={{fontSize:20,flex:1}}>Your Delivery Information:</Text>
             </View>
-            <ScrollView style={styles.SelectedItemsView}>
-                <SelectedItem/>
-            </ScrollView>
+            <View style={styles.TextInputView}>
+                <DeliveryTextInputs navigation={this.props.navigation}/>
+            </View>
         </View>
       );
     }
 }
     
-  export default CartItems;
+  export default DeliveryInfo;

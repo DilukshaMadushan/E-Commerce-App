@@ -1,20 +1,11 @@
-import React, { useState  } from 'react';
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  ScrollView,
-  Text 
-} from 'react-native';
-import { connect } from "react-redux";
-import Color from '../common/Color';
+import React, {Component} from 'react';
+import {StyleSheet,View,Dimensions,ScrollView} from 'react-native';
 
 import Categories from '../components/ColumnCategories';
 
- class categoryScreen extends React.Component {
+ class categoryScreen extends Component {
 
   render() {
-    const { width} = Dimensions.get('window');
     return (
         <View style={{flex:1}}>
           <ScrollView

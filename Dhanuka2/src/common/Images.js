@@ -37,12 +37,13 @@ const Images = {
   categoryPlaceholder: require('../images/category_placehodler.png'),
   splashScreen: require('../images/splash_screen.png'),
 
-  defaultPayment: require('../images/placeholderImage.png'),
-  Stripe: require('../images/stripe.png'),
-  PayPal: require('../images/PayPal.png'),
-  CashOnDelivery: require('../images/cash_on_delivery.png'),
-  PlaceHolder: require('../images/placeholderImage.png'),
-  PlaceHolderURL: "https://mstore.io/wp-content/uploads/2017/07/placeholder.png",
+
+  //Payment Methods
+  BankTransfer: require('../images/payment_logo/bank-transfer-logo.png'),
+  PayPal: require('../images/payment_logo/PayPal.png'),
+  CashOnDelivery: require('../images/payment_logo/cash_on_delivery.png'),
+  Cheque:require('../images/payment_logo/cheque.png'),
+  PayHere:require('../images/payment_logo/payhere.png'),
 
   IconWishList: require('../images/icons/icon-love.png'),
   IconCart: require('../images/icons/icon-cart.png'),

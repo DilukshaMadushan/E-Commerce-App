@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { View, FlatList, Image, Text,TouchableOpacity,SafeAreaView } from "react-native";
-import { connect } from "react-redux";
+
 import styles from './styles';
-import Images from "../../common/Images";
 import Wishlist from "../Wishlist";
 import RatingStars from "../RatingStars";
+
 import { Icon } from 'react-native-elements';
 
 
-function Item({ItemName,ItemPrice,item,uri,navigation}) {
+function Item({ItemName,ItemPrice,item,uri,ItemRate,navigation}) {
   return (
     <View style={styles.item} activeOpacity={0.7}>
       <View style={styles.itemView}>
@@ -16,7 +16,7 @@ function Item({ItemName,ItemPrice,item,uri,navigation}) {
           <Image style={styles.itemImage} source={{uri:uri}}></Image>
         </TouchableOpacity>
         <View style={{position:'absolute',alignSelf:'flex-end',top:5}}>
-          <Wishlist/>
+          <Wishlist />
         </View>
       </View>
 
@@ -24,7 +24,7 @@ function Item({ItemName,ItemPrice,item,uri,navigation}) {
       <Text style={styles.ItemPrice}>{ItemPrice}</Text>
       <View style={{flexDirection:'row',paddingTop:2}}>
         <View style={{flex:1,paddingEnd:40,justifyContent:'center'}}>
-          <RatingStars/>
+          <RatingStars ItemRate={ItemRate}/>
         </View>
         <TouchableOpacity>
           <Icon name='shopping-cart'
@@ -81,6 +81,7 @@ class CategoryItems extends React.Component{
                 uri={item.images[0].src} 
                 item={item}
                 ItemPrice={'Rs '+item.price}
+                ItemRate={item.average_rating}
                 navigation={this.props.navigation}/>}
           keyExtractor={item => item.id}
         />

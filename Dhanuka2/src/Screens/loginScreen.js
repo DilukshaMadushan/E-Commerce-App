@@ -1,13 +1,16 @@
-import React, { useState  } from 'react';
+import React, { Component  } from 'react';
 import {StyleSheet, Text, View, Image, Dimensions,TouchableOpacity,ScrollView,TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Images from '../common/Images';
 
 
-export default class loginScreen extends React.Component {
+class loginScreen extends Component {
+ 
+  loginHadler = () => {
+    
+  }
 
   render() {
-
     return (
       <ScrollView style={styles.container}>
         <View style={styles.CardView}>
@@ -37,13 +40,14 @@ export default class loginScreen extends React.Component {
               />
             </View>
             <TouchableOpacity style={styles.Button}
-                              activeOpacity={0.5}>
+                              activeOpacity={0.5}
+                              onPress={this.loginHadler}>
               <Text style={{color:'#fff',fontWeight:'bold',fontSize:20}}>Log In</Text>
             </TouchableOpacity>
             <View style={{flexDirection:'row',paddingTop:10,alignSelf:'center'}}>
               <Text style={{alignSelf:'center'}}>Don't have an account?</Text>
               <TouchableOpacity activeOpacity={0.5}
-                                onPress={()=>this.props.navigation.navigate('Register')} >
+                                onPress={()=>this.props.navigation.navigate('Register')}>
                   <Text style={{color:'black',
                                 paddingStart:5,
                                 fontWeight:'bold',
@@ -56,6 +60,7 @@ export default class loginScreen extends React.Component {
     );
   }
 }
+
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -97,3 +102,6 @@ const styles = StyleSheet.create({
     backgroundColor:'rgba(0, 179, 155,0.7)'
   },
 });
+
+
+export default loginScreen;

@@ -1,12 +1,11 @@
-import React, { useState  } from 'react';
+import React, {Component} from 'react';
 import {TextInput,StyleSheet, Text, View, Image, Dimensions,} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Images from '../common/Images';
 
-export default class searchScreen extends React.Component {
+class searchScreen extends Component {
 
- 
   render() {
     const { width } = Dimensions.get('window');
     return (
@@ -67,3 +66,5 @@ const styles = StyleSheet.create({
     marginBottom:20
   },
 });
+
+export default searchScreen;

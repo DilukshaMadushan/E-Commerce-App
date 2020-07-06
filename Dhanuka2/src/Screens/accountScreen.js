@@ -1,20 +1,11 @@
-import React, { useState  } from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
-  Dimensions
-} from 'react-native';
+import React, {Component} from 'react';
+import {ScrollView,StyleSheet,View,Image,Text,TouchableOpacity,Dimensions} from 'react-native';
 
 import ProfileItems from '../components/Profile';
 import Images from '../common/Images';
 
 
-
- class accountScreen extends React.Component {
+ class accountScreen extends Component {
 
  
   render() {

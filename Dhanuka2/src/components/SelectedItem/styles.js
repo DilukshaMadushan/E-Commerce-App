@@ -8,12 +8,6 @@ export default StyleSheet.create({
         backgroundColor:'rgba(0,0,0,0.1)',
         paddingBottom:40
     },
-    TotalPrice:{
-        paddingHorizontal:10,
-        paddingVertical:5,
-        backgroundColor:'#fff',
-        flexDirection:'row',
-    },
     ItemImage:{
         width:0.3*width,
         height:0.3*width,

@@ -1,15 +1,5 @@
 import React, { Component } from 'react';
-import { 
-  StyleSheet,
-  Text, 
-  View, 
-  ActivityIndicator,
-  StatusBar,
-  AsyncStorage,
-  Button,
-  Dimensions,
-  TouchableOpacity,
-  Image} from 'react-native';
+import { StyleSheet,Text,View,ActivityIndicator,StatusBar,AsyncStorage,Button,Dimensions,TouchableOpacity,Image} from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Images from './src/common/Images';
@@ -28,8 +18,13 @@ import loginScreen from './src/Screens/loginScreen';
 import registerScreen from './src/Screens/registerScreen';
 import ItemsScreen from './src/Screens/categoryItemsScreen';
 import ItemViewScreen from './src/Screens/ItemViewScreen';
+import deliveryScreen from './src/Screens/deliveryScreen';
+import paymentScreen from './src/Screens/paymentScreen';
+import finishOrderScreen from './src/Screens/finishOrderScreen';
+
 
 import sideBar from './src/components/Sidebar/sideBar';
+
 
 
 const TabScreen = createMaterialBottomTabNavigator(
@@ -64,14 +59,15 @@ const TabScreen = createMaterialBottomTabNavigator(
         tabBarIcon: ({ tintColor }) => (
           <Icon name="user" size={21} color="#696969" />
         )
-      }}
+      }},
   },
   {
     initialRouteName : "Home",
     activeColor : "#D3D3D3",
     barStyle: { backgroundColor: '#FFFFFF' },
     
-  }
+  },
+
   // {
   //   lazy: true,
   //   tabBarPosition: 'bottom',
@@ -136,14 +132,20 @@ const App = createStackNavigator({
                       </View>
                     </View>
         )
-    })
+    }),
   },
   //Category_Items,Items_view
   Items : ItemsScreen,
   ItemView : ItemViewScreen,
   //Register,Login
   Login : loginScreen,
-  Register : registerScreen
+  Register : registerScreen,
+  //Delivery_Info
+  Delivery: deliveryScreen,
+  //Payment Methods
+  Payment:paymentScreen,
+  //Thank You/Finish Order
+  Finish_Order:finishOrderScreen,
 });
 
 const AuthStack = createStackNavigator({

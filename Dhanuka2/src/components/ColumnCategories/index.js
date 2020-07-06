@@ -1,6 +1,5 @@
 import React from "react";
 import { View, FlatList, Image, Text,TouchableOpacity,ScrollView} from "react-native";
-import { connect } from "react-redux";
 import { withNavigation } from 'react-navigation'; 
 
 import styles from './styles';

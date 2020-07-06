@@ -1,39 +1,25 @@
-import React, { useState  } from 'react';
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  ScrollView,
-  Text,
-  TouchableOpacity 
-} from 'react-native';
-import { connect } from "react-redux";
-import Color from '../common/Color';
+import React, {Component} from 'react';
+import {StyleSheet,View,Dimensions,Text,TouchableOpacity } from 'react-native';
 
 //import EmptyCart from '../components/EmptyCart'; <EmptyCart/>
 import CartItems from '../components/CartItems';
 
- class mycartScreen extends React.Component {
+ class mycartScreen extends Component {
 
   render() {
-    const { width } = Dimensions.get('window');
-    const { categories, onViewProductScreen } = this.props;
-
     return (
         <View>
-          <ScrollView
-            style={styles.categoryScreen}>
+          <View
+            style={styles.ItemsScreen}>
             <CartItems/>
-          </ScrollView>
-          <View style={{backgroundColor:'#fff',
-                        position:'absolute',
-                        flexDirection:'row',
-                        bottom:0,
-                        width:width,}}>
-            <TouchableOpacity style={styles.buttonBack} activeOpacity={0.5}>
+          </View>
+          <View style={styles.ButtonsScreen}>
+            <TouchableOpacity style={styles.buttonBack} activeOpacity={0.5}
+                              onPress={() => this.props.navigation.navigate('Home')}>
               <Text style={{color:'#fff',fontSize:20,textAlign:'center'}}>Back</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonNext} activeOpacity={0.5}>
+            <TouchableOpacity style={styles.buttonNext} activeOpacity={0.5}
+                              onPress={() => this.props.navigation.navigate('Delivery')}>
               <Text style={{color:'#fff',fontSize:20,textAlign:'center'}}>Next</Text>
               </TouchableOpacity>
           </View>
@@ -42,15 +28,25 @@ import CartItems from '../components/CartItems';
   }
 }
 
+
+const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
-  categoryScreen: {
-    padding:0,
-    backgroundColor:'#fff'
+  ItemsScreen: {
+    height:'100%',
+    backgroundColor:'#fff',
+    paddingBottom:110
+  },
+  ButtonsScreen:{
+    backgroundColor:'#fff',
+    position:'absolute',
+    flexDirection:'row',
+    bottom:0,
+    width:width,
   },
   buttonBack:{
     flex:1,
     backgroundColor:'rgba(220,220,220,0.8)',
-    paddingVertical:5
+    paddingVertical:5,
   },
   buttonNext:{
     flex:1,

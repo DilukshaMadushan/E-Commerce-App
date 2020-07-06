@@ -1,6 +1,5 @@
 import React, { useState  } from 'react';
 import {FlatList,StyleSheet, Text, View, Image, Dimensions,TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Images from '../common/Images';
 
 export default class homeScreen extends React.Component {

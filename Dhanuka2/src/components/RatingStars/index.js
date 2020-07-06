@@ -3,18 +3,9 @@ import React, { Component } from 'react';
 
 class RatingStars extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      starCount: 0
+  state = {
+      starCount:Math.floor(this.props.ItemRate)
     };
-  }
-
-  onStarRatingPress(rating) {
-    this.setState({
-      starCount: rating
-    });
-  }
 
   render() {
     return (
@@ -26,7 +17,6 @@ class RatingStars extends Component {
         starSize={19}
         starStyle={{paddingEnd:1}}
         rating={this.state.starCount}
-        selectedStar={(rating) => this.onStarRatingPress(rating)}
         fullStarColor={'rgba(0,179,155,1)'}
       />
     );

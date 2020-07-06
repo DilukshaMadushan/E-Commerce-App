@@ -1,21 +1,20 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
 import { View, FlatList, Image, Text,TouchableOpacity,Dimensions,ScrollView } from "react-native";
-
-import SelectedItem from '../SelectedItem';
 
 import styles from "./styles";
 import { Icon } from 'react-native-elements';
 
 
-class CartItems extends Component{
+
+class FinishOrderInfo extends Component{
     render(){
       return (
         <View style={styles.container}>
             <View style={styles.Upper}>
                 <View style={styles.Cross}>
-                    <View style={{flex:1,}}></View>
-                    <View style={{flex:1,}}></View>
-                    <View style={{flex:1,}}></View>
+                    <View style={{flex:1,backgroundColor:'rgba(0, 179, 155,1)'}}></View>
+                    <View style={{flex:1,backgroundColor:'rgba(0, 179, 155,1)'}}></View>
+                    <View style={{flex:1,backgroundColor:'rgba(0, 179, 155,1)'}}></View>
                 </View>
                 <View style={styles.UpperItems}>
                     <Text>cart</Text>
@@ -28,42 +27,48 @@ class CartItems extends Component{
                 </View>
                 <View style={styles.UpperItems}>
                     <Text>Delivery</Text>
-                    <View style={styles.IconView}>
+                    <View style={styles.IconView,styles.Border}>
                         <Icon name='paper-plane'
                             size={15}
                             type='font-awesome'
-                            color={'black'}/>
+                            color={'rgba(0, 179, 155,1)'}/>
                     </View>
                 </View>
                 <View style={styles.UpperItems}>
                     <Text>Payment</Text>
-                    <View style={styles.IconView}>
+                    <View style={styles.IconView,styles.Border}>
                         <Icon name='paypal'
                             size={15}
                             type='font-awesome'
-                            color={'black'}/>
+                            color={'rgba(0, 179, 155,1)'}/>
                     </View>
                 </View>
                 <View style={styles.UpperItems}>
                     <Text>Order</Text>
-                    <View style={styles.IconView}>
+                    <View style={styles.IconView,styles.Border}>
                         <Icon name='flag'
                             size={20}
                             type='Entypo'
-                            color={'black'}/>
+                            color={'rgba(0, 179, 155,1)'}/>
                     </View>
                 </View>
             </View>
-            <View style={styles.TotalPrice}>
-                <Text style={{fontSize:20,flex:1}}>Total Price</Text>
-                <Text style={{fontSize:20,}}>$1000</Text>
+            <View style={styles.ThankYouScreen}>
+                <View style={styles.ThankIconView}>
+                    <Icon name='check'
+                          size={50}
+                          type='Entypo'
+                          color={'#FFF'}/>
+                </View>
+                <Text style={{fontSize:30,fontWeight:'bold',paddingTop:20}}>Thank You</Text>
+                <Text style={{fontSize:15,paddingTop:20,textAlign:'center'}}>Thank you so much for your purchased,to check your delivery status please go to My Order</Text>
+                <TouchableOpacity style={styles.buttonViewOrader} activeOpacity={0.5}>
+                    <Text style={{color:'#fff',fontWeight:'bold',fontSize:20}}>View My Orders</Text>
+                </TouchableOpacity>
             </View>
-            <ScrollView style={styles.SelectedItemsView}>
-                <SelectedItem/>
-            </ScrollView>
         </View>
       );
     }
 }
     
-  export default CartItems;
+  export default FinishOrderInfo ;

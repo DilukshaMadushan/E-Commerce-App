@@ -52,8 +52,7 @@ class ItemView extends Component {
             <Text style={styles.ItemPrice}>Rs. {this.state.item.price}</Text>
             <View style={styles.ItemReviews}>
                 <RatingStars/>
-                <Text style={styles.ReviewNumber}> (0.5)  </Text>
-                <Text style={styles.Review}>Reviews</Text>
+                <Text style={styles.ReviewNumber}> ({this.state.item.average_rating}) Review  </Text>
             </View>
             <DropDownMenu/>
 

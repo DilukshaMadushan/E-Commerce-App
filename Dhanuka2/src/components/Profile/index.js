@@ -18,6 +18,18 @@ function ProfileItems(){
         <View style={styles.List}>
           <TouchableOpacity  
             style={styles.ListItem}>
+            <Icon name='shopping-cart'
+                containerStyle={styles.ItemIcon}
+                type='font-awesome'
+                color={'black'}/>
+            <Text style={{flex:1,textAlign:'center'}}>My Orders</Text>
+            <Icon name='chevron-right'
+                containerStyle={styles.ArrowIcon}
+                type='Entypo'
+                color={'black'}/>
+          </TouchableOpacity>
+          <TouchableOpacity  
+            style={styles.ListItem}>
             <Icon name='heart'
                 containerStyle={styles.ItemIcon}
                 type='font-awesome'

@@ -1,24 +1,9 @@
-import React, { useState  } from 'react';
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  ScrollView,
-  Text 
-} from 'react-native';
-import { connect } from "react-redux";
-import Color from '../common/Color';
+import React, {Component} from 'react';
+import {StyleSheet,ScrollView} from 'react-native';
 
 import CategoryItems from '../components/CategoryItems';
 
- class ItemsScreen extends React.Component {
-
-  componentWillMount(){
-    
-  }
-
-
-
+ class ItemsScreen extends Component {
 
   render() {
     return (

@@ -1,11 +1,76 @@
-import React, { useState  } from 'react';
-import {StyleSheet, Text, View, Image, Dimensions,TouchableOpacity,ScrollView,TextInput } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React, { Component } from 'react';
+import {StyleSheet, Text, View, Image, Dimensions,TouchableOpacity,ScrollView,TextInput,AsyncStorage } from 'react-native';
+
 import Images from '../common/Images';
 
 
-export default class registerScreen extends React.Component {
+class registerScreen extends Component {
+  state={
+    username:null,
+    email:null,
+    password:null,
+    comfirm_password:null,
+  }
  
+
+  _storeData = async (key,value) => {
+    try {
+      await AsyncStorage.setItem(key,value);
+      console.log(key,value);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  _retrieveToken = async () => {
+    try {
+        const value = await AsyncStorage.getItem('profileId');
+        console.log('1');
+        console.log(value);
+
+    } catch (error) {
+        console.log(error);
+    }
+    };
+
+
+  handleSignUp(){
+    if((this.state.username!==null)&&(this.state.email!==null)&&(this.state.password!==null)&&(this.state.comfirm_password!==null)){
+      if(this.state.password == this.state.comfirm_password){
+          fetch('https://www.waytoogo.com/wp-json/wc/v3/customers?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',
+          {
+            method:'POST',
+            headers : { 'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              user_name:this.state.username,
+              email:this.state.email,
+              password:this.state.password,
+              }),
+          }).then((response) => response.json())
+             .then((responseJson) => {
+
+                // this._storeData('isSigned','true');
+                // this._storeData('profileId',responseJson.id);
+                 console.log(responseJson);
+                 //this._storeData('profilePic',responseJson.avatar_url);
+                 //this._storeData('profileName',responseJson.user_name);
+                 
+                 //global.profileId[0] = responseJson.id;
+                 //global.profilePic[0] = responseJson.avatar_url;
+                 //global.name[0] = responseJson.user_name;
+             })
+             .catch((error) => {
+               console.error(error);
+               alert(error);
+             });
+      }else{
+        alert("password do not match");
+      }
+    }else{
+      alert("something is missing");
+    }
+  }
+
   render() {
     const { width } = Dimensions.get('window');
     return (
@@ -19,29 +84,34 @@ export default class registerScreen extends React.Component {
             <View style={styles.TextView}>
               <TextInput  style={styles.TextInput}
                 placeholder="Enter User Name"
-                maxLength={20}
+                maxLength={40}
+                onChangeText={text => this.setState({username:text})}
               />
             </View>
             <View style={styles.TextView}>
               <TextInput  style={styles.TextInput}
                 placeholder="Enter Email"
-                maxLength={20}
+                maxLength={40}
+                onChangeText={text => this.setState({email:text})}
               />
             </View>
             <View style={styles.TextView}>
               <TextInput  style={styles.TextInput}
                 placeholder="Enter Password"
-                maxLength={20}
+                maxLength={40}
+                onChangeText={text => this.setState({password:text})}
               />
             </View>
             <View style={styles.TextView}>
               <TextInput  style={styles.TextInput}
                 placeholder="Comfirm Password"
-                maxLength={20}
+                maxLength={40}
+                onChangeText={text => this.setState({comfirm_password:text})}
               />
             </View>
             <TouchableOpacity style={styles.Button}
-                              activeOpacity={0.5}>
+                              activeOpacity={0.5}
+                              onPress={() => {this.handleSignUp()}}>
               <Text style={{color:'#fff',fontWeight:'bold',fontSize:20}}>Sign In</Text>
             </TouchableOpacity>
             <View style={{flexDirection:'row',paddingTop:10,alignSelf:'center'}}>
@@ -78,7 +148,7 @@ const styles = StyleSheet.create({
   },
   TextView:{
     flexDirection:'row',
-    height: 50,
+    
     marginHorizontal:5,
     marginVertical:10,
     paddingHorizontal:10,
@@ -87,8 +157,9 @@ const styles = StyleSheet.create({
     backgroundColor:'rgba(0,0,0,0.1)',
   },
   TextInput:{
-    fontSize:16,
-    paddingStart:15,
+    height: 50,
+    fontSize:18,
+    paddingStart:10,
   },
   Button:{
     marginTop:30,
@@ -101,3 +172,5 @@ const styles = StyleSheet.create({
     backgroundColor:'rgba(0, 179, 155,0.7)'
   },
 });
+
+export default registerScreen;

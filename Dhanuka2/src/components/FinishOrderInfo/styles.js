@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import React, { StyleSheet, Dimensions } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 
@@ -47,13 +47,29 @@ export default StyleSheet.create({
         borderBottomWidth:2,
         borderColor:'rgba(184,184,184,1)',
     },
-    TotalPrice:{
+    ThankYouScreen:{
         paddingHorizontal:10,
-        paddingTop:10,
-        backgroundColor:'#fff',
-        flexDirection:'row',
+        paddingTop:100,
+        height:'100%',
+        alignItems:'center',
     },
-    SelectedItemsView:{
-        paddingTop:10,
+    ThankIconView:{
+        width:70,
+        height:70,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'orange',
+        borderRadius:40,
+    },
+    buttonViewOrader:{
+        marginTop:30,
+        width:200,
+        height:50,
+        marginVertical:5,
+        marginHorizontal:10,
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:30,
+        backgroundColor:'rgba(0, 179, 155,0.7)'
     },
 });

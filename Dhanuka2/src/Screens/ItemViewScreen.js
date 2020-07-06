@@ -1,16 +1,11 @@
-import React, { useState  } from 'react';
-import {StyleSheet,View,Dimensions,ScrollView,TouchableOpacity,Text } from 'react-native';
-import { connect } from "react-redux";
-import Color from '../common/Color';
+import React, { Component  } from 'react';
+import {StyleSheet,View,ScrollView,TouchableOpacity,Text } from 'react-native';
 
 import ItemView from '../components/ItemView';
 
- class ItemViewScreen extends React.Component {
+ class ItemViewScreen extends Component {
 
   render() {
-    const { width } = Dimensions.get('window');
-    const { categories, onViewProductScreen } = this.props;
-
     return (
         <View style={{flex:1}}>
           <ScrollView
@@ -18,10 +13,12 @@ import ItemView from '../components/ItemView';
             <ItemView item={this.props.navigation.getParam('item')}/>
           </ScrollView>
           <View style={{flexDirection:'row',height:45}}>
-            <TouchableOpacity style={styles.buttonAddToCart} activeOpacity={0.5}>
+            <TouchableOpacity style={styles.buttonAddToCart} 
+                              activeOpacity={0.5}>
                 <Text style={{color:'#fff',fontSize:18,textAlign:'center',fontWeight:'bold'}}>Add To Cart</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonBuyNow} activeOpacity={0.5}>
+            <TouchableOpacity style={styles.buttonBuyNow} activeOpacity={0.5} 
+                              onPress={()=>this.props.navigation.navigate('Delivery')}>
                 <Text style={{color:'#fff',fontSize:18,textAlign:'center',fontWeight:'bold'}}>Buy Now</Text>
             </TouchableOpacity>
           </View>

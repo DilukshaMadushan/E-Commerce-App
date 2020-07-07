@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList, Image, Text,TouchableOpacity,ScrollView} from "react-native";
+import { View, FlatList, Image, Text,TouchableOpacity,ScrollView,ActivityIndicator, StatusBar, Dimensions} from "react-native";
 import { connect } from "react-redux";
 import { withNavigation } from 'react-navigation'; 
 
@@ -45,6 +45,7 @@ class Categories extends React.Component{
     MainCategoryList:[],
     SubCategoryStatus:[0,0,0,0,0,0,0,0,0,0],
     SubCategoryList:[],
+    isLoading:true
   }
   
   componentWillMount(){
@@ -65,14 +66,19 @@ class Categories extends React.Component{
     .then((json) => {
        //console.log(json);
        this.setState({CategoryList:json});
-       this.setState({MainCategoryList:json.filter(function(cat){return cat.parent == 0;})})
+       this.setState({MainCategoryList:json.filter(function(cat){return cat.parent == 0;})});
+       this.setState({isLoading:false});
   
     })
   }
   
   render(){
+    const { width } = Dimensions.get('window');
     return (
-      <View style={{alignSelf:'center',paddingBottom:15}}>
+
+      <View>
+        {(this.state.isLoading==false)?
+        <View style={{alignSelf:'center',paddingBottom:15}}>
         <FlatList
           data={this.state.MainCategoryList}
           renderItem={({ item }) =>
@@ -108,6 +114,11 @@ class Categories extends React.Component{
               }
           keyExtractor={item => item.id}
         />
+        </View>:
+        <View style={{flex:1,justifyContent:'center',alignItems:'center',marginTop:width*0.7}}>
+          <ActivityIndicator/>
+          <StatusBar barStyle="default"/>
+        </View> }
       </View>
     );
   }

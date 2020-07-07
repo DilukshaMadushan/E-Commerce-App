@@ -24,7 +24,7 @@ function Item({ItemName,ItemPrice,item,uri,navigation}) {
       <Text style={styles.ItemPrice}>{ItemPrice}</Text>
       <View style={{flexDirection:'row',paddingTop:2}}>
         <View style={{flex:1,paddingEnd:40,justifyContent:'center'}}>
-          <RatingStars/>
+          <RatingStars />
         </View>
         <TouchableOpacity>
           <Icon name='shopping-cart'

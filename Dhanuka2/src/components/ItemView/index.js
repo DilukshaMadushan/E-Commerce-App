@@ -29,6 +29,8 @@ class ItemView extends Component {
         if (this.state.status === false) {
           return (
             <View style={{width:'100%',paddingLeft:60,paddingTop:30}}>
+                
+                {/* <Text style={styles.Description}>{this.state.item.short_description}</Text> */}
                 <Text style={styles.Description}>Stretch jersey</Text>
                 <Text style={styles.Description}>Soft-touch finish</Text>
                 <Text style={styles.Description}>Round neckline</Text>
@@ -52,8 +54,8 @@ class ItemView extends Component {
             <Text style={styles.ItemPrice}>Rs. {this.state.item.price}</Text>
             <View style={styles.ItemReviews}>
                 <RatingStars/>
-                <Text style={styles.ReviewNumber}> (0.5)  </Text>
-                <Text style={styles.Review}>Reviews</Text>
+                <Text style={styles.ReviewNumber}> 5  </Text>
+                {/* <Text style={styles.Review}>Reviews</Text> */}
             </View>
             <DropDownMenu/>
 

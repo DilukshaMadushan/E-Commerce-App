@@ -33,6 +33,30 @@ const DATA = [
     ItemPrice:'40$',
     uri:Images.default_Item_4,
   },
+  {
+    id: '1',
+    ItemName: 'First Item',
+    ItemPrice:'10$',
+    uri:Images.default_Item,
+  },
+  {
+    id: '2',
+    ItemName: 'Second Item',
+    ItemPrice:'20$',
+    uri:Images.default_Item_2,
+  },
+  {
+    id: '3',
+    ItemName: 'Third Item',
+    ItemPrice:'30$',
+    uri:Images.default_Item_3,
+  },
+  {
+    id: '4',
+    ItemName: 'Fourth Item',
+    ItemPrice:'40$',
+    uri:Images.default_Item_4,
+  },
   
 ];
 
@@ -90,19 +114,15 @@ const { width, height } = Dimensions.get("window");
 function SelectedItem () {
       return (
         <View style={styles.container}>
-          <View style={styles.TotalPrice}>
-            <Text style={{fontSize:20,flex:1}}>Total Price</Text>
-            <Text style={{fontSize:20,}}>$1000</Text>
-          </View>
           <FlatList
-          data={DATA}
-          numColumns={1}
-          renderItem={({ item }) => 
-          <Item ItemName={item.ItemName} 
-                uri={item.uri} 
-                id={item.id}
-                ItemPrice={item.ItemPrice}/>}
-          keyExtractor={item => item.id}
+            data={DATA}
+            numColumns={1}
+            renderItem={({ item }) => 
+            <Item ItemName={item.ItemName} 
+                  uri={item.uri} 
+                  id={item.id}
+                  ItemPrice={item.ItemPrice}/>}
+            keyExtractor={item => item.id}
           />
         </View>
 

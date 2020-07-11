@@ -59,7 +59,7 @@ class CartItems extends Component{
                 <Text style={{fontSize:20,}}>$1000</Text>
             </View>
             <ScrollView style={styles.SelectedItemsView}>
-                <SelectedItem/>
+                <SelectedItem navigation={this.props.navigation}/>
             </ScrollView>
         </View>
       );

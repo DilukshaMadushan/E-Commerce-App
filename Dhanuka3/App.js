@@ -25,6 +25,9 @@ import finishOrderScreen from './src/Screens/finishOrderScreen';
 
 import sideBar from './src/components/Sidebar/sideBar';
 
+import { Provider } from 'react-redux';
+import configureStore from './src/store/configureStore';
+
 
 
 const TabScreen = createMaterialBottomTabNavigator(
@@ -215,6 +218,8 @@ class AuthLoadingScreen extends Component{
    }
   }
 
+
+
 const { width } = Dimensions.get('window');
 const Drawer = createDrawerNavigator(
                         {
@@ -236,7 +241,7 @@ const Drawer = createDrawerNavigator(
                         }
 );
 
-export default createAppContainer(createSwitchNavigator(
+const MainApp = createAppContainer(createSwitchNavigator(
   {
     AuthLoading : AuthLoadingScreen,
     Drawer : Drawer,
@@ -248,3 +253,15 @@ export default createAppContainer(createSwitchNavigator(
 ));
 
 
+
+export default class MainClass extends Component{
+  render(){
+    const store = configureStore();
+    return(
+      <Provider store={store}>
+         <MainApp/>
+      </Provider>
+        
+    );
+  }
+};

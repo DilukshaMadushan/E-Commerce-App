@@ -7,6 +7,8 @@ import RatingStars from "../RatingStars";
 
 import { Icon } from 'react-native-elements';
 
+import {connect} from 'react-redux';
+
 
 function Item({ItemName,ItemPrice,item,uri,ItemRate,navigation}) {
   return (
@@ -40,7 +42,7 @@ function Item({ItemName,ItemPrice,item,uri,ItemRate,navigation}) {
 class CategoryItems extends React.Component{
 
   state = {
-    ItemList:[]
+    ItemList:[],
   }
 
   componentWillMount(){
@@ -62,7 +64,6 @@ class CategoryItems extends React.Component{
     .then((json) => {
        
        this.setState({ItemList:json});
-       console.log(this.state.ItemList[0]);
        //this.setState({MainCategoryList:json.filter(function(cat){return cat.parent == 0;})})
   
     })
@@ -82,13 +83,16 @@ class CategoryItems extends React.Component{
                 item={item}
                 ItemPrice={'Rs '+item.price}
                 ItemRate={item.average_rating}
-                navigation={this.props.navigation}/>}
+                navigation={this.props.navigation}
+                addItemToCart={this.props.addItemToCart}
+          />}
           keyExtractor={item => item.id}
         />
       </View>
     );
   }
-  }
+}
+
 
 export default CategoryItems;
 

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet,View,Dimensions,Text,TouchableOpacity } from 'react-native';
 
-//import EmptyCart from '../components/EmptyCart'; <EmptyCart/>
+import {connect} from 'react-redux';
+
 import CartItems from '../components/CartItems';
 
  class mycartScreen extends Component {
@@ -11,7 +12,7 @@ import CartItems from '../components/CartItems';
         <View>
           <View
             style={styles.ItemsScreen}>
-            <CartItems/>
+            <CartItems addItemToCart={this.props.addItemToCart} navigation={this.props.navigation}/>
           </View>
           <View style={styles.ButtonsScreen}>
             <TouchableOpacity style={styles.buttonBack} activeOpacity={0.5}

@@ -3,6 +3,8 @@ import {StyleSheet,ScrollView} from 'react-native';
 
 import CategoryItems from '../components/CategoryItems';
 
+import {connect} from 'react-redux';
+
  class ItemsScreen extends Component {
 
   render() {

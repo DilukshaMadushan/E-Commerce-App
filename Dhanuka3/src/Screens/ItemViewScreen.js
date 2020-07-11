@@ -3,7 +3,15 @@ import {StyleSheet,View,ScrollView,TouchableOpacity,Text } from 'react-native';
 
 import ItemView from '../components/ItemView';
 
+import { connect } from 'react-redux';
+import { addcartItem} from "../store/cartItemRedux";
+
  class ItemViewScreen extends Component {
+
+handleItemPaaing = (item) => {
+  item.count = 1;
+  this.props.addItemToCart(item);
+}
 
   render() {
     return (
@@ -14,7 +22,8 @@ import ItemView from '../components/ItemView';
           </ScrollView>
           <View style={{flexDirection:'row',height:45}}>
             <TouchableOpacity style={styles.buttonAddToCart} 
-                              activeOpacity={0.5}>
+                              activeOpacity={0.5}
+                              onPress={()=>this.handleItemPaaing(this.props.navigation.getParam('item'))}>
                 <Text style={{color:'#fff',fontSize:18,textAlign:'center',fontWeight:'bold'}}>Add To Cart</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonBuyNow} activeOpacity={0.5} 
@@ -46,4 +55,10 @@ const styles = StyleSheet.create({
 });
 
 
-export default ItemViewScreen;
+const mapDispatchToProps = (dispatch) => {
+  return{
+    addItemToCart:(product) => dispatch(addcartItem(product)),
+  }
+}
+
+export default connect(null,mapDispatchToProps)(ItemViewScreen);

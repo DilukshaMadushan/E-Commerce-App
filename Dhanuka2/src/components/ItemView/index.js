@@ -29,6 +29,8 @@ class ItemView extends Component {
         if (this.state.status === false) {
           return (
             <View style={{width:'100%',paddingLeft:60,paddingTop:30}}>
+                
+                {/* <Text style={styles.Description}>{this.state.item.short_description}</Text> */}
                 <Text style={styles.Description}>Stretch jersey</Text>
                 <Text style={styles.Description}>Soft-touch finish</Text>
                 <Text style={styles.Description}>Round neckline</Text>

@@ -13,7 +13,7 @@ import homeScreen from './src/Screens/homeScreen';
 import categoryScreen from './src/Screens/categoryScreen';
 import searchScreen from './src/Screens/searchScreen';
 import accountScreen from './src/Screens/accountScreen';
-import mycartScreen from './src/Screens/mycartScreen';
+import myCartScreen from './src/Screens/myCartScreen';
 import loginScreen from './src/Screens/loginScreen';
 import registerScreen from './src/Screens/registerScreen';
 import ItemsScreen from './src/Screens/categoryItemsScreen';
@@ -21,7 +21,11 @@ import ItemViewScreen from './src/Screens/ItemViewScreen';
 import deliveryScreen from './src/Screens/deliveryScreen';
 import paymentScreen from './src/Screens/paymentScreen';
 import finishOrderScreen from './src/Screens/finishOrderScreen';
+import myOrdersScreen from './src/Screens/myOrdersScreen';
+import myWishlistScreen from './src/Screens/myWishlistScreen';
 
+
+import ShoppingCartIcon from './src/components/ShoppingCartIcon';
 
 import sideBar from './src/components/Sidebar/sideBar';
 
@@ -51,7 +55,7 @@ const TabScreen = createMaterialBottomTabNavigator(
           <Icon name="search" size={20} color="#696969" />
         )
       }},
-    Mycart: { screen : mycartScreen ,
+    Mycart: { screen : myCartScreen ,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Icon name="shopping-cart" size={20} color="#696969" />
@@ -105,35 +109,26 @@ const App = createStackNavigator({
       },
       //headerTintColor: '#633689',
       title: '',
-      headerLeft : (<View>
-                      <View style={{flexDirection:"row"}}>
-                        <TouchableOpacity
-                            style={{flex:1}}
-                            activeOpacity = { .5 }
-                            onPress={()=>{navigation.openDrawer();}}  >
-                            <View>
-                              <Image source={Images.top_side_icon}
-                              style = {{width:18,
-                                        height:18,
-                                        marginLeft:10,
-                                        marginTop:10, }}/>
-                                  {/* <Icon
-                                    //style={{flex:1}}
-                                    name="navicon"
-                                    size={30}
-                                    color="purple"
-                                    /> */}
-                            </View>
-                        </TouchableOpacity>
-                            <View style={{flex:1}}>
-                              <Image style = {{width:150,
-                                               height:40,
-                                               marginLeft:width/5 }}
-                                     resizeMode="contain"
-                                     source={Images.logo}/>
-                            </View>
-                      </View>
-                    </View>
+      headerLeft : (<View style={{width:width}}>
+        <View style={{flexDirection:"row",alignItems:'center'}}>
+          <TouchableOpacity
+              activeOpacity = { 0.5 }
+              onPress={()=>{navigation.openDrawer();}}  >
+              <View>
+                <Image source={Images.top_side_icon}
+                style = {{width:18,height:18,marginLeft:10,marginTop:10 }}/>
+              </View>
+          </TouchableOpacity>
+          <View style={{flex:1}}>
+              <Image style = {{width:150,height:40,marginLeft:width/5 }}
+                     resizeMode="contain"
+                     source={Images.logo}/>
+          </View>
+          <View style={{paddingRight:15}}>
+            <ShoppingCartIcon />
+          </View>
+        </View>
+      </View>
         )
     }),
   },
@@ -149,6 +144,10 @@ const App = createStackNavigator({
   Payment:paymentScreen,
   //Thank You/Finish Order
   Finish_Order:finishOrderScreen,
+  //MyOrdes
+  MyOrders:myOrdersScreen,
+  //MyWishlist
+  MyWishlist:myWishlistScreen
 });
 
 const AuthStack = createStackNavigator({

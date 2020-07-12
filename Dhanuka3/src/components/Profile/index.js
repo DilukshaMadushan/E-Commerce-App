@@ -1,22 +1,17 @@
-import React, { useState  } from 'react';
-import {
-  FlatList,
-  Text, 
-  View, 
-  Image, 
-  Dimensions,
-  TouchableOpacity, 
-} from 'react-native';
+import React, {Component} from 'react';
+import {FlatList,Text,View, Image, Dimension,TouchableOpacity,} from 'react-native';
 
 import styles from './styles';
 import { Icon } from 'react-native-elements';
-
   
-function ProfileItems(){
+class ProfileItems extends Component{
+
+  render(){
+
     return (
       <View>
         <View style={styles.List}>
-          <TouchableOpacity  
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate('MyOrders')} 
             style={styles.ListItem}>
             <Icon name='shopping-cart'
                 containerStyle={styles.ItemIcon}
@@ -28,7 +23,7 @@ function ProfileItems(){
                 type='Entypo'
                 color={'black'}/>
           </TouchableOpacity>
-          <TouchableOpacity  
+          <TouchableOpacity  onPress={()=>this.props.navigation.navigate('MyWishlist')} 
             style={styles.ListItem}>
             <Icon name='heart'
                 containerStyle={styles.ItemIcon}
@@ -104,5 +99,6 @@ function ProfileItems(){
       </View>
     );
   }
+}
 
 export default ProfileItems;

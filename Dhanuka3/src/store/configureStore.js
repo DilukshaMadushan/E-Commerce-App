@@ -1,11 +1,11 @@
 import {createStore,combineReducers} from 'redux';
 
 import cartItems from './cartItemRedux';
-import counterChange from './counterItemRedux';
+import counterWishlist from './wishlistRedux';
 
 const rootReducer = combineReducers({
     cartItems : cartItems,
-    //counter:counterChange,
+    wishList:counterWishlist,
 
 });
 

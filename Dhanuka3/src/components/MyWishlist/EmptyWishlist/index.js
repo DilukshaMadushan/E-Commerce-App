@@ -5,7 +5,7 @@ import styles from "./styles";
 import { Icon } from 'react-native-elements';
 
 
-class  EmptyCart extends Component {
+class  EmptyWishlist extends Component {
   render(){
       return (
         <View style={styles.container}>
@@ -16,8 +16,8 @@ class  EmptyCart extends Component {
                 type='font-awesome'
                 color={'black'}/>
             </View>
-            <Text style={{fontSize:25,alignSelf:'center'}}>Your Cart is Empty</Text>
-            <Text style={{fontSize:15,alignSelf:'center'}}>Add a product to the shopping cart</Text>
+            <Text style={{fontSize:25,alignSelf:'center'}}>Your Wishlist is Empty</Text>
+            <Text style={{fontSize:15,alignSelf:'center'}}>Add a product to the Wishlist</Text>
             <TouchableOpacity style={styles.ShoppingButton}
                               activeOpacity={0.5}
                               onPress={()=>this.props.navigation.navigate('Category')}>
@@ -32,4 +32,4 @@ class  EmptyCart extends Component {
     }
   }
     
-  export default EmptyCart;
+  export default EmptyWishlist;

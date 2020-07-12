@@ -3,13 +3,10 @@ import { View, FlatList, Image, Text,TouchableOpacity,Dimensions,} from "react-n
 
 import styles from "./styles";
 import { Icon } from 'react-native-elements';
-import EmptyCart from '../EmptyCart';
+import EmptyCart from './EmptyCart';
 
 import {connect} from 'react-redux';
 import {removecartItem,incrementCount,decrementCount} from "../../store/cartItemRedux";
-//import {incrementCount,decrementCount} from "../../store/counterItemRedux";
-
-
 
 function Item({ItemName,ItemPrice,uri,count,counterIncrease,counterDecrease,removeItem,item}) {
   return (

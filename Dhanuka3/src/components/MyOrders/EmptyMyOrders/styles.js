@@ -5,7 +5,9 @@ const { width, height } = Dimensions.get("window");
 export default StyleSheet.create({
     container:{
         alignItems:'center',
-        paddingTop:100
+        paddingTop:100,
+        backgroundColor:'rgba(255,255,255,0.3)',
+        height:472
     },
     ShoppingButton:{
         height:50,

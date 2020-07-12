@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList, Image, Text,TouchableOpacity,SafeAreaView } from "react-native";
+import { View, FlatList, Image, Text,TouchableOpacity,SafeAreaView, Dimensions, ActivityIndicator, StatusBar } from "react-native";
 
 import styles from './styles';
 import Wishlist from "../Wishlist";
@@ -43,6 +43,7 @@ class CategoryItems extends React.Component{
 
   state = {
     ItemList:[],
+    isLoading:true
   }
 
   componentWillMount(){
@@ -64,6 +65,7 @@ class CategoryItems extends React.Component{
     .then((json) => {
        
        this.setState({ItemList:json});
+       this.setState({isLoading:false});
        //this.setState({MainCategoryList:json.filter(function(cat){return cat.parent == 0;})})
   
     })
@@ -72,7 +74,10 @@ class CategoryItems extends React.Component{
 
 
   render(){
+    const { width } = Dimensions.get('window');
     return (
+      <View>
+      {(this.state.isLoading==false)?
       <View>
         <FlatList
           data={this.state.ItemList}
@@ -88,6 +93,12 @@ class CategoryItems extends React.Component{
           />}
           keyExtractor={item => item.id}
         />
+      </View> : 
+      <View style={{flex:1,justifyContent:'center',alignItems:'center',marginTop:width*0.7}}>
+        <ActivityIndicator/>
+        <StatusBar barStyle="default"/>
+      </View>
+      }
       </View>
     );
   }

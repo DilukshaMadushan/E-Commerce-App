@@ -96,7 +96,7 @@ class SelectedItem extends Component{
   }
   const mapStateToProps = (state) =>{ 
     return{ 
-      cartItems:state.cartItems,
+      cartItems:state.cartItems.cartList,
     }
   }
 

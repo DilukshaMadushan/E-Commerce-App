@@ -16,7 +16,7 @@ class  EmptyMyOrders extends Component {
                 type='font-awesome'
                 color={'black'}/>
             </View>
-            <Text style={{fontSize:25,alignSelf:'center'}}>Your Order is Empty</Text>
+            <Text style={{fontSize:25,alignSelf:'center'}}>Your order list is Empty</Text>
             <Text style={{fontSize:15,alignSelf:'center'}}>Add a product to the shopping cart and Order New</Text>
             <TouchableOpacity style={styles.ShoppingButton}
                               activeOpacity={0.5}

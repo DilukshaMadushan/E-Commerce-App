@@ -49,19 +49,12 @@ class MyOrders extends Component {
 
   state = {
     OrderedList:[],
-    OrderedList2:[
-      {id:'1',
-       number:'222',
-       date_created:'20/12/2020',
-       status:'Proccessing',
-       payment_method_title:'Bank Transfer',
-       total:'1000'},
-      ]
   }
   
   componentWillMount(){
       this.getOrderedList();
-      console.log(this.state.OrderedList)
+      console.log('aaa');
+      
   }
   
   getOrderedList(){
@@ -82,9 +75,9 @@ class MyOrders extends Component {
   render(){
     return (
       <View style={styles.container}>
-      {this.state.OrderedList2.length > 0 ?
+      {this.state.OrderedList.length > 0 ?
         <FlatList
-          data={this.state.OrderedList2}
+          data={this.state.OrderedList}
           numColumns={1}
           renderItem={({ item }) => 
           <Item ItemNumber={item.number}
@@ -103,10 +96,3 @@ class MyOrders extends Component {
 }
 
 export default MyOrders;
-
-/*
-      {this.state.OrderedList.length > 0 ? 
-                  : <EmptyMyOrders navigation={this.props.navigation}/> 
-        }
-
-*/

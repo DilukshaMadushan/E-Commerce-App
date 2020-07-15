@@ -10,7 +10,7 @@ class  EmptyWishlist extends Component {
       return (
         <View style={styles.container}>
             <View>
-            <Icon name='shopping-cart'
+            <Icon name='heart-o'
                 size={80}
                 containerStyle={styles.ShopItemIcon}
                 type='font-awesome'
@@ -21,7 +21,7 @@ class  EmptyWishlist extends Component {
             <TouchableOpacity style={styles.ShoppingButton}
                               activeOpacity={0.5}
                               onPress={()=>this.props.navigation.navigate('Category')}>
-                <Text style={{color:'black',
+                <Text style={{color:'#FFF',
                               fontWeight:'bold',
                               fontSize:20
                               }}>Shop Now</Text>

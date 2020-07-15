@@ -9,15 +9,4 @@ export default StyleSheet.create({
         backgroundColor:'rgba(255,255,255,0.3)',
         height:height
     },
-    ShoppingButton:{
-        height:50,
-        width:200,
-        marginHorizontal:30,
-        marginVertical:50,
-        alignItems:'center',
-        justifyContent:'center',
-        borderRadius:30,
-        backgroundColor:'rgb(102,255,220)'
-        
-    },
 });

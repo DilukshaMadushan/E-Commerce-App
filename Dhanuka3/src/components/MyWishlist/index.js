@@ -52,6 +52,7 @@ class MyWishlist extends Component {
   render(){
     return (
       <View style={styles.container}>
+      {(this.props.wishList.length>0)?
         <FlatList
           data={this.props.wishList}
           numColumns={1}
@@ -65,7 +66,10 @@ class MyWishlist extends Component {
                 navigation={this.props.navigation}
           />}
           keyExtractor={item => item.id}
-          />
+          /> 
+          :
+          <EmptyWishlist navigation={this.props.navigation}/>
+        }
       </View>
       );
     }

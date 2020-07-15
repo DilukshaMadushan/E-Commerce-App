@@ -49,18 +49,6 @@ class ProfileItems extends Component{
           </TouchableOpacity>
           <TouchableOpacity 
             style={styles.ListItem}>
-            <Icon name='credit-card'
-                containerStyle={styles.ItemIcon}
-                type='Entypo'
-                color={'black'}/>
-            <Text style={{flex:1,textAlign:'center'}}>Currency</Text>
-            <Icon name='chevron-right'
-                containerStyle={styles.ArrowIcon}
-                type='Entypo'
-                color={'black'}/>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={styles.ListItem}>
             <Icon name='star'
                 containerStyle={styles.ItemIcon}
                 type='font-awesome'

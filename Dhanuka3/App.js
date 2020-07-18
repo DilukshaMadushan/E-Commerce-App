@@ -13,7 +13,7 @@ import homeScreen from './src/Screens/homeScreen';
 import categoryScreen from './src/Screens/categoryScreen';
 import searchScreen from './src/Screens/searchScreen';
 import accountScreen from './src/Screens/accountScreen';
-import myCartScreen from './src/Screens/myCartScreen';
+import myCartscreen from './src/Screens/mycartScreen';
 import loginScreen from './src/Screens/loginScreen';
 import registerScreen from './src/Screens/registerScreen';
 import ItemsScreen from './src/Screens/categoryItemsScreen';
@@ -55,7 +55,7 @@ const TabScreen = createMaterialBottomTabNavigator(
           <Icon name="search" size={20} color="#696969" />
         )
       }},
-    Mycart: { screen : myCartScreen ,
+    Mycart: { screen : myCartscreen ,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Icon name="shopping-cart" size={20} color="#696969" />

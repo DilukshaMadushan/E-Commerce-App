@@ -1,6 +1,5 @@
 import React from "react";
 import { View, FlatList, Image, Text,TouchableOpacity,ScrollView,ActivityIndicator, StatusBar, Dimensions} from "react-native";
-import { connect } from "react-redux";
 import { withNavigation } from 'react-navigation'; 
 
 import styles from './styles';
@@ -75,50 +74,51 @@ class Categories extends React.Component{
   render(){
     const { width } = Dimensions.get('window');
     return (
-
       <View>
-        {(this.state.isLoading==false)?
-        <View style={{alignSelf:'center',paddingBottom:15}}>
-        <FlatList
-          data={this.state.MainCategoryList}
-          renderItem={({ item }) =>
-          <View>
-            <TouchableOpacity
-                onPress = {()=>{
-                                if (this.state.CategoryList.filter(function(cat){return cat.parent == item.id;}).length==0){
-                                    this.props.navigation.navigate('Items',{"id":item.id});
-                                }else{
-                                  const index = this.state.MainCategoryList.indexOf(item);
-                                  if (this.state.SubCategoryStatus[index]==0){
-                                      const dup_array = this.state.SubCategoryStatus;
-                                            dup_array[index] = 1;
-                                            this.setState({SubCategoryStatus:dup_array});
-                                  }else{const dup_array = this.state.SubCategoryStatus;
-                                            dup_array[index] = 0;
-                                            this.setState({SubCategoryStatus:dup_array});
+          {(this.state.isLoading==false)?
+          <View style={{alignSelf:'center',paddingBottom:15}}>
+          <FlatList
+            data={this.state.MainCategoryList}
+            renderItem={({ item }) =>
+            <View>
+              <TouchableOpacity
+                  onPress = {()=>{
+                                  if (this.state.CategoryList.filter(function(cat){return cat.parent == item.id;}).length==0){
+                                      this.props.navigation.navigate('Items',{"id":item.id});
+                                  }else{
+                                    const index = this.state.MainCategoryList.indexOf(item);
+                                    if (this.state.SubCategoryStatus[index]==0){
+                                        const dup_array = this.state.SubCategoryStatus;
+                                              dup_array[index] = 1;
+                                              this.setState({SubCategoryStatus:dup_array});
+                                    }else{const dup_array = this.state.SubCategoryStatus;
+                                              dup_array[index] = 0;
+                                              this.setState({SubCategoryStatus:dup_array});
+                                    }
                                   }
-                                }
-                                          
-                                          }}>
-              <Item title={item.name} 
-                    uri={Images.default_Category_1} 
-                    id={this.state.MainCategoryList.indexOf(item)}
-                    product={item.count}
-                    />
-            </TouchableOpacity>
-            <SubCategorylist status={this.state.SubCategoryStatus[this.state.MainCategoryList.indexOf(item)]} 
-                             CategoryList={this.state.CategoryList}
-                             SubCategoryList = {this.state.CategoryList.filter(function(cat){return cat.parent == item.id;})}
-                             />
-          </View> 
-              }
-          keyExtractor={item => item.id}
-        />
-        </View>:
+                                            
+                                            }}>
+                <Item title={item.name} 
+                      uri={Images.default_Category_1} 
+                      id={this.state.MainCategoryList.indexOf(item)}
+                      product={item.count}
+                      />
+              </TouchableOpacity>
+              <SubCategorylist status={this.state.SubCategoryStatus[this.state.MainCategoryList.indexOf(item)]} 
+                              CategoryList={this.state.CategoryList}
+                              SubCategoryList = {this.state.CategoryList.filter(function(cat){return cat.parent == item.id;})}
+                              />
+            </View> 
+                }
+            keyExtractor={item => item.id}
+          />
+        </View> : 
         <View style={{flex:1,justifyContent:'center',alignItems:'center',marginTop:width*0.7}}>
           <ActivityIndicator/>
           <StatusBar barStyle="default"/>
-        </View> }
+        </View>
+        }
+
       </View>
     );
   }

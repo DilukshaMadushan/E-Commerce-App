@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { View, FlatList, Image, Text,TouchableOpacity,Dimensions, } from "react-native";
-import { connect } from "react-redux";
+import { View,Text,TouchableOpacity, } from "react-native";
 
-import Images from "../../common/Images";
 import styles from "./styles";
 import { Icon } from 'react-native-elements';
 
 
-function  EmptyCart() {
+class  EmptyCart extends Component {
+  render(){
       return (
         <View style={styles.container}>
             <View>
@@ -20,7 +19,8 @@ function  EmptyCart() {
             <Text style={{fontSize:25,alignSelf:'center'}}>Your Cart is Empty</Text>
             <Text style={{fontSize:15,alignSelf:'center'}}>Add a product to the shopping cart</Text>
             <TouchableOpacity style={styles.ShoppingButton}
-                              activeOpacity={0.5}>
+                              activeOpacity={0.5}
+                              onPress={()=>this.props.navigation.navigate('Category')}>
                 <Text style={{color:'black',
                               fontWeight:'bold',
                               fontSize:20
@@ -30,6 +30,6 @@ function  EmptyCart() {
 
       );
     }
-
+  }
     
   export default EmptyCart;

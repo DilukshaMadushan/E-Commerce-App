@@ -5,34 +5,18 @@ import { Dropdown } from 'react-native-material-dropdown';
 
 class DropDownMenu extends Component {
 
+
+
   render() {
-    let data = [
-    {
-      value: 'Banana',
-    }, 
-    {
-      value: 'Mango',
-    }, 
-    {
-      value: 'Pear',
-    },
-    {
-      value: 'Banana',
-    }, 
-    {
-      value: 'Mango',
-    }, 
-    {
-      value: 'Pear',
-    }
-    
-  ];
  
     return (
       <Dropdown
-        label='Favorite Fruit'
+        label='Options'
         containerStyle={styles.DropDownView}
-        data={data}
+        data={this.props.itemOptions.map(item=>{
+          return {"value":item}
+        })
+        }
         shadeOpacity={0.2}
       />
     );

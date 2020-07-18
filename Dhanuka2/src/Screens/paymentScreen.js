@@ -10,7 +10,7 @@ import PaymentInfo from '../components/PaymentInfo';
         <View>
           <View
             style={styles.ItemsScreen}>
-            <PaymentInfo navigation={this.props.navigation}/>
+            <PaymentInfo navigation={this.props.navigation} state={this.props.navigation.getParam('state')}/>
           </View>
         </View>
     );

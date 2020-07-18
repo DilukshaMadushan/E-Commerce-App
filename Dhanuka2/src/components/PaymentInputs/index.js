@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View,Text,ScrollView,TouchableOpacity,Image} from "react-native";
+import { View,Text,ScrollView,TouchableOpacity,Image,FlatList} from "react-native";
 
 import styles from "./styles";
 import { Icon } from 'react-native-elements';
@@ -8,37 +8,81 @@ import Images from "../../common/Images";
 
 class PaymentInputs extends Component{
 
+    state=this.props.navigation.getParam('state');    
+     
+    postPayments(){
+
+        fetch('https://www.waytoogo.com/wp-json/wc/v3/orders?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',
+              {
+                method:'POST',
+                headers : { 'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    payment_method: "bacs",
+                    payment_method_title: "Direct Bank Transfer",
+                    set_paid: true,
+                    billing: {
+                      first_name: this.state.first_name,
+                      last_name: this.state.last_name,
+                      address_1: this.state.address_1,
+                      address_2: this.state.address_2,
+                      city: this.state.city,
+                      state: this.state.State,
+                      postcode: this.state.postcode,
+                      country: this.state.country,
+                      email: this.state.email,
+                      phone: this.state.phone
+                    },
+                    shipping: {
+                        first_name: this.state.first_name,
+                        last_name: this.state.last_name,
+                        address_1: this.state.address_1,
+                        address_2: this.state.address_2,
+                        city: this.state.city,
+                        state: this.state.State,
+                        postcode: this.state.postcode,
+                        country: this.state.country,
+                    },
+                    //To Payment items plus
+                    line_items: [
+                      {
+                        product_id: 93,
+                        quantity: 2
+                      },
+                      {
+                        product_id: 22,
+                        variation_id: 23,
+                        quantity: 1
+                      }
+                    ],
+                    shipping_lines: [
+                      {
+                        method_id: "flat_rate",
+                        method_title: "Flat Rate",
+                        total: "10"
+                      }
+                    ]
+
+                  }),
+              }).then((response) => response.json())
+                 .then((responseJson) => {
+                     console.log(responseJson);
+                 })
+                 .catch((error) => {
+                   console.error(error);
+                   alert(error);
+                 });
+      }
+
     render(){
       return (
         <View style={styles.container}>
             <ScrollView style={{marginBottom:135}}>
-                <View style={{flexDirection:'column'}}>
-                    <View style={styles.paymentMethodsrows}>
-                        <TouchableOpacity style={styles.paymentMethods}>
-                            <Image source={Images.BankTransfer}
-                                    style={{height:'100%',width:'100%'}}/>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.paymentMethods}>
-                            <Image source={Images.Cheque}
-                                    style={{height:'90%',width:'70%',borderRadius:10,}}/>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.paymentMethodsrows}>
-                        <TouchableOpacity style={styles.paymentMethods}>
-                            <Image source={Images.CashOnDelivery}
-                                    style={{height:'100%',width:'100%',borderRadius:10,}}/>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.paymentMethods}>
-                            <Image source={Images.PayPal}
-                                    style={{height:'50%',width:'80%'}}/>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.paymentMethodsrows}>
-                        <TouchableOpacity style={styles.paymentMethods}>
-                            <Image source={Images.PayHere}
-                                    style={{height:'100%',width:'100%',borderRadius:10,}}/>
-                        </TouchableOpacity>
-                    </View>
+                <View style={{flexDirection:'row'}}>
+                    <TouchableOpacity style={styles.paymentMethods}
+                                      onPress={() => {this.postPayments()}}>
+                        <Image source={Images.PayHere}
+                            style={{height:'60%',width:'100%'}}/>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={{flexDirection:'row',width:'100%',paddingTop:20}}>

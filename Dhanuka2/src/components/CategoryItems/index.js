@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { View, FlatList, Image, Text,TouchableOpacity,SafeAreaView } from "react-native";
+import { View, FlatList,Picker, Image, Text,TouchableOpacity,SafeAreaView, Dimensions, ActivityIndicator, StatusBar ,Alert} from "react-native";
 
 import styles from './styles';
 import Wishlist from "../Wishlist";
 import RatingStars from "../RatingStars";
 
 import { Icon } from 'react-native-elements';
+
+import {connect} from 'react-redux';
 
 
 function Item({ItemName,ItemPrice,item,uri,ItemRate,navigation}) {
@@ -40,7 +42,9 @@ function Item({ItemName,ItemPrice,item,uri,ItemRate,navigation}) {
 class CategoryItems extends React.Component{
 
   state = {
-    ItemList:[]
+    ItemList:[],
+    isLoading:true,
+    pickerSelectedValue:"0"
   }
 
   componentWillMount(){
@@ -62,17 +66,44 @@ class CategoryItems extends React.Component{
     .then((json) => {
        
        this.setState({ItemList:json});
-       console.log(this.state.ItemList[0]);
+       this.setState({isLoading:false});
        //this.setState({MainCategoryList:json.filter(function(cat){return cat.parent == 0;})})
   
     })
   }
 
+  show=(value)=>{
+    this.setState({pickerSelectedValue:value});
+    if (value=="1"){
+      this.state.ItemList.sort();
+      //this.setState({ItemList: sortedArray});
+    }else if (value=="2"){
+      
+
+    }else if(value=="3"){
+
+    }
+  }
+
 
 
   render(){
+    const { width } = Dimensions.get('window');
     return (
       <View>
+      {(this.state.isLoading==false)?
+      <View>
+        <View>
+            <Picker
+              selectedValue = {this.state.pickerSelectedValue}
+              onValueChange={this.show}
+            >
+              <Picker.Item label="Sort By" value="0" ></Picker.Item>
+              <Picker.Item label="Alphabetical Order" value="1"></Picker.Item>
+              <Picker.Item label="Price" value="2"></Picker.Item>
+              <Picker.Item label="Rating" value="3"></Picker.Item>
+            </Picker>
+        </View>
         <FlatList
           data={this.state.ItemList}
           numColumns={2}
@@ -82,13 +113,22 @@ class CategoryItems extends React.Component{
                 item={item}
                 ItemPrice={'Rs '+item.price}
                 ItemRate={item.average_rating}
-                navigation={this.props.navigation}/>}
+                navigation={this.props.navigation}
+                addItemToCart={this.props.addItemToCart}
+          />}
           keyExtractor={item => item.id}
         />
+      </View> : 
+      <View style={{flex:1,justifyContent:'center',alignItems:'center',marginTop:width*0.7}}>
+        <ActivityIndicator/>
+        <StatusBar barStyle="default"/>
+      </View>
+      }
       </View>
     );
   }
-  }
+}
+
 
 export default CategoryItems;
 

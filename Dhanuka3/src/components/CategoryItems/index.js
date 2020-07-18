@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList, Image, Text,TouchableOpacity,SafeAreaView, Dimensions, ActivityIndicator, StatusBar } from "react-native";
+import { View, FlatList,Picker, Image, Text,TouchableOpacity,SafeAreaView, Dimensions, ActivityIndicator, StatusBar ,Alert} from "react-native";
 
 import styles from './styles';
 import Wishlist from "../Wishlist";
@@ -43,7 +43,8 @@ class CategoryItems extends React.Component{
 
   state = {
     ItemList:[],
-    isLoading:true
+    isLoading:true,
+    pickerSelectedValue:"0"
   }
 
   componentWillMount(){
@@ -63,12 +64,31 @@ class CategoryItems extends React.Component{
       })
     .then((response) => response.json())
     .then((json) => {
-       
+      console.log(json);
        this.setState({ItemList:json});
        this.setState({isLoading:false});
        //this.setState({MainCategoryList:json.filter(function(cat){return cat.parent == 0;})})
   
     })
+  }
+
+  show=(value)=>{
+    this.setState({pickerSelectedValue:value});
+    if (value=="1"){
+      this.state.ItemList.sort(function(a, b) { 
+        return a.name.localeCompare(b.name);
+      });
+      
+    }else if (value=="2"){
+      this.state.ItemList.sort(function(a, b) { 
+        return parseFloat(a.price) - parseFloat(b.price);
+      });
+
+    }else if(value=="3"){
+      this.state.ItemList.sort(function(b, a) { 
+        return parseFloat(a.average_rating) - parseFloat(b.average_rating);
+      });
+    }
   }
 
 
@@ -79,6 +99,17 @@ class CategoryItems extends React.Component{
       <View>
       {(this.state.isLoading==false)?
       <View>
+        <View>
+            <Picker
+              selectedValue = {this.state.pickerSelectedValue}
+              onValueChange={this.show}
+            >
+              <Picker.Item label="Sort By" value="0" color="gray"></Picker.Item>
+              <Picker.Item label="Alphabetical Order" value="1"></Picker.Item>
+              <Picker.Item label="Price" value="2"></Picker.Item>
+              <Picker.Item label="Rating" value="3"></Picker.Item>
+            </Picker>
+        </View>
         <FlatList
           data={this.state.ItemList}
           numColumns={2}

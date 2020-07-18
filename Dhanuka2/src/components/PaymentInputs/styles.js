@@ -3,7 +3,9 @@ import React, { StyleSheet, Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 export default StyleSheet.create({
-
+    container:{
+      height:'100%'
+    },
     ButtonsScreen:{
         backgroundColor:'#fff',
         position:'absolute',
@@ -21,17 +23,12 @@ export default StyleSheet.create({
         backgroundColor:'rgba(0, 179, 155,0.7)',
         paddingVertical:5
     },
-    paymentMethodsrows:{
-        flexDirection:'row',
-        width:'100%',
-        alignItems:'center',
-    },
     paymentMethods:{
         height:100,
+        width:145,
         alignItems:'center',
         justifyContent:'center',
         backgroundColor:'rgba(240,240,240,0.3)',
-        flex:1,
         margin:15,
         borderRadius:10,
         borderWidth:1,

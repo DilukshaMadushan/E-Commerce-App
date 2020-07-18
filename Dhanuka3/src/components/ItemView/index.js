@@ -24,18 +24,70 @@ class ItemView extends Component {
     componentWillMount(){
       this.setState({item:this.props.item});
     }
-    
-    Tabs( width ,height) {
+    //short_description
+    Tabs( width ,height, description) {
         if (this.state.status === false) {
+          let des_array = [];
+          let new_description = "";
+          let newLine = "";
+          let i=0;
+          while(i<description.length){
+
+            if (description[i]=="<"){
+              if (description[i+1]=="b"){
+                
+                let j=2;
+                while (description[i+j]!==">"){
+                  j=j+1;
+                }
+                des_array.push(newLine);
+                new_description=new_description+newLine;
+                newLine = "";
+                i = i+j;
+
+              }else{
+                let k=1;
+                while (description[i+k]!==">"){
+                  k=k+1;
+                }
+                if (i+k+1<description.length){
+                  i = i+k;
+                }else{
+                  des_array.push(newLine);
+                  new_description=new_description+newLine;
+                }
+                
+              }
+            }else{
+              if (description[i]!=="\n"){
+                newLine = newLine+description[i];
+              }
+              
+            }
+            i=i+1
+          }
+          console.log(des_array);
           return (
             <View style={{width:'100%',paddingLeft:60,paddingTop:30}}>
-                <Text style={styles.Description}>Stretch jersey</Text>
-                <Text style={styles.Description}>Soft-touch finish</Text>
-                <Text style={styles.Description}>Round neckline</Text>
-                <Text style={styles.Description}>Extreme double thigh splits to front</Text>
-                <Text style={styles.Description}>Slim fit - cut closely to the body</Text>
-                <Text style={styles.Description}>Machine wash</Text>
-                <Text style={styles.Description}>95% Viscose,5% Elastane</Text>
+                <FlatList
+                    data={des_array}
+                    renderItem={({ item }) => 
+                    <View style={{flexDirection:"row"}}>
+                       <Text style={{fontWeight:'500',
+                            paddingVertical:5,
+                            fontSize:15,
+                            marginRight:10
+                        }}>-</Text>
+                       <Text style={styles.Description}>{item}</Text>
+                    </View>                      
+                   
+
+                  }
+                    
+                  />  
+                  
+                  {/* <Text style={styles.Description}>{new_description}</Text> */}
+                
             </View>  );
         } else if (this.state.status === true) {
           return (
@@ -52,9 +104,13 @@ class ItemView extends Component {
             <Text style={styles.ItemPrice}>Rs. {this.state.item.price}</Text>
             <View style={styles.ItemReviews}>
                 <RatingStars/>
-                <Text style={styles.ReviewNumber}> ({this.state.item.average_rating}) Review  </Text>
+                <Text style={styles.ReviewNumber}> {this.state.item.average_rating} ({this.state.item.rating_count})</Text>
             </View>
-            <DropDownMenu/>
+            {(this.state.item.attributes.length>0)?
+            <DropDownMenu itemOptions={this.state.item.attributes[0].options}/>:
+            <View></View>
+            }
+            
 
             <View style={{width:width,
                           flexDirection:'row',
@@ -74,11 +130,11 @@ class ItemView extends Component {
                   onPress={() => {
                     (this.state.status==true)?(this.setState({status:true})):(this.setState({status:true})); 
                     }}>
-                    <Text style={{fontWeight:'bold',fontSize:15,color:'black'}}>Features</Text>
+                    <Text style={{fontWeight:'bold',fontSize:15,color:'black'}}>Reveiws</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.DescriptionView}>
-                {this.Tabs( width ,height)}
+                {this.Tabs( width ,height, this.state.item.short_description)}
             </View>
         </View>
 

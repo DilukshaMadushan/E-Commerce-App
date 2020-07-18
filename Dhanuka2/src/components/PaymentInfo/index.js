@@ -57,7 +57,7 @@ class PaymentInfo extends Component{
                 <Text style={{fontSize:20,flex:1}}> Select Your Payment Method:</Text>
             </View>
             <View style={styles.TextInputView}>
-                <PaymentInputs navigation={this.props.navigation}/>
+                <PaymentInputs navigation={this.props.navigation} state={this.props.navigation.getParam('state')}/>
             </View>
         </View>
       );

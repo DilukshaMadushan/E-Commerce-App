@@ -56,7 +56,8 @@ class DeliveryTextInputs extends Component{
                   }),
               }).then((response) => response.json())
                  .then((responseJson) => {
-                     console.log(responseJson.id);
+                     console.log(responseJson);
+                     {this.props.navigation.navigate('Payment',{'state':this.state});}
                  })
                  .catch((error) => {
                    console.error(error);
@@ -144,8 +145,8 @@ class DeliveryTextInputs extends Component{
                     <Text style={{color:'#fff',fontSize:20,textAlign:'center'}}>Back</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonNext} activeOpacity={0.5}
-                                  //onPress={() =>{this.handleDeliveryInput()}}
-                                  onPress={() =>this.props.navigation.navigate('Payment')}>
+                                  //onPress={() =>this.props.navigation.navigate('Payment')}
+                                  onPress={() =>{this.handleDeliveryInput()}}>
                     <Text style={{color:'#fff',fontSize:20,textAlign:'center'}}>Next</Text>
                 </TouchableOpacity>
             </View>

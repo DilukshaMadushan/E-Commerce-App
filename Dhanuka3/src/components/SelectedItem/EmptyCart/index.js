@@ -5,6 +5,7 @@ import styles from "./styles";
 import { Icon } from 'react-native-elements';
 
 
+
 class  EmptyCart extends Component {
   render(){
       return (
@@ -21,7 +22,7 @@ class  EmptyCart extends Component {
             <TouchableOpacity style={styles.ShoppingButton}
                               activeOpacity={0.5}
                               onPress={()=>this.props.navigation.navigate('Category')}>
-                <Text style={{color:'black',
+                <Text style={{color:'#FFF',
                               fontWeight:'bold',
                               fontSize:20
                               }}>Shop Now</Text>

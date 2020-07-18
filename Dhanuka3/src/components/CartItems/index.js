@@ -6,6 +6,8 @@ import SelectedItem from '../SelectedItem';
 import styles from "./styles";
 import { Icon } from 'react-native-elements';
 
+import {connect} from 'react-redux';
+
 
 class CartItems extends Component{
     render(){
@@ -56,7 +58,7 @@ class CartItems extends Component{
             </View>
             <View style={styles.TotalPrice}>
                 <Text style={{fontSize:20,flex:1}}>Total Price</Text>
-                <Text style={{fontSize:20,}}>$1000</Text>
+                <Text style={{fontSize:20,}}>{this.props.TotalPrice}</Text>
             </View>
             <ScrollView style={styles.SelectedItemsView}>
                 <SelectedItem navigation={this.props.navigation}/>
@@ -65,5 +67,13 @@ class CartItems extends Component{
       );
     }
 }
-    
-  export default CartItems;
+
+const mapStateToProps = (state) =>{ 
+    return{ 
+      TotalPrice:state.cartItems.totalPrice,
+    }
+  }
+
+
+
+  export default connect(mapStateToProps,null)(CartItems);

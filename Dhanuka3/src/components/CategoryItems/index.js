@@ -4,13 +4,19 @@ import { View, FlatList,Picker, Image, Text,TouchableOpacity,SafeAreaView, Dimen
 import styles from './styles';
 import Wishlist from "../Wishlist";
 import RatingStars from "../RatingStars";
-
 import { Icon } from 'react-native-elements';
 
 import {connect} from 'react-redux';
+import {addcartItem} from "../../store/cartItemRedux";
+import {addwishItem,removewishItem} from "../../store/wishlistRedux";
 
 
-function Item({ItemName,ItemPrice,item,uri,ItemRate,navigation}) {
+function Item({ItemName,ItemPrice,item,uri,ItemRate,navigation,addItemToCart,addItemToWishlist,removeItemFromWishlist}) {
+  item.count = 1;
+  if(item.wishlistState!=false || item.wishlistState!=true){
+    item.wishlistState=false;
+  }
+  
   return (
     <View style={styles.item} activeOpacity={0.7}>
       <View style={styles.itemView}>
@@ -18,7 +24,7 @@ function Item({ItemName,ItemPrice,item,uri,ItemRate,navigation}) {
           <Image style={styles.itemImage} source={{uri:uri}}></Image>
         </TouchableOpacity>
         <View style={{position:'absolute',alignSelf:'flex-end',top:5}}>
-          <Wishlist />
+          <Wishlist item={item} addItemToWishlist={addItemToWishlist} removeItemFromWishlist={removeItemFromWishlist}/>
         </View>
       </View>
 
@@ -28,7 +34,7 @@ function Item({ItemName,ItemPrice,item,uri,ItemRate,navigation}) {
         <View style={{flex:1,paddingEnd:40,justifyContent:'center'}}>
           <RatingStars ItemRate={ItemRate}/>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>addItemToCart(item)}>
           <Icon name='shopping-cart'
                 containerStyle={styles.ShopItemIcon}
                 type='font-awesome'
@@ -39,7 +45,7 @@ function Item({ItemName,ItemPrice,item,uri,ItemRate,navigation}) {
   );
 }
 
-class CategoryItems extends React.Component{
+class CategoryItems extends Component{
 
   state = {
     ItemList:[],
@@ -121,6 +127,9 @@ class CategoryItems extends React.Component{
                 ItemRate={item.average_rating}
                 navigation={this.props.navigation}
                 addItemToCart={this.props.addItemToCart}
+            //wishlist
+                addItemToWishlist={this.props.addItemToWishlist}
+                removeItemFromWishlist={this.props.removeItemFromWishlist}
           />}
           keyExtractor={item => item.id}
         />
@@ -135,6 +144,13 @@ class CategoryItems extends React.Component{
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return{
+    addItemToCart:(product) => dispatch(addcartItem(product)),
+    addItemToWishlist:(item) => dispatch(addwishItem(item)),
+    removeItemFromWishlist:(item) => dispatch(removewishItem(item)),
+  }
+}
 
-export default CategoryItems;
+export default connect(null,mapDispatchToProps)(CategoryItems);
 

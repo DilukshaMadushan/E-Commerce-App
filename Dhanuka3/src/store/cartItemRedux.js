@@ -27,18 +27,24 @@ export const decrementCount = (product) => {
     }
   }  
 
+const initialState = {
+  cartList:[],
+  totalPrice:0
+}
 
-function cartItems (state = { cartList:[],totalPrice:0} ,action){
+
+function cartItems (state = initialState ,action){
     
     switch(action.type){
         case 'ADD_CART_ITEM':
           const num = state.cartList.filter(cartItems => cartItems.id == action.payload.id).length;
+          console.log(action.payload.price)
           if(num==0){
             const newState = {cartList : [
               ...state.cartList,
               action.payload
               ],
-              totalPrice:0
+              totalPrice:state.totalPrice + parseInt(action.payload.price)
             }
             return newState
           } else{
@@ -47,7 +53,7 @@ function cartItems (state = { cartList:[],totalPrice:0} ,action){
 
         case 'REMOVE_FROM_CART':
           const newState1 = {cartList : state.cartList.filter(item => item.id !== action.payload.id),
-            totalPrice:0
+            totalPrice:state.totalPrice - parseInt(action.payload.price*action.payload.count)
           }
 
           return newState1
@@ -58,7 +64,7 @@ function cartItems (state = { cartList:[],totalPrice:0} ,action){
           state.cartList[indexPlus].count = action.payload.count+1;
           const newState2 = {
             cartList : [...state.cartList],
-            totalPrice:0
+            totalPrice:state.totalPrice + parseInt(action.payload.price)
           }
           return newState2
 
@@ -69,7 +75,7 @@ function cartItems (state = { cartList:[],totalPrice:0} ,action){
             state.cartList[indexMinus].count = action.payload.count-1;
             const newState3 = {
               cartList : [...state.cartList],
-              totalPrice:0
+              totalPrice:state.totalPrice - parseInt(action.payload.price)
             }
             return newState3
           }else{

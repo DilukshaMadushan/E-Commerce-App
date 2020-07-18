@@ -21,7 +21,7 @@ import Images from '../common/Images';
                 </TouchableOpacity>
             </View>
         </View>
-            <ProfileItems/>
+          <ProfileItems navigation={this.props.navigation}/>
         </ScrollView>
     );
   }

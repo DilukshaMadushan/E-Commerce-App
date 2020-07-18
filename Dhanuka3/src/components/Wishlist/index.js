@@ -5,29 +5,30 @@ import { Icon } from 'react-native-elements';
 
 class Wishlist extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      State:false,
-      }
-      this.onWishlistPress = this.onWishlistPress.bind(this);
+  state={
+    wishListState:this.props.item.wishListState
   }
 
-  onWishlistPress(click) {
-    this.setState({
-      State: true
-    });
+  onWishlistPress() {
+    this.props.addItemToWishlist(this.props.item);
+    this.setState({wishListState:true});
   }
 
+  onWishlistPressAgain() {
+    this.props.addItemToWishlist(this.props.item);
+    this.setState({wishListState:false});
+  }
   render() {
     return (
       <TouchableOpacity
-        onPressIn={(click) => this.onWishlistPress(click)}>
-        <Icon name={this.state.State ? 'heart' : 'heart-o'}
+        onPressIn={() =>{ if(this.state.wishListState==false){
+                                this.onWishlistPress()}
+                        else{this.onWishlistPressAgain()}}}>
+        <Icon name={this.state.wishListState ? 'heart' : 'heart-o'}
               containerStyle={styles.Wishlist}
               type='font-awesome'
               size={24}
-              color={this.state.State ? 'red' : 'grey'}/>
+              color={this.state.wishListState ? 'red' : 'grey'}/>
       </TouchableOpacity>
     );
   }

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { View, TextInput,Text} from "react-native";
 import styles from "./styles";
 
+import {connect} from 'react-redux';
+
 
 class DeliveryTextInputs extends Component{
     state={
@@ -76,6 +78,7 @@ class DeliveryTextInputs extends Component{
       return (
         <View>
             <View style={{flexDirection:'column',marginBottom:10}}>
+              <Text style={styles.TextInputsName}>{this.props.signInId}aa</Text>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>First Name</Text>
                     <TextInput  style={styles.TextInputs}
@@ -100,56 +103,56 @@ class DeliveryTextInputs extends Component{
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>Address Line 1</Text>
                     <TextInput  style={styles.TextInputs}
-                        placeholder={this.state.Placeholders}
+                        placeholder={this.state.Placeholders.last_name}
                         maxLength={50}
                         onChangeText={text => this.setState({address_1:text})}/>
                 </View>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>Address Line 2</Text>
                     <TextInput  style={styles.TextInputs}
-                        placeholder={this.state.Placeholders.billing.address_2}
+                        placeholder={this.state.Placeholders.last_name}
                         maxLength={50}
                         onChangeText={text => this.setState({address_2:text})}/>
                 </View>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>Select Country</Text>
                     <TextInput  style={styles.TextInputs}
-                        placeholder={this.state.Placeholders.billing.country}
+                        placeholder={this.state.Placeholders.last_name}
                         maxLength={30}
                         onChangeText={text => this.setState({country:text})}/>
                 </View>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>Town/City</Text>
                     <TextInput  style={styles.TextInputs}
-                        placeholder={this.state.Placeholders.billing.city}
+                        placeholder={this.state.Placeholders.last_name}
                         maxLength={30}
                         onChangeText={text => this.setState({city:text})}/>
                 </View>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>State</Text>
                     <TextInput  style={styles.TextInputs}
-                        placeholder={this.state.Placeholders.billing.state}
+                        placeholder={this.state.Placeholders.last_name}
                         maxLength={30}
                         onChangeText={text => this.setState({State:text})}/>
                 </View>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>Postcode</Text>
                     <TextInput  style={styles.TextInputs}
-                        placeholder={this.state.Placeholders.billing.postcode}
+                        placeholder={this.state.Placeholders.last_name}
                         maxLength={30}
                         onChangeText={text => this.setState({postcode:text})}/>                
                 </View>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>Email</Text>
                     <TextInput  style={styles.TextInputs}
-                        placeholder={this.state.Placeholders.billing.email}
+                        placeholder={this.state.Placeholders.last_name}
                         maxLength={30}
                         onChangeText={text => this.setState({email:text})}/>
                 </View>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>Phone Number</Text>
                     <TextInput  style={styles.TextInputs}
-                        placeholder={this.state.Placeholders.billing.phone}
+                        placeholder={this.state.Placeholders.last_name}
                         keyboardType={"number-pad"}
                         maxLength={15}
                         onChangeText={text => this.setState({phone:text})}/>
@@ -160,4 +163,10 @@ class DeliveryTextInputs extends Component{
     }
 }
     
-  export default DeliveryTextInputs;
+const mapStateToProps = (state) =>{ 
+  return{ 
+    signInId:state.signInid.signInId,
+  }
+}
+
+export default connect(mapStateToProps,null)(DeliveryTextInputs);

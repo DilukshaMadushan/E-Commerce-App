@@ -1,3 +1,5 @@
+
+
 export const addUserId = (id) => {
     return {
         type: 'ADD_USER_ID',
@@ -6,16 +8,17 @@ export const addUserId = (id) => {
   }
 
   const initialState = {
-    signInID:0
+    signInId:0
   }
 
-  function signIn (state = initialState ,action){
+  function signInid (state = initialState ,action){
     
     switch(action.type){
-        case 'ADD_USER_ID':
-              signInID:action.signInID
-
+        case 'ADD_USER_ID': 
+          const newState = { signInId: action.signInID }     
+          return newState;
+    }
     return state;
     }
-}      
-export default signIn;
+
+export default signInid;

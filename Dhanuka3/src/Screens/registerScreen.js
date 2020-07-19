@@ -53,8 +53,9 @@ class registerScreen extends Component {
              .then((responseJson) => {
                 
                 this._storeData('isSigned','true');
-                this._storeData('profileId',responseJson.id.toString());
-                 console.log(responseJson.id);
+                this._storeData('profileId',responseJson.id);
+                 console.log(responseJson);
+                 this.handleSignInIdPasing(responseJson.id);
                  this.setState({isLoading:false});
                  //this._storeData('profilePic',responseJson.avatar_url);
                  //this._storeData('profileName',responseJson.user_name);
@@ -78,11 +79,9 @@ class registerScreen extends Component {
   }
 
 
-  handleItemPasing = (item) => {
-    item.count = 1;
-    this.props.addItemToCart(item);
+  handleSignInIdPasing = (id) => {
+    this.props.addSignInId(id);
   }
-  
 
   render() {
     const { width } = Dimensions.get('window');
@@ -195,4 +194,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default registerScreen;
+const mapDispatchToProps = (dispatch) => {
+  return{
+    addSignInId:(id) => dispatch(addUserId(id)),
+  }
+}
+
+export default connect(null,mapDispatchToProps)(registerScreen);

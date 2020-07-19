@@ -3,6 +3,7 @@ import {StyleSheet, Text, View,Dimensions, ScrollView, ImageBackground } from 'r
 
 import HomeIconRow from "../components/HomeIconRow"
 import HomeImageRow from "../components/HomeImageRow"
+import HomeImageRow2 from "../components/HomeImageRow2"
 
 export default class homeScreen extends Component {
 
@@ -10,6 +11,7 @@ export default class homeScreen extends Component {
     const { width } = Dimensions.get('window');
     return (
       <View style={styles.container}>
+        <ScrollView>
           <View >
             <HomeIconRow/>
           </View>
@@ -35,10 +37,13 @@ export default class homeScreen extends Component {
                     <Text style={{paddingLeft:30}}>HANG OUT & PARTY </Text>    
                 </ImageBackground>
           </View>
-
           <View>
-            <HomeImageRow/>
+            <HomeImageRow navigation={this.props.navigation}/>
           </View>
+          <View>
+            <HomeImageRow2 navigation={this.props.navigation}/>
+          </View>
+        </ScrollView>
     </View>
   );
 }

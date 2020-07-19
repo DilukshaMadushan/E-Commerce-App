@@ -17,7 +17,7 @@ export default StyleSheet.create({
     TextInputs:{
         flex:1.7,
         fontSize:16,
-        paddingStart:10,
+        paddingHorizontal:15,
         height:40,
         marginRight:5,
         borderRadius:5,

@@ -136,6 +136,7 @@ class DeliveryTextInputs extends Component{
                     <Text style={styles.TextInputsName}>Phone Number</Text>
                     <TextInput  style={styles.TextInputs}
                         maxLength={15}
+                        keyboardType={"number-pad"}
                         onChangeText={text => this.setState({phone:text})}/>
                 </View>
             </ScrollView>

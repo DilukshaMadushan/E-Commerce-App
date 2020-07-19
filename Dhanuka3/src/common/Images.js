@@ -2,6 +2,21 @@
 
 const Images = {
 
+//Logo
+  logo: require('../images/logo-main.png'),
+
+//Home Bar Icons
+  bag1:require('../images/bag1.png'),
+  short1:require('../images/short1.png'),
+  ic_dress:require('../images/ic_dress.png'),
+  ic_shoes:require('../images/ic_shoes.png'),
+  ic_tshirt:require('../images/ic_tshirt.png'),
+  ic_tie:require('../images/ic_tie.png'),
+
+//Home Slider Images
+  HomeSlide01:require("../images/home/man22.jpg"),
+  HomeSlide02:require("../images/home/girl22.jpg"),
+
 //Main Category
   default_Category_1: require('../images/default_Category/Category_01.jpg'),
   default_Category_2: require('../images/default_Category/Category_02.jpg'),
@@ -18,21 +33,8 @@ const Images = {
   default_Item_7: require('../images/default_Category/default_Item_7.jpg'),
   default_Item_8: require('../images/default_Category/default_Item_8.jpg'),
 
-//Logo
-  logo: require('../images/logo-main.png'),
-
 //Side Bar  
   top_side_icon: require('../images/topSideIcon.png'),
-
-
-//Home Bar Icons
-  bag1:require('../images/bag1.png'),
-  short1:require('../images/short1.png'),
-  ic_dress:require('../images/ic_dress.png'),
-  ic_shoes:require('../images/ic_shoes.png'),
-  ic_tshirt:require('../images/ic_tshirt.png'),
-  ic_tie:require('../images/ic_tie.png'),
-
 
   categoryPlaceholder: require('../images/category_placehodler.png'),
   splashScreen: require('../images/splash_screen.png'),

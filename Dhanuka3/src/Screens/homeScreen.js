@@ -1,5 +1,5 @@
 import React, { useState  } from 'react';
-import {FlatList,StyleSheet, Text, View, Image, Dimensions,TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
+import {FlatList,StyleSheet, Text, View, Image, Dimensions,TouchableOpacity, ScrollView, ImageBackground,Button } from 'react-native';
 import Images from '../common/Images';
 
 export default class homeScreen extends React.Component {
@@ -9,6 +9,8 @@ export default class homeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView>
+        
+
           <View style={{backgroundColor:"white",marginTop:13}}>
             <ScrollView>
               <FlatList 
@@ -50,6 +52,14 @@ export default class homeScreen extends React.Component {
                 </TouchableOpacity>    
               }/>
             </ScrollView>
+
+            {/* <Button 
+              onPress={()=>{
+                this.props.navigation.navigate('payhere');
+              }}
+              title="Pay Here"
+            ></Button> */}
+
           </View>
           <View style={{alignItems:"center",marginTop:25}}>
             {/* <Image source= {require('../Images/home/girl1.jpg')}
@@ -94,6 +104,8 @@ export default class homeScreen extends React.Component {
                     </ImageBackground>
                 </View>
           </View>
+
+          
 
       </ScrollView>
     </View>

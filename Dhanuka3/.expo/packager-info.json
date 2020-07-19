@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 7816,
-  "expoServerNgrokUrl": "https://rb-p4z.diluksha.dhanuka3.exp.direct",
-  "packagerNgrokUrl": "https://packager.rb-p4z.diluksha.dhanuka3.exp.direct",
-  "ngrokPid": 13748,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }

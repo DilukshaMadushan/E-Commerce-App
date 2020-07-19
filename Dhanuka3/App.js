@@ -232,14 +232,15 @@ class AuthLoadingScreen extends Component{
         this.props.navigation.navigate('Auth');   // Balanna aulak thyenawada kiyala passe
       }else{
         const isLoggedIn =await AsyncStorage.getItem('isSigned');
+        //console.log(isLoggedIn);
         if (isLoggedIn!='true'){
-          this.props.navigation.navigate('Auth');
+          this.props.navigation.navigate('Drawer');
         }else{
-          const token = await AsyncStorage.getItem('token');
+          //const token = await AsyncStorage.getItem('token');
           const profileId = await AsyncStorage.getItem('profileId');
-          const profilePic = await AsyncStorage.getItem('profilePic');
-          const profileName = await AsyncStorage.getItem('profileName');
-
+          //const profilePic = await AsyncStorage.getItem('profilePic');
+          //const profileName = await AsyncStorage.getItem('profileName');
+          //console.log(profileId);
           this.props.navigation.navigate('Drawer');
         }
       }
@@ -285,7 +286,7 @@ const MainApp = createAppContainer(createSwitchNavigator(
     Auth : AuthStack,
   },
   {
-    initialRouteName: 'Drawer'
+    initialRouteName: 'AuthLoading'
   }
 ));
 

@@ -41,6 +41,7 @@ export default class homeScreen extends Component {
           
           <SliderBox 
               autoplay={true}
+              circleLoop={true}
               images={this.state.images}
               resizeMode="contain"
               ImageComponentStyle = {{width:width*0.95, height:width*0.4}}

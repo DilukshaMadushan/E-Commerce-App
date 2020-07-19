@@ -22,7 +22,7 @@ class PaymentInputs extends Component{
                     payment_method: "bacs",
                     payment_method_title: "Direct Bank Transfer",
                     set_paid: true,
-                    customer_id: 73,
+                    customer_id: this.props.signInId,
                     billing: {
                       first_name: this.state.first_name,
                       last_name: this.state.last_name,
@@ -125,6 +125,7 @@ class PaymentInputs extends Component{
 const mapStateToProps = (state) =>{ 
   return{ 
     TotalPrice:state.cartItems.totalPrice,
+    signInId:state.signInid.signInId,
   }
 }
 

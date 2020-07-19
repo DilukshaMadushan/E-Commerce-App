@@ -51,8 +51,8 @@ class registerScreen extends Component {
           }).then((response) => response.json())
              .then((responseJson) => {
                 
-                // this._storeData('isSigned','true');
-                // this._storeData('profileId',responseJson.id);
+                this._storeData('isSigned','true');
+                this._storeData('profileId',responseJson.id.toString());
                  console.log(responseJson.id);
                  this.setState({isLoading:false});
                  //this._storeData('profilePic',responseJson.avatar_url);

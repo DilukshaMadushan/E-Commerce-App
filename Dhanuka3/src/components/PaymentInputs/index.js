@@ -22,6 +22,7 @@ class PaymentInputs extends Component{
                     payment_method: "bacs",
                     payment_method_title: "Direct Bank Transfer",
                     set_paid: true,
+                    customer_id: 73,
                     billing: {
                       first_name: this.state.first_name,
                       last_name: this.state.last_name,
@@ -60,7 +61,7 @@ class PaymentInputs extends Component{
                       {
                         method_id: "flat_rate",
                         method_title: "Flat Rate",
-                        total: 10
+                        total: "10"
                       }
                     ]
 
@@ -105,7 +106,7 @@ class PaymentInputs extends Component{
                     <Text style={{paddingEnd:20,fontSize:17}}>Rs {this.props.TotalPrice}</Text>
                 </View>     
             </ScrollView>
-            <View style={styles.ButtonsScreen}>
+            {/* <View style={styles.ButtonsScreen}>
                 <TouchableOpacity style={styles.buttonBack} activeOpacity={0.5}
                                 onPress={() => this.props.navigation.navigate('Delivery')}>
                     <Text style={{color:'#fff',fontSize:20,textAlign:'center'}}>Back</Text>
@@ -114,7 +115,7 @@ class PaymentInputs extends Component{
                                   onPress={() => this.props.navigation.navigate('Finish_Order')}>
                     <Text style={{color:'#fff',fontSize:20,textAlign:'center'}}>Comfirm Order</Text>
                 </TouchableOpacity>
-            </View>
+            </View> */}
 
         </View>
       );

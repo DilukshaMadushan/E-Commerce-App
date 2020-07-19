@@ -7,23 +7,23 @@ class DeliveryTextInputs extends Component{
     state={
         first_name:null,
         last_name:null,
-        company: null,
+        company: "",
         address_1:null,
         address_2: null,
         city:null,
         postcode: null,
-        country:null,
-        State: null,
+        country:"Sri Lanka",
+        State: "Central",
         email: null,
-        phone: null,
+        phone: "",
       }
      
     handleDeliveryInput(){
         if((this.state.first_name!==null)&&(this.state.last_name!==null)&&(this.state.address_1!==null)&&(this.state.city!==null)
-          &&(this.state.postcode!==null)&&(this.state.country!==null)&&(this.state.State!==null)&&(this.state.email!==null || this.state.phone!==null)){
+          &&(this.state.postcode!==null)&&(this.state.State!==null)&&(this.state.email!==null || this.state.phone!==null)){
               fetch('https://www.waytoogo.com/wp-json/wc/v3/customers/73?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',
               {
-                method:'POST',
+                method:'PUT',
                 headers : { 'Content-Type': 'application/json'},
                 body: JSON.stringify({
                   first_name:this.state.first_name,
@@ -49,7 +49,7 @@ class DeliveryTextInputs extends Component{
                     address_2:this.state.address_2,
                     city:this.state.city,
                     postcode:this.state.postcode,
-                    country:this.state.country,
+                    country:"Sri Lanka",
                     state:this.state.state,
                 },
 
@@ -57,7 +57,16 @@ class DeliveryTextInputs extends Component{
               }).then((response) => response.json())
                  .then((responseJson) => {
                      console.log(responseJson);
-                     {this.props.navigation.navigate('Payment',{'state':this.state});}
+                     
+                     try {
+                        if (responseJson.role=="customer"){
+                          this.props.navigation.navigate('Payment',{'state':this.state});
+                        }else{
+                          alert('Please check inputs');
+                        }
+                     }catch{
+                        alert('error');
+                     }
                  })
                  .catch((error) => {
                    console.error(error);
@@ -71,8 +80,8 @@ class DeliveryTextInputs extends Component{
       show=(value)=>{
         this.setState({pickerSelectedValue:value});
         this.setState({State:value});
-        
       }
+
 
     render(){
       return (
@@ -82,7 +91,9 @@ class DeliveryTextInputs extends Component{
                     <Text style={styles.TextInputsName}>First Name</Text>
                     <TextInput  style={styles.TextInputs}
                         maxLength={30}
-                        onChangeText={text => this.setState({first_name:text})}/>
+                        onChangeText={text => this.setState({first_name:text})}
+                        //placeholder={this.state.first_name}
+                        />
                 </View>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>Last Name</Text>

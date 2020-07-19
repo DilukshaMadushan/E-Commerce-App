@@ -54,6 +54,7 @@ export default class homeScreen extends Component {
                     <Text style={{paddingLeft:30}}>HANG OUT & PARTY </Text>    
                 </ImageBackground>
           </View>
+          <Text style={{fontSize:20,fontWeight:'700',paddingTop:15,paddingLeft:15}}>Recent Item</Text>
           <View>
             <HomeImageRow navigation={this.props.navigation}/>
           </View>

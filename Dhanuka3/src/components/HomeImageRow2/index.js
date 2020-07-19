@@ -1,25 +1,47 @@
 import React, { Component } from 'react';
-import {Text,View,ImageBackground,FlatList,ScrollView,TouchableOpacity,Dimensions} from 'react-native';
+import {Text,View,Image,FlatList,ScrollView,TouchableOpacity} from 'react-native';
 
-import Images from '../../common/Images';
 import styles from './styles';
+import { Icon } from 'react-native-elements';
+
+import Wishlist from "../Wishlist";
+import RatingStars from "../RatingStars";
+
+import {connect} from 'react-redux';
+import {addcartItem} from "../../store/cartItemRedux";
+import {addwishItem,removewishItem} from "../../store/wishlistRedux";
 
 
-function Item({ItemName,ItemPrice,item,uri,navigation}) {
+function Item({ItemName,ItemPrice,item,uri,ItemRate,navigation,addItemToCart,addItemToWishlist,removeItemFromWishlist}) {
   item.count = 1;
-  const { width } = Dimensions.get('window');
-
+  if(item.wishlistState!=false || item.wishlistState!=true){
+    item.wishlistState=false;
+  }
+  
   return (
-    <View style={styles.Images}>
-      <TouchableOpacity activeOpacity={0.5} onPress={()=>navigation.navigate('ItemView',{'item':item})}>
-        <ImageBackground  source={{uri:uri}}
-                          style={{width:width/2*0.9, height:width*0.6, borderRadius:3}}>  
-        </ImageBackground>
-        <View style={{width:width/2*0.9, height:50, borderRadius:3}}>
-          <Text style={{color:"gray",fontSize:13,paddingTop:2}}>{ItemName}</Text>
-          <Text style={{fontSize:13}}>{ItemPrice}</Text>
-        </View> 
-      </TouchableOpacity>
+    <View style={styles.item} activeOpacity={0.7}>
+      <View style={styles.itemView}>
+        <TouchableOpacity activeOpacity={0.5} onPress={()=>navigation.navigate('ItemView',{'item':item})}>
+          <Image style={styles.itemImage} source={{uri:uri}}></Image>
+        </TouchableOpacity>
+        <View style={{position:'absolute',alignSelf:'flex-end',top:5}}>
+          <Wishlist item={item} addItemToWishlist={addItemToWishlist} removeItemFromWishlist={removeItemFromWishlist}/>
+        </View>
+      </View>
+
+      <Text style={styles.ItemName}>{ItemName}</Text>
+      <Text style={styles.ItemPrice}>{ItemPrice}</Text>
+      <View style={{flexDirection:'row',paddingTop:2}}>
+        <View style={{flex:1,paddingEnd:40,justifyContent:'center'}}>
+          <RatingStars ItemRate={ItemRate}/>
+        </View>
+        <TouchableOpacity onPress={()=>addItemToCart(item)}>
+          <Icon name='shopping-cart'
+                containerStyle={styles.ShopItemIcon}
+                type='font-awesome'
+                color={'black'}/>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -62,7 +84,12 @@ class HomeImageRow2 extends Component {
                     uri={item.images[0].src} 
                     item={item}
                     ItemPrice={'Rs '+item.price}
+                    ItemRate={item.average_rating}
                     navigation={this.props.navigation}
+                    addItemToCart={this.props.addItemToCart}
+                //wishlist
+                    addItemToWishlist={this.props.addItemToWishlist}
+                    removeItemFromWishlist={this.props.removeItemFromWishlist}
               />}
               keyExtractor={item => item.id}
             />
@@ -73,7 +100,15 @@ class HomeImageRow2 extends Component {
   }
 }
 
-export default HomeImageRow2;
+const mapDispatchToProps = (dispatch) => {
+  return{
+    addItemToCart:(product) => dispatch(addcartItem(product)),
+    addItemToWishlist:(item) => dispatch(addwishItem(item)),
+    removeItemFromWishlist:(item) => dispatch(removewishItem(item)),
+  }
+}
+
+export default connect(null,mapDispatchToProps)(HomeImageRow2);
 
 /*
 

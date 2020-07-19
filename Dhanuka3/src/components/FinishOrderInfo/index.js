@@ -62,7 +62,8 @@ class FinishOrderInfo extends Component{
                 </View>
                 <Text style={{fontSize:30,fontWeight:'bold',paddingTop:20}}>Thank You</Text>
                 <Text style={{fontSize:15,paddingTop:20,textAlign:'center'}}>Thank you so much for your purchased,to check your delivery status please go to My Order</Text>
-                <TouchableOpacity style={styles.buttonViewOrader} activeOpacity={0.5}>
+                <TouchableOpacity style={styles.buttonViewOrader} activeOpacity={0.5} 
+                                  onPress={() => this.props.navigation.navigate('MyOrders')}>
                     <Text style={{color:'#fff',fontWeight:'bold',fontSize:20}}>View My Orders</Text>
                 </TouchableOpacity>
             </View>

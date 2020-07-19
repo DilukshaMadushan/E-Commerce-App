@@ -2,8 +2,14 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View,Dimensions, ScrollView, ImageBackground } from 'react-native';
 import { SliderBox } from "react-native-image-slider-box";
 
+<<<<<<< HEAD
+import HomeIconRow from "../components/HomeIconRow"
+import HomeImageRow from "../components/HomeImageRow"
+import HomeImageRow2 from "../components/HomeImageRow2"
+=======
 import HomeIconRow from "../components/HomeIconRow";
 import HomeImageRow from "../components/HomeImageRow";
+>>>>>>> 11d3cfb5a7a6011d6ff6e497c0bd37b24c51eca1
 
 export default class homeScreen extends Component {
 
@@ -20,8 +26,13 @@ export default class homeScreen extends Component {
     const { width } = Dimensions.get('window');
     return (
       <View style={styles.container}>
+<<<<<<< HEAD
+        <ScrollView>
+          <View >
+=======
 
           <View style={{marginBottom:25}}>
+>>>>>>> 11d3cfb5a7a6011d6ff6e497c0bd37b24c51eca1
             <HomeIconRow/>
           </View>
 
@@ -52,10 +63,13 @@ export default class homeScreen extends Component {
                     <Text style={{paddingLeft:30}}>HANG OUT & PARTY </Text>    
                 </ImageBackground>
           </View>
-
           <View>
-            <HomeImageRow/>
+            <HomeImageRow navigation={this.props.navigation}/>
           </View>
+          <View>
+            <HomeImageRow2 navigation={this.props.navigation}/>
+          </View>
+        </ScrollView>
     </View>
   );
 }

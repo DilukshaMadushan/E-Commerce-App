@@ -5,6 +5,8 @@ import styles from "./styles";
 import { Icon } from 'react-native-elements';
 import Images from "../../common/Images";
 
+import {connect} from 'react-redux';
+
 
 class PaymentInputs extends Component{
 
@@ -58,14 +60,14 @@ class PaymentInputs extends Component{
                       {
                         method_id: "flat_rate",
                         method_title: "Flat Rate",
-                        total: "10"
+                        total: 10
                       }
                     ]
 
                   }),
               }).then((response) => response.json())
                  .then((responseJson) => {
-                     console.log(responseJson);
+                   console.log(responseJson)
                  })
                  .catch((error) => {
                    console.error(error);
@@ -78,6 +80,11 @@ class PaymentInputs extends Component{
         <View style={styles.container}>
             <ScrollView style={{marginBottom:135}}>
                 <View style={{flexDirection:'row'}}>
+                  <TouchableOpacity style={styles.paymentMethods}
+                                      onPress={() => {this.postPayments()}}>
+                        <Image source={Images.CashOnDelivery}
+                            style={{height:'60%',width:'100%'}}/>
+                    </TouchableOpacity>
                     <TouchableOpacity style={styles.paymentMethods}
                                       onPress={() => {this.postPayments()}}>
                         <Image source={Images.PayHere}
@@ -87,16 +94,16 @@ class PaymentInputs extends Component{
 
                 <View style={{flexDirection:'row',width:'100%',paddingTop:20}}>
                     <Text style={{flex:1,paddingStart:20,fontSize:17}}>Subtotal</Text>
-                    <Text style={{paddingEnd:20,fontSize:17}}>Rs 1000</Text>
+                    <Text style={{paddingEnd:20,fontSize:17}}>Rs {this.props.TotalPrice}</Text>
                 </View>
                 <View style={{flexDirection:'row',width:'100%',paddingVertical:20}}>
-                    <Text style={{flex:1,paddingStart:20,fontSize:17}}>Shopping</Text>
-                    <Text style={{paddingEnd:20,fontSize:17}}>Rs 1000</Text>
+                    <Text style={{flex:1,paddingStart:20,fontSize:17}}>Delivery Payment</Text>
+                    <Text style={{paddingEnd:20,fontSize:17}}>Rs 0</Text>
                 </View>
                 <View style={{flexDirection:'row',width:'100%',paddingTop:15,paddingBottom:20,borderTopWidth:1,borderColor:'rgba(200,200,200,1)'}}>
                     <Text style={{flex:1,paddingStart:20,fontSize:17}}>Total</Text>
-                    <Text style={{paddingEnd:20,fontSize:17}}>Rs 2000</Text>
-                </View>
+                    <Text style={{paddingEnd:20,fontSize:17}}>Rs {this.props.TotalPrice}</Text>
+                </View>     
             </ScrollView>
             <View style={styles.ButtonsScreen}>
                 <TouchableOpacity style={styles.buttonBack} activeOpacity={0.5}
@@ -113,5 +120,11 @@ class PaymentInputs extends Component{
       );
     }
 }
-    
-  export default PaymentInputs;
+
+const mapStateToProps = (state) =>{ 
+  return{ 
+    TotalPrice:state.cartItems.totalPrice,
+  }
+}
+
+export default connect(mapStateToProps,null)(PaymentInputs);

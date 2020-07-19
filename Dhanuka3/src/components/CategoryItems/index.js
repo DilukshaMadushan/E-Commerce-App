@@ -73,6 +73,7 @@ class CategoryItems extends Component{
       console.log(json);
        this.setState({ItemList:json});
        this.setState({isLoading:false});
+       console.log(this.props.catId)
        //this.setState({MainCategoryList:json.filter(function(cat){return cat.parent == 0;})})
   
     })

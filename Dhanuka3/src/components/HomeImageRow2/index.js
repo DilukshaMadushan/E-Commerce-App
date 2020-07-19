@@ -25,7 +25,7 @@ function Item({ItemName,ItemPrice,item,uri,navigation}) {
 }
 
 
-class HomeImageRow extends Component {
+class HomeImageRow2 extends Component {
   
     state={  
       ItemList:[],
@@ -37,7 +37,7 @@ class HomeImageRow extends Component {
 
     getItems(){
     
-      fetch('https://www.waytoogo.com/wp-json/wc/v3/products?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd&per_page=50&category=192',{
+      fetch('https://www.waytoogo.com/wp-json/wc/v3/products?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd&per_page=50&category=229',{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -73,7 +73,7 @@ class HomeImageRow extends Component {
   }
 }
 
-export default HomeImageRow;
+export default HomeImageRow2;
 
 /*
 

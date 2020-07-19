@@ -1,9 +1,10 @@
 {
-  "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "webpackServerPort": null
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://rb-p4z.anonymous.dhanuka3.exp.direct",
+  "packagerNgrokUrl": "https://packager.rb-p4z.anonymous.dhanuka3.exp.direct",
+  "ngrokPid": 9228,
+  "packagerPort": 19001,
+  "packagerPid": 7204,
+  "webpackServerPort": null,
+  "devToolsPort": 19002
 }

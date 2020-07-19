@@ -10,7 +10,9 @@ class ShoppingCartIcon extends Component {
     return (
         <View>
             <TouchableOpacity 
-                //onPress={this.props.navigation.navigate('Mycart')}
+                onPress={()=>{
+                  this.props.navigation.navigate('Mycart')
+                }}
             >
                 <Icon name='shopping-cart'
                     containerStyle={styles.Icon}
@@ -18,7 +20,7 @@ class ShoppingCartIcon extends Component {
                     color={'black'}
                     size={34}/>
                 <View style={styles.Number}>
-                    <Text style={{color:'#FFF',fontWeight:'bold'}}>{this.props.cartItems.length}</Text>
+                    <Text style={{color:'#FFF',fontWeight:'bold'}}>{this.props.cartItems.length.toString()}</Text>
                 </View>
             </TouchableOpacity>
 

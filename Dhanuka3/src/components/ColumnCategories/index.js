@@ -101,7 +101,7 @@ class Categories extends React.Component{
                 <Item title={item.name} 
                       uri={Images.default_Category_1} 
                       id={this.state.MainCategoryList.indexOf(item)}
-                      product={item.count}
+                      product={item.count.toString()}
                       />
               </TouchableOpacity>
               <SubCategorylist status={this.state.SubCategoryStatus[this.state.MainCategoryList.indexOf(item)]} 

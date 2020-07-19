@@ -23,6 +23,7 @@ import paymentScreen from './src/Screens/paymentScreen';
 import finishOrderScreen from './src/Screens/finishOrderScreen';
 import myOrdersScreen from './src/Screens/myOrdersScreen';
 import myWishlistScreen from './src/Screens/myWishlistScreen';
+import payhereScreen from './src/Screens/payhereScreen';
 
 
 import ShoppingCartIcon from './src/components/ShoppingCartIcon';
@@ -125,16 +126,51 @@ const App = createStackNavigator({
                      source={Images.logo}/>
           </View>
           <View style={{paddingRight:15}}>
-            <ShoppingCartIcon />
+            <ShoppingCartIcon navigation={navigation}/>
           </View>
         </View>
       </View>
         )
     }),
   },
-  //Category_Items,Items_view
-  Items : ItemsScreen,
-  ItemView : ItemViewScreen,
+//Category_Items,Items_view
+  Items: {
+    screen: ItemsScreen,
+    navigationOptions: ({ navigation, screenProps })=> ({
+      headerStyle: {
+        backgroundColor: '#FFFFFF',
+      },
+      //headerTintColor: '#633689',
+      title: 'Items',
+      headerRight : (
+          
+          <View style={{paddingRight:15}}>
+            <ShoppingCartIcon navigation={navigation}/>
+          </View>
+        
+        )
+    }),
+  },
+  
+  // Items : ItemsScreen,
+  ItemView: {
+    screen: ItemViewScreen,
+    navigationOptions: ({ navigation, screenProps })=> ({
+      headerStyle: {
+        backgroundColor: '#FFFFFF',
+      },
+      //headerTintColor: '#633689',
+      title: 'Item',
+      headerRight : (
+          
+          <View style={{paddingRight:15}}>
+            <ShoppingCartIcon navigation={navigation}/>
+          </View>
+        
+        )
+    }),
+  },
+  //ItemView : ItemViewScreen,
   //Register,Login
   Login : loginScreen,
   Register : registerScreen,
@@ -147,7 +183,9 @@ const App = createStackNavigator({
   //MyOrdes
   MyOrders:myOrdersScreen,
   //MyWishlist
-  MyWishlist:myWishlistScreen
+  MyWishlist:myWishlistScreen,
+  //PayHere screen
+  payhere : payhereScreen,
 });
 
 const AuthStack = createStackNavigator({

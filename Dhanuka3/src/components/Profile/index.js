@@ -11,6 +11,18 @@ class ProfileItems extends Component{
     return (
       <View>
         <View style={styles.List}>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate('UpdateDelivery')} 
+            style={styles.ListItem}>
+            <Icon name='pencil-square'
+                containerStyle={styles.ItemIcon}
+                type='font-awesome'
+                color={'black'}/>
+            <Text style={{flex:1,textAlign:'center'}}>Delivery Informations</Text>
+            <Icon name='chevron-right'
+                containerStyle={styles.ArrowIcon}
+                type='Entypo'
+                color={'black'}/>
+          </TouchableOpacity>
           <TouchableOpacity onPress={()=>this.props.navigation.navigate('MyOrders')} 
             style={styles.ListItem}>
             <Icon name='shopping-cart'

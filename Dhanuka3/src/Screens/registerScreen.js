@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {StyleSheet, Text, View, Image, Dimensions,TouchableOpacity,ScrollView,TextInput,AsyncStorage, ActivityIndicator, StatusBar } from 'react-native';
 
 import Images from '../common/Images';
+import { connect } from 'react-redux';
+import {addUserId} from "../store/signInRedux";
 
 
 class registerScreen extends Component {
@@ -12,7 +14,6 @@ class registerScreen extends Component {
     comfirm_password:null,
     isLoading:false,
   }
- 
 
   _storeData = async (key,value) => {
     try {
@@ -75,6 +76,13 @@ class registerScreen extends Component {
       alert("something is missing");
     }
   }
+
+
+  handleItemPasing = (item) => {
+    item.count = 1;
+    this.props.addItemToCart(item);
+  }
+  
 
   render() {
     const { width } = Dimensions.get('window');

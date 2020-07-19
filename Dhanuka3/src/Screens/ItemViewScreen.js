@@ -8,7 +8,7 @@ import { addcartItem} from "../store/cartItemRedux";
 
  class ItemViewScreen extends Component {
 
-handleItemPaaing = (item) => {
+handleItemPasing = (item) => {
   item.count = 1;
   this.props.addItemToCart(item);
 }
@@ -23,7 +23,7 @@ handleItemPaaing = (item) => {
           <View style={{flexDirection:'row',height:45}}>
             <TouchableOpacity style={styles.buttonAddToCart} 
                               activeOpacity={0.5}
-                              onPress={()=>this.handleItemPaaing(this.props.navigation.getParam('item'))}>
+                              onPress={()=>this.handleItemPasing(this.props.navigation.getParam('item'))}>
                 <Text style={{color:'#fff',fontSize:18,textAlign:'center',fontWeight:'bold'}}>Add To Cart</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonBuyNow} activeOpacity={0.5} 

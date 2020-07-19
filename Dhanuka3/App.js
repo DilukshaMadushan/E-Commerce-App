@@ -24,6 +24,7 @@ import finishOrderScreen from './src/Screens/finishOrderScreen';
 import myOrdersScreen from './src/Screens/myOrdersScreen';
 import myWishlistScreen from './src/Screens/myWishlistScreen';
 import payhereScreen from './src/Screens/payhereScreen';
+import UpdateDeliveryScreen from './src/Screens/UpdateDeliveryScreen';
 
 
 import ShoppingCartIcon from './src/components/ShoppingCartIcon';
@@ -186,6 +187,8 @@ const App = createStackNavigator({
   MyWishlist:myWishlistScreen,
   //PayHere screen
   payhere : payhereScreen,
+  //Update Delivery Screen
+  UpdateDelivery : UpdateDeliveryScreen
 });
 
 const AuthStack = createStackNavigator({

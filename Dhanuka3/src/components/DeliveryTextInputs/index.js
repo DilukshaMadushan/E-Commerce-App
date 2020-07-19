@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, TextInput,Text,ScrollView,TouchableOpacity} from "react-native";
+import { View, TextInput,Text,ScrollView,TouchableOpacity, Picker} from "react-native";
 import styles from "./styles";
 
 
@@ -20,7 +20,7 @@ class DeliveryTextInputs extends Component{
      
     handleDeliveryInput(){
         if((this.state.first_name!==null)&&(this.state.last_name!==null)&&(this.state.address_1!==null)&&(this.state.city!==null)
-          &&(this.state.postcode!==null)&&(this.state.country!==null)&&(this.state.State!==null)&&(this.state.email!==null)&&(this.state.phone!==null)){
+          &&(this.state.postcode!==null)&&(this.state.country!==null)&&(this.state.State!==null)&&(this.state.email!==null || this.state.phone!==null)){
               fetch('https://www.waytoogo.com/wp-json/wc/v3/customers/73?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',
               {
                 method:'POST',
@@ -36,7 +36,7 @@ class DeliveryTextInputs extends Component{
                     address_2:this.state.address_2,
                     city:this.state.city,
                     postcode:this.state.postcode,
-                    country:this.state.country,
+                    country:"Sri Lanka",
                     state:this.state.State,
                     email:this.state.email,
                     phone:this.state.phone,
@@ -66,6 +66,12 @@ class DeliveryTextInputs extends Component{
         }else{
           alert("something is missing");
         }
+      }
+
+      show=(value)=>{
+        this.setState({pickerSelectedValue:value});
+        this.setState({State:value});
+        
       }
 
     render(){
@@ -102,12 +108,12 @@ class DeliveryTextInputs extends Component{
                         maxLength={50}
                         onChangeText={text => this.setState({address_2:text})}/>
                 </View>
-                <View style={styles.Itemrows}>
+                {/* <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>Select Country</Text>
                     <TextInput  style={styles.TextInputs}
                         maxLength={30}
                         onChangeText={text => this.setState({country:text})}/>
-                </View>
+                </View> */}
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>Town/City</Text>
                     <TextInput  style={styles.TextInputs}
@@ -116,9 +122,25 @@ class DeliveryTextInputs extends Component{
                 </View>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>State</Text>
-                    <TextInput  style={styles.TextInputs}
+                    <View style={{flex:1.7,borderWidth:1,paddingHorizontal:13,marginRight:10,
+                                    borderRadius:5,
+                                    borderWidth:2,
+                                    borderColor:'rgba(220,220,220,0.8)',
+                                    fontSize: 16
+                                    }}>
+                        <Picker
+                          selectedValue = {this.state.pickerSelectedValue}
+                          onValueChange={this.show}
+                        >
+                          <Picker.Item label="Central" value="Central"></Picker.Item>
+                          <Picker.Item label="South" value="South"></Picker.Item>
+                          <Picker.Item label="Western" value="Western"></Picker.Item>
+                          <Picker.Item label="North" value="North"></Picker.Item>
+                        </Picker>
+                    </View>
+                    {/* <TextInput  style={styles.TextInputs}
                         maxLength={30}
-                        onChangeText={text => this.setState({State:text})}/>
+                        onChangeText={text => this.setState({State:text})}/> */}
                 </View>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>Postcode</Text>

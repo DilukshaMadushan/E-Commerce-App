@@ -106,6 +106,7 @@ class registerScreen extends Component {
                   <TextInput  style={styles.TextInput}
                     placeholder="Enter Password"
                     maxLength={40}
+                    secureTextEntry={true}
                     onChangeText={text => this.setState({password:text})}
                   />
                 </View>
@@ -113,6 +114,7 @@ class registerScreen extends Component {
                   <TextInput  style={styles.TextInput}
                     placeholder="Comfirm Password"
                     maxLength={40}
+                    secureTextEntry={true}
                     onChangeText={text => this.setState({comfirm_password:text})}
                   />
                 </View>

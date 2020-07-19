@@ -19,7 +19,7 @@ export default StyleSheet.create({
         fontSize:16,
         paddingHorizontal:15,
         height:40,
-        marginRight:5,
+        marginRight:10,
         borderRadius:5,
         borderWidth:2,
         borderColor:'rgba(220,220,220,0.8)',
@@ -35,11 +35,11 @@ export default StyleSheet.create({
       buttonBack:{
         flex:1,
         backgroundColor:'rgba(220,220,220,0.8)',
-        paddingVertical:5,
+        paddingVertical:7,
       },
       buttonNext:{
         flex:1,
         backgroundColor:'rgba(0, 179, 155,0.7)',
-        paddingVertical:5
+        paddingVertical:7
       }
 });

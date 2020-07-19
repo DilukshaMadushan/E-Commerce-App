@@ -27,7 +27,8 @@ handleItemPasing = (item) => {
                 <Text style={{color:'#fff',fontSize:18,textAlign:'center',fontWeight:'bold'}}>Add To Cart</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonBuyNow} activeOpacity={0.5} 
-                              onPress={()=>this.props.navigation.navigate('Delivery')}>
+                              onPress={()=>{this.props.navigation.navigate('Delivery');
+                                            this.handleItemPasing(this.props.navigation.getParam('item'))}}>
                 <Text style={{color:'#fff',fontSize:18,textAlign:'center',fontWeight:'bold'}}>Buy Now</Text>
             </TouchableOpacity>
           </View>

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { View, TextInput,Text,TouchableOpacity} from "react-native";
 import styles from "./styles";
 
+import {connect} from 'react-redux';
+
 
 class DeliveryTextInputs extends Component{
     state={
@@ -143,6 +145,7 @@ class DeliveryTextInputs extends Component{
       return (
         <View>
             <View style={{flexDirection:'column',marginBottom:10}}>
+              <Text style={styles.TextInputsName}>{this.props.signInId}aa</Text>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>First Name</Text>
                     <TextInput  style={styles.TextInputs}
@@ -242,4 +245,10 @@ class DeliveryTextInputs extends Component{
     }
 }
     
-  export default DeliveryTextInputs;
+const mapStateToProps = (state) =>{ 
+  return{ 
+    signInId:state.signInid.signInId,
+  }
+}
+
+export default connect(mapStateToProps,null)(DeliveryTextInputs);

@@ -6,6 +6,7 @@ import { Icon } from 'react-native-elements';
 import Images from "../../common/Images";
 
 import {connect} from 'react-redux';
+import {emptyCart} from "../../store/cartItemRedux";
 
 
 class PaymentInputs extends Component{
@@ -129,4 +130,10 @@ const mapStateToProps = (state) =>{
   }
 }
 
-export default connect(mapStateToProps,null)(PaymentInputs);
+const mapDispatchToProps = (dispatch) => {
+  return{
+    emptyCart:() => dispatch(emptyCart()),
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(PaymentInputs);

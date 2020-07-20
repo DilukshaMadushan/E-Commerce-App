@@ -14,17 +14,21 @@ const Images = {
   ic_tie:require('../images/ic_tie.png'),
 
 //Home Slider Images
-  HomeSlide01:require("../images/home/man22.jpg"),
-  HomeSlide02:require("../images/home/girl22.jpg"),
+  Home_Slider01:require("../images/Home_Silder01.jpg"),
+  Home_Slider02:require("../images/Home_Silder02.jpg"),
+  Home_Slider03:require("../images/Home_Silder03.jpg"),
+  Home_Slider04:require("../images/Home_Silder04.jpg"),
 
 //Main Category
-  default_Category_1: require('../images/default_Category/Category_01.jpg'),
-  default_Category_2: require('../images/default_Category/Category_02.jpg'),
-  default_Category_3: require('../images/default_Category/Category_03.jpg'),
-  default_Category_4: require('../images/default_Category/Category_04.webp'),
+  default_Category: require('../images/category.jpg'),
 
-//Items
-  default_Item: require('../images/default_Category/default_Item.webp'),
+//Profile Pic
+  default_Item: require('../images/default_avatar.jpg'),
+
+
+
+
+
   default_Item_2: require('../images/default_Category/default_Item_2.jpg'),
   default_Item_3: require('../images/default_Category/default_Item_3.jpg'),
   default_Item_4: require('../images/default_Category/default_Item_4.jpg'),

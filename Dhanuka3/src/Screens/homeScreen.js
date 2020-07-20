@@ -1,19 +1,22 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View,Dimensions, ScrollView, ImageBackground } from 'react-native';
+import {StyleSheet, Text, View,Dimensions, ScrollView, ImageBackground, Image } from 'react-native';
 import { SliderBox } from "react-native-image-slider-box";
+
+import Images from '../common/Images';
 
 import HomeIconRow from "../components/HomeIconRow"
 import HomeImageRow from "../components/HomeImageRow"
 import HomeImageRow2 from "../components/HomeImageRow2"
 
+
 export default class homeScreen extends Component {
 
   state = {
     images : [
-      require('../images/home/girl11.jpg'),
-      require("../images/home/boy11.jpg"),
-      require('../images/home/girl11.jpg'),
-      require("../images/home/boy11.jpg"),
+      Images.Home_Slider01,
+      Images.Home_Slider02,
+      Images.Home_Slider03,
+      Images.Home_Slider04,
     ]
   }
 

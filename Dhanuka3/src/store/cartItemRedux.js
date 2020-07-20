@@ -27,6 +27,13 @@ export const decrementCount = (product) => {
     }
   }  
 
+  export const emptyCart = () => {
+    return {
+      type: 'EMPTY_CART',
+    }
+  } 
+
+
 const initialState = {
   cartList:[],
   totalPrice:0
@@ -81,6 +88,9 @@ function cartItems (state = initialState ,action){
           }else{
             return state
           }
+          case 'EMPTY_CART':
+            const newState4 = {cartList : null}
+            return newState4
     }
     return state;
 }

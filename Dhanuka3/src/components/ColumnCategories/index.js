@@ -99,7 +99,7 @@ class Categories extends React.Component{
                                             
                                             }}>
                 <Item title={item.name} 
-                      uri={Images.default_Category_1} 
+                      uri={Images.default_Category} 
                       id={this.state.MainCategoryList.indexOf(item)}
                       product={item.count.toString()}
                       />

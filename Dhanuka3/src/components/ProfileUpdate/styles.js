@@ -43,5 +43,6 @@ export default StyleSheet.create({
         backgroundColor:'rgba(0, 179, 155,0.7)',
         paddingVertical:5,
         justifyContent:'center'
-      }
+      },
+      
 });

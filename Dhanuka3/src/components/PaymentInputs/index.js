@@ -68,7 +68,17 @@ class PaymentInputs extends Component{
                   }),
               }).then((response) => response.json())
                  .then((responseJson) => {
-                   console.log(responseJson)
+                   try{
+                      if (responseJson.role=="customer"){
+                          this.props.navigation.navigate('Finish_Order');
+                      }else{
+                        this.props.navigation.navigate('Finish_Order');
+                          //alert("Error");
+                      }
+                   }catch{
+                    alert("Error");
+                   }
+                   console.log(responseJson);
                  })
                  .catch((error) => {
                    console.error(error);

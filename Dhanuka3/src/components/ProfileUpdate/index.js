@@ -82,7 +82,7 @@ class DeliveryTextInputs extends Component{
     handleDeliveryInput(){
         if((this.state.first_name!==null)&&(this.state.last_name!==null)&&(this.state.address_1!==null)&&(this.state.city!==null)
           &&(this.state.postcode!==null)&&(this.state.State!==null)&&(this.state.email!==null || this.state.phone!==null)){
-              fetch('https://www.waytoogo.com/wp-json/wc/v3/customers/73?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',
+              fetch('https://www.waytoogo.com/wp-json/wc/v3/customers/'+this.props.signInId+'?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',
               {
                 method:'POST',
                 headers : { 'Content-Type': 'application/json'},
@@ -145,7 +145,7 @@ class DeliveryTextInputs extends Component{
       return (
         <View>
             <View style={{flexDirection:'column',marginBottom:10}}>
-              <Text style={styles.TextInputsName}>{this.props.signInId}aa</Text>
+              
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>First Name</Text>
                     <TextInput  style={styles.TextInputs}

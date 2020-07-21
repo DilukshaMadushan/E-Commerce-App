@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text,View,Image,FlatList,ScrollView,TouchableOpacity} from 'react-native';
+import {Text,View,Image,FlatList,ScrollView,TouchableOpacity, Dimensions, ActivityIndicator, StatusBar} from 'react-native';
 
 import styles from './styles';
 import { Icon } from 'react-native-elements';
@@ -51,6 +51,7 @@ class HomeImageRow extends Component {
   
     state={  
       ItemList:[],
+      isLoading:false
     }
 
     componentWillMount(){
@@ -58,7 +59,7 @@ class HomeImageRow extends Component {
     }
 
     getItems(){
-    
+      this.setState({isLoading:true});
       fetch('https://www.waytoogo.com/wp-json/wc/v3/products?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd&per_page=50&category=192',{
         method: 'GET',
         headers: {
@@ -68,11 +69,15 @@ class HomeImageRow extends Component {
         })
       .then((response) => response.json())
       .then((json) => {
+        this.setState({isLoading:false});
         this.setState({ItemList:json});
       })
     }
     render(){
+      const { width } = Dimensions.get('window');
       return (
+        <View>
+        {(this.state.isLoading==false)?
         <View style={styles.container}>
           <ScrollView>
             <FlatList
@@ -94,6 +99,11 @@ class HomeImageRow extends Component {
               keyExtractor={item => item.id}
             />
           </ScrollView>
+        </View>:
+        <View style={{flex:1,justifyContent:'center',alignItems:'center',marginTop:width*0.7}}>
+          <ActivityIndicator/>
+          <StatusBar barStyle="default"/>
+      </View>}
         </View>
 
     );

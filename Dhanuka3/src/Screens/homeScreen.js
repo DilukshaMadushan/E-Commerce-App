@@ -25,7 +25,7 @@ export default class homeScreen extends Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <View >
+          <View style={{marginBottom:15}}>
             <HomeIconRow/>
           </View>
 
@@ -61,6 +61,7 @@ export default class homeScreen extends Component {
           <View>
             <HomeImageRow navigation={this.props.navigation}/>
           </View>
+          <Text style={{fontSize:20,fontWeight:'700',paddingTop:15,paddingLeft:15}}>Biscuits</Text>
           <View>
             <HomeImageRow2 navigation={this.props.navigation}/>
           </View>

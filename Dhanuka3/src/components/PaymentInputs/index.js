@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View,Text,ScrollView,TouchableOpacity,Image,FlatList} from "react-native";
+import { View,Text,ScrollView,TouchableOpacity,Image,FlatList,ActivityIndicator, StatusBar, Dimensions} from "react-native";
 
 import styles from "./styles";
 import { Icon } from 'react-native-elements';
@@ -11,9 +11,26 @@ import {emptyCart} from "../../store/cartItemRedux";
 
 class PaymentInputs extends Component{
 
-    state=this.props.navigation.getParam('state');    
+    state=this.props.navigation.getParam('state');  
+    
+    componentWillMount(){
+      this.setState({isLoading:false});
+    }
      
     postPayments(){
+      this.setState({isLoading:true});
+      const cart_item = this.props.cartItemList;
+      let lineItems = [];
+      for (let i=0;i<cart_item.length;i++){
+        const item_1 = {
+          product_id : cart_item[i].id,
+          quantity: cart_item[i].count,
+          total : (cart_item[i].count * parseFloat(cart_item[i].price)).toString()
+        }
+
+        lineItems.push(item_1);
+
+      } 
 
         fetch('https://www.waytoogo.com/wp-json/wc/v3/orders?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',
               {
@@ -21,9 +38,10 @@ class PaymentInputs extends Component{
                 headers : { 'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     payment_method: "bacs",
-                    payment_method_title: "Direct Bank Transfer",
-                    set_paid: true,
+                    payment_method_title: "Cache on Delivery",
+                    set_paid: false,
                     customer_id: this.props.signInId,
+                    total: this.props.TotalPrice.toString(),
                     billing: {
                       first_name: this.state.first_name,
                       last_name: this.state.last_name,
@@ -47,17 +65,7 @@ class PaymentInputs extends Component{
                         country: this.state.country,
                     },
                     //To Payment items plus
-                    line_items: [
-                      {
-                        product_id: 93,
-                        quantity: 2
-                      },
-                      {
-                        product_id: 22,
-                        variation_id: 23,
-                        quantity: 1
-                      }
-                    ],
+                    line_items: lineItems,
                     shipping_lines: [
                       {
                         method_id: "flat_rate",
@@ -69,10 +77,13 @@ class PaymentInputs extends Component{
                   }),
               }).then((response) => response.json())
                  .then((responseJson) => {
+                  this.setState({isLoading:false});
                    try{
                       if (responseJson.role=="customer"){
+                          this.props.emptyCart();
                           this.props.navigation.navigate('Finish_Order');
                       }else{
+                        this.props.emptyCart();
                         this.props.navigation.navigate('Finish_Order');
                           //alert("Error");
                       }
@@ -88,7 +99,10 @@ class PaymentInputs extends Component{
       }
 
     render(){
+      const { width } = Dimensions.get('window');
       return (
+        <View>
+        {(this.state.isLoading==false)?
         <View style={styles.container}>
             <ScrollView style={{marginBottom:135}}>
                 <View style={{flexDirection:'row'}}>
@@ -128,6 +142,11 @@ class PaymentInputs extends Component{
                 </TouchableOpacity>
             </View> */}
 
+        </View>:
+        <View style={{flex:1,justifyContent:'center',alignItems:'center',marginTop:width*0.7}}>
+          <ActivityIndicator/>
+          <StatusBar barStyle="default"/>
+      </View>}
         </View>
       );
     }
@@ -137,6 +156,7 @@ const mapStateToProps = (state) =>{
   return{ 
     TotalPrice:state.cartItems.totalPrice,
     signInId:state.signInid.signInId,
+    cartItemList:state.cartItems.cartList
   }
 }
 

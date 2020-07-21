@@ -52,7 +52,7 @@ class DeliveryTextInputs extends Component{
  
       getItemPlaceholders(){
       
-        fetch('https://www.waytoogo.com/wp-json/wc/v3/customers/73?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',{
+        fetch('https://www.waytoogo.com/wp-json/wc/v3/customers/'+this.props.signInId+'?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',{
           method: 'GET',
           headers: {
               'Content-Type': 'application/json'
@@ -62,20 +62,35 @@ class DeliveryTextInputs extends Component{
           })
         .then((response) => response.json())
         .then((json) => {
+          try {
+            if (json.role=="customer"){
+              
+              this.setState({isLoading:false});
+              this.setState({customerDetails:json});
+              console.log("HiHI",this.state.customerDetails);
+              this.setState({first_name:json.first_name});
+              this.setState({last_name:json.last_name});
+              this.setState({company:json.billing.company});
+              this.setState({address_1:json.billing.address_1});
+              this.setState({address_2:json.billing.address_2});
+              this.setState({city:json.billing.city});
+              this.setState({postcode:json.billing.postcode});
+              this.setState({email:json.billing.email});
+              this.setState({phone:json.billing.phone});
+              this.setState({State:json.billing.state});
+              this.setState({isLoading:false});
+             
+            }else{
+              this.setState({isLoading:false});
+              this.props.navigation.navigate('Auth');
+              alert('Please Login before Shop !');
+              
+            }
+
+         }catch{
+            alert('error');
+         }
            
-           this.setState({customerDetails:json});
-           console.log(this.state.customerDetails);
-           this.setState({first_name:json.first_name});
-           this.setState({last_name:json.last_name});
-           this.setState({company:json.billing.company});
-           this.setState({address_1:json.billing.address_1});
-           this.setState({address_2:json.billing.address_2});
-           this.setState({city:json.billing.city});
-           this.setState({postcode:json.billing.postcode});
-           this.setState({email:json.billing.email});
-           this.setState({phone:json.billing.phone});
-           this.setState({State:json.billing.state});
-           this.setState({isLoading:false});
 
         });
       }
@@ -129,7 +144,8 @@ class DeliveryTextInputs extends Component{
 
                         }else{
                           this.setState({isLoading:false});
-                          alert('Please check inputs');
+                          this.props.navigation.navigate('Auth');
+                          alert('Please Login before Shop !');
                           
                         }
 

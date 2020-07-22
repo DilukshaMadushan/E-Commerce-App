@@ -145,7 +145,6 @@ class DeliveryTextInputs extends Component{
       return (
         <View>
             <View style={{flexDirection:'column',marginBottom:10}}>
-              <Text style={styles.TextInputsName}>{this.props.signInId}aa</Text>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>First Name</Text>
                     <TextInput  style={styles.TextInputs}

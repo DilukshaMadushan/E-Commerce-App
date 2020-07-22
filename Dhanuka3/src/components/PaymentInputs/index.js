@@ -11,7 +11,11 @@ import {emptyCart} from "../../store/cartItemRedux";
 
 class PaymentInputs extends Component{
 
-    state=this.props.navigation.getParam('state');    
+    state=this.props.navigation.getParam('state');  
+    
+    onEmptyCart() {
+      this.props.emptyCart();
+    }
      
     postPayments(){
 
@@ -70,6 +74,7 @@ class PaymentInputs extends Component{
               }).then((response) => response.json())
                  .then((responseJson) => {
                    console.log(responseJson)
+                   this.onEmptyCart()
                  })
                  .catch((error) => {
                    console.error(error);

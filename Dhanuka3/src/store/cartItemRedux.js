@@ -89,7 +89,7 @@ function cartItems (state = initialState ,action){
             return state
           }
           case 'EMPTY_CART':
-            const newState4 = {cartList : null}
+            const newState4 = {cartList : [],totalPrice:0}
             return newState4
     }
     return state;

@@ -66,6 +66,11 @@ class FinishOrderInfo extends Component{
                                   onPress={() => this.props.navigation.navigate('MyOrders')}>
                     <Text style={{color:'#fff',fontWeight:'bold',fontSize:20}}>View My Orders</Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity style={styles.buttonViewOrader} activeOpacity={0.5} 
+                                  onPress={() => this.props.navigation.navigate('Home')}>
+                    <Text style={{color:'#fff',fontWeight:'bold',fontSize:20}}>Go to Home</Text>
+                </TouchableOpacity>
             </View>
         </View>
       );

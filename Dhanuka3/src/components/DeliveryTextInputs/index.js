@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, TextInput,Text,ScrollView,TouchableOpacity, Picker} from "react-native";
+import { View, TextInput,Text,ScrollView,TouchableOpacity, Picker, ActivityIndicator, StatusBar, Dimensions} from "react-native";
 import styles from "./styles";
 
 import {connect} from 'react-redux';
@@ -43,6 +43,7 @@ class DeliveryTextInputs extends Component{
         State: "Central",
         email: null,
         phone: "",
+        isLoading:true
       }
 
       componentDidMount(){
@@ -51,7 +52,7 @@ class DeliveryTextInputs extends Component{
  
       getItemPlaceholders(){
       
-        fetch('https://www.waytoogo.com/wp-json/wc/v3/customers/73?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',{
+        fetch('https://www.waytoogo.com/wp-json/wc/v3/customers/'+this.props.signInId+'?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',{
           method: 'GET',
           headers: {
               'Content-Type': 'application/json'
@@ -61,19 +62,35 @@ class DeliveryTextInputs extends Component{
           })
         .then((response) => response.json())
         .then((json) => {
+          try {
+            if (json.role=="customer"){
+              
+              this.setState({isLoading:false});
+              this.setState({customerDetails:json});
+              console.log("HiHI",this.state.customerDetails);
+              this.setState({first_name:json.first_name});
+              this.setState({last_name:json.last_name});
+              this.setState({company:json.billing.company});
+              this.setState({address_1:json.billing.address_1});
+              this.setState({address_2:json.billing.address_2});
+              this.setState({city:json.billing.city});
+              this.setState({postcode:json.billing.postcode});
+              this.setState({email:json.billing.email});
+              this.setState({phone:json.billing.phone});
+              this.setState({State:json.billing.state});
+              this.setState({isLoading:false});
+             
+            }else{
+              this.setState({isLoading:false});
+              this.props.navigation.navigate('Auth');
+              alert('Please Login before Shop !');
+              
+            }
+
+         }catch{
+            alert('error');
+         }
            
-           this.setState({customerDetails:json});
-           console.log(this.state.customerDetails);
-           this.setState({first_name:json.first_name});
-           this.setState({last_name:json.last_name});
-           this.setState({company:json.billing.company});
-           this.setState({address_1:json.billing.address_1});
-           this.setState({address_2:json.billing.address_2});
-           this.setState({city:json.billing.city});
-           this.setState({postcode:json.billing.postcode});
-           this.setState({email:json.billing.email});
-           this.setState({phone:json.billing.phone});
-           this.setState({State:json.billing.state});
 
         });
       }
@@ -81,6 +98,8 @@ class DeliveryTextInputs extends Component{
     handleDeliveryInput(){
         if((this.state.first_name!==null)&&(this.state.last_name!==null)&&(this.state.address_1!==null)&&(this.state.city!==null)
           &&(this.state.postcode!==null)&&(this.state.State!==null)&&(this.state.email!==null || this.state.phone!==null)){
+              this.setState({isLoading:true});
+              console.log(this.props.signInId);
               fetch('https://www.waytoogo.com/wp-json/wc/v3/customers/'+this.props.signInId+'?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',
               {
                 method:'PUT',
@@ -120,10 +139,16 @@ class DeliveryTextInputs extends Component{
                      
                      try {
                         if (responseJson.role=="customer"){
+                          this.setState({isLoading:false});
                           this.props.navigation.navigate('Payment',{'state':this.state});
+
                         }else{
-                          alert('Please check inputs');
+                          this.setState({isLoading:false});
+                          this.props.navigation.navigate('Auth');
+                          alert('Please Login before Shop !');
+                          
                         }
+
                      }catch{
                         alert('error');
                      }
@@ -144,7 +169,10 @@ class DeliveryTextInputs extends Component{
 
 
     render(){
+      const { width } = Dimensions.get('window');
       return (
+        <View>
+        {(this.state.isLoading==false)?
         <View>
             <ScrollView style={{flexDirection:'column',marginBottom:135}}>
             <View style={styles.Itemrows}>
@@ -253,7 +281,12 @@ class DeliveryTextInputs extends Component{
                     <Text style={{color:'#fff',fontSize:20,textAlign:'center'}}>Next</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </View>:
+        <View style={{flex:1,justifyContent:'center',alignItems:'center',marginTop:width*0.7}}>
+          <ActivityIndicator/>
+          <StatusBar barStyle="default"/>
+        </View>}
+      </View>
       );
     }
 }

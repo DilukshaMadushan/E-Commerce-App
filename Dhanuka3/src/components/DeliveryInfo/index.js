@@ -8,6 +8,7 @@ import DeliveryTextInputs from '../DeliveryTextInputs';
 
 
 class DeliveryInfo extends React.Component{
+    
     render(){
       return (
         <View style={styles.container}>

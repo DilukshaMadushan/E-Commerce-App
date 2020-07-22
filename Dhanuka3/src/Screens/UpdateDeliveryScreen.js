@@ -11,7 +11,7 @@ import DeliveryTextInputs from '../components/ProfileUpdate';
         <View style={{flex:1}}>
           <ScrollView
             style={styles.categoryScreen}>
-            <DeliveryTextInputs/>
+            <DeliveryTextInputs navigation={this.props.navigation}/>
           </ScrollView>
           
         </View>

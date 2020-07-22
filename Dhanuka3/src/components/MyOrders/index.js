@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { View, FlatList, Image,Text,Dimensions,TouchableOpacity} from "react-native";
+import { View, FlatList, Image,Text,Dimensions,TouchableOpacity,ActivityIndicator, StatusBar} from "react-native";
+import {connect} from 'react-redux';
 
 import styles from "./styles";
 import EmptyMyOrders from './EmptyMyOrders';
+import { ScrollView } from "react-native-gesture-handler";
 
 function Item({ItemNumber,Date,Status,PaymentMethod,Total}) {
   return (
@@ -49,6 +51,7 @@ class MyOrders extends Component {
 
   state = {
     OrderedList:[],
+    isLoading:true
   }
   
   componentWillMount(){
@@ -59,7 +62,7 @@ class MyOrders extends Component {
   
   getOrderedList(){
   
-    fetch('https://www.waytoogo.com/wp-json/wc/v3/orders?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd&customer=73',{
+    fetch('https://www.waytoogo.com/wp-json/wc/v3/orders?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd&customer='+this.props.signInId,{
       method: 'GET',
       headers: {
           'Content-Type': 'application/json'
@@ -69,12 +72,17 @@ class MyOrders extends Component {
     .then((response) => response.json())
     .then((responsejson) => {
        this.setState({OrderedList:responsejson});
+       console.log(responsejson);
+       this.setState({isLoading:false});
     })
   }
 
   render(){
     return (
+      <ScrollView>
+      {(this.state.isLoading==false)?
       <View style={styles.container}>
+      
       {this.state.OrderedList.length > 0 ?
         <FlatList
           data={this.state.OrderedList}
@@ -90,9 +98,22 @@ class MyOrders extends Component {
           />
           : <EmptyMyOrders navigation={this.props.navigation}/> 
         }
-      </View>
+      </View>:
+      <View style={{flex:1,justifyContent:'center',alignItems:'center',marginTop:width*0.7}}>
+        <ActivityIndicator/>
+        <StatusBar barStyle="default"/>
+      </View>}
+      </ScrollView>
       );
     }
 }
 
-export default MyOrders;
+//export default MyOrders;
+
+const mapStateToProps = (state) =>{ 
+  return{ 
+    signInId:state.signInid.signInId,
+  }
+}
+
+export default connect(mapStateToProps,null)(MyOrders);

@@ -67,7 +67,7 @@ class DeliveryTextInputs extends Component{
               
               this.setState({isLoading:false});
               this.setState({customerDetails:json});
-              console.log("HiHI",this.state.customerDetails);
+
               this.setState({first_name:json.first_name});
               this.setState({last_name:json.last_name});
               this.setState({company:json.billing.company});
@@ -174,7 +174,7 @@ class DeliveryTextInputs extends Component{
         <View>
         {(this.state.isLoading==false)?
         <View>
-            <ScrollView style={{flexDirection:'column',marginBottom:135}}>
+          <ScrollView style={{flexDirection:'column',marginBottom:135}}>
             <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>First Name</Text>
                     <TextInput  style={styles.TextInputs}
@@ -227,12 +227,7 @@ class DeliveryTextInputs extends Component{
                 </View>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>State</Text>
-                    <View style={{flex:1.7,borderWidth:1,paddingHorizontal:13,marginRight:10,
-                                    borderRadius:5,
-                                    borderWidth:2,
-                                    borderColor:'rgba(220,220,220,0.8)',
-                                    fontSize: 16
-                                    }}>
+                    <View style={styles.TextInputs,styles.Picker}>
                         <Picker
                           selectedValue = {this.state.pickerSelectedValue}
                           onValueChange={this.show}
@@ -243,9 +238,6 @@ class DeliveryTextInputs extends Component{
                           <Picker.Item label="North" value="North"></Picker.Item>
                         </Picker>
                     </View>
-                    {/* <TextInput  style={styles.TextInputs}
-                        maxLength={30}
-                        onChangeText={text => this.setState({State:text})}/> */}
                 </View>
                 <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>Postcode</Text>
@@ -293,7 +285,7 @@ class DeliveryTextInputs extends Component{
     
 const mapStateToProps = (state) =>{ 
   return{ 
-    signInId:state.signInid.signInId,
+    signInId:state.Auth.signInId,
   }
 }
 

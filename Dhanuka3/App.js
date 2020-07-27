@@ -24,12 +24,12 @@ import finishOrderScreen from './src/Screens/finishOrderScreen';
 import myOrdersScreen from './src/Screens/myOrdersScreen';
 import myWishlistScreen from './src/Screens/myWishlistScreen';
 import payhereScreen from './src/Screens/payhereScreen';
-import UpdateDeliveryScreen from './src/Screens/UpdateDeliveryScreen';
+import UpdateProfileScreen from './src/Screens/UpdateProfileScreen';
+import AuthLoadingScreen from './src/Screens/AuthLoadingScreen';
 
 
 import ShoppingCartIcon from './src/components/ShoppingCartIcon';
-
-import sideBar from './src/components/Sidebar/sideBar';
+import SideBar from './src/components/Sidebar';
 
 import { Provider } from 'react-redux';
 import configureStore from './src/store/configureStore';
@@ -171,7 +171,6 @@ const App = createStackNavigator({
         )
     }),
   },
-  //ItemView : ItemViewScreen,
   //Register,Login
   Login : loginScreen,
   Register : registerScreen,
@@ -188,7 +187,7 @@ const App = createStackNavigator({
   //PayHere screen
   payhere : payhereScreen,
   //Update Delivery Screen
-  UpdateDelivery : UpdateDeliveryScreen
+  UpdateProfile : UpdateProfileScreen
 });
 
 const AuthStack = createStackNavigator({
@@ -207,59 +206,6 @@ const AuthStack = createStackNavigator({
   initialRouteName: 'Login'
 });
 
-class AuthLoadingScreen extends Component{
-  constructor(props){
-    super(props);
-    this._loadData();
-  }
-
-  getStoreData = async (key) => {
-    try {
-        const val=await AsyncStorage.getItem(key);
-        if (val!==null){
-          return true;
-        }
-        else{
-          return false;
-        }
-        
-    } catch (error) {
-        console.log(error);
-        return false;
-    }
-    };
-
-  _loadData = async() =>{
-
-      if (!this.getStoreData('isSigned')){
-        this.props.navigation.navigate('Auth');   // Balanna aulak thyenawada kiyala passe
-      }else{
-        const isLoggedIn =await AsyncStorage.getItem('isSigned');
-        //console.log(isLoggedIn);
-        if (isLoggedIn!='true'){
-          this.props.navigation.navigate('Drawer');
-        }else{
-          //const token = await AsyncStorage.getItem('token');
-          const profileId = await AsyncStorage.getItem('profileId');
-          //const profilePic = await AsyncStorage.getItem('profilePic');
-          //const profileName = await AsyncStorage.getItem('profileName');
-          //console.log(profileId);
-          this.props.navigation.navigate('Drawer');
-        }
-      }
-  }
-
-  render(){
-    return(
-      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-          <ActivityIndicator/>
-          <StatusBar barStyle="default"/>
-      </View>
-    );
-   }
-  }
-
-
 
 const { width } = Dimensions.get('window');
 const Drawer = createDrawerNavigator(
@@ -272,7 +218,7 @@ const Drawer = createDrawerNavigator(
                           },
                         },
                         {
-                          contentComponent:  sideBar,
+                          contentComponent: SideBar,
                           initialRouteName:"PetBliss",
                           drawerWidth: width*0.75,
                           drawerPosition:'left',

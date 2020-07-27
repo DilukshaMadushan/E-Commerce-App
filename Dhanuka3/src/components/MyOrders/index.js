@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { View, FlatList, Image,Text,Dimensions,TouchableOpacity,ActivityIndicator, StatusBar} from "react-native";
+import { View, FlatList, Image,Text,Dimensions,ScrollView,ActivityIndicator, StatusBar} from "react-native";
 import {connect} from 'react-redux';
 
 import styles from "./styles";
 import EmptyMyOrders from './EmptyMyOrders';
-import { ScrollView } from "react-native-gesture-handler";
 
 function Item({ItemNumber,Date,Status,PaymentMethod,Total}) {
   return (
@@ -56,8 +55,6 @@ class MyOrders extends Component {
   
   componentWillMount(){
       this.getOrderedList();
-      console.log('aaa');
-      
   }
   
   getOrderedList(){
@@ -72,7 +69,6 @@ class MyOrders extends Component {
     .then((response) => response.json())
     .then((responsejson) => {
        this.setState({OrderedList:responsejson});
-       console.log(responsejson);
        this.setState({isLoading:false});
     })
   }
@@ -112,7 +108,7 @@ class MyOrders extends Component {
 
 const mapStateToProps = (state) =>{ 
   return{ 
-    signInId:state.signInid.signInId,
+    signInId:state.Auth.signInId,
   }
 }
 

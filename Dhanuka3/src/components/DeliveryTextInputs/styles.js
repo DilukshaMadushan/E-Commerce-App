@@ -25,6 +25,18 @@ export default StyleSheet.create({
         borderColor:'rgba(220,220,220,0.8)',
         backgroundColor:'rgba(220,220,220,0.5)'
     },
+    Picker:{
+      flex:1.85,
+      fontSize:16,
+      color:'rgba(220,220,220,0.8)',
+      paddingStart:10,
+      height:50,
+      marginRight:10,
+      borderRadius:5,
+      borderWidth:2,
+      borderColor:'rgba(220,220,220,0.8)',
+      backgroundColor:'rgba(220,220,220,0.5)'
+  },
     ButtonsScreen:{
         backgroundColor:'#fff',
         position:'absolute',

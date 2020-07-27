@@ -88,11 +88,7 @@ function cartItems (state = initialState ,action){
           }else{
             return state
           }
-        case 'EMPTY_CART':
-          // const newState4 = {cartList : [],
-          //   totalPrice: 0
-          // }
-          
+        case 'EMPTY_CART':          
           return Object.assign({},state,{
             cartList:[],
             totalPrice:0

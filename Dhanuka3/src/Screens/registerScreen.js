@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, Image, Dimensions,TouchableOpacity,ScrollView,Te
 
 import Images from '../common/Images';
 import { connect } from 'react-redux';
-import {addUserId} from "../store/signInRedux";
+import {signInUser} from "../store/AuthRedux";
 
 
 class registerScreen extends Component {
@@ -53,9 +53,8 @@ class registerScreen extends Component {
              .then((responseJson) => {
                 
                 this._storeData('isSigned','true');
-                this._storeData('profileId',responseJson.id);
-                 console.log(responseJson);
-                 this.handleSignInIdPasing(responseJson.id);
+                this._storeData('profileId',responseJson.id.toString());
+                 this.handleSignInIdPassing(responseJson);
                  this.setState({isLoading:false});
                  //this._storeData('profilePic',responseJson.avatar_url);
                  //this._storeData('profileName',responseJson.user_name);
@@ -79,9 +78,10 @@ class registerScreen extends Component {
   }
 
 
-  handleSignInIdPasing = (id) => {
-    this.props.addSignInId(id);
+  handleSignInIdPassing = (user) => {
+    this.props.addSignInId(user);
   }
+
 
   render() {
     const { width } = Dimensions.get('window');
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    addSignInId:(id) => dispatch(addUserId(id)),
+    addSignInId:(user) => dispatch(signInUser(user)),
   }
 }
 

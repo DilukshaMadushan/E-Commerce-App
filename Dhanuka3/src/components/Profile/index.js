@@ -11,7 +11,7 @@ class ProfileItems extends Component{
     return (
       <View>
         <View style={styles.List}>
-        <TouchableOpacity onPress={()=>this.props.navigation.navigate('UpdateDelivery')} 
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate('UpdateProfile')} 
             style={styles.ListItem}>
             <Icon name='pencil-square'
                 containerStyle={styles.ItemIcon}

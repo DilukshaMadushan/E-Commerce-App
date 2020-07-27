@@ -89,10 +89,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(MyWishlist);
-
-/*
-      {this.state.OrderedList.length > 0 ? 
-                  : <EmptyMyOrders navigation={this.props.navigation}/> 
-        }
-
-*/

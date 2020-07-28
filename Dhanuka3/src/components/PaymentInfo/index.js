@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList, Image, Text,TouchableOpacity,Dimensions,ScrollView } from "react-native";
-
+import { View} from "react-native";
 import styles from "./styles";
 import { Icon } from 'react-native-elements';
 import PaymentInputs from '../PaymentInputs';

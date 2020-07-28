@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {StyleSheet, Text, View, Image, Dimensions,TouchableOpacity} from 'react-native';
-
 import Images from '../../common/Images';
 import { connect } from 'react-redux';
 import {signOutUser} from "../../store/AuthRedux";

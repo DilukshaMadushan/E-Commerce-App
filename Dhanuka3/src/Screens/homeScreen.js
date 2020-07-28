@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View,Dimensions, ScrollView, ImageBackground, Image } from 'react-native';
 import { SliderBox } from "react-native-image-slider-box";
-
 import Images from '../common/Images';
-
 import HomeIconRow from "../components/HomeIconRow"
 import HomeImageRow from "../components/HomeImageRow"
 import HomeImageRow2 from "../components/HomeImageRow2"

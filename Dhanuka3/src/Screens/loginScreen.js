@@ -3,7 +3,6 @@ import {StyleSheet, Text, View, Image, Dimensions,TouchableOpacity,ScrollView,Te
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Images from '../common/Images';
 
-
 class loginScreen extends Component {
  
   loginHadler = () => {

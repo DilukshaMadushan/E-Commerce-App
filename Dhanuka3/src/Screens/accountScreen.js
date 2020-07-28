@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {ScrollView,StyleSheet,View,Image,Text,TouchableOpacity,Dimensions} from 'react-native';
-
 import ProfileItems from '../components/Profile';
 import Images from '../common/Images';
 import { connect } from 'react-redux';
@@ -29,18 +28,19 @@ import {signOutUser} from "../store/AuthRedux";
                 <Text style={{fontSize:30}}>{this.props.profile_name}</Text>
             :
                 <Text style={{fontSize:30}}>Guest</Text>
-            } 
-                {(!this.props.isSigned)?
-                  <TouchableOpacity style={styles.list}
-                                    onPress={()=>this.props.navigation.navigate('Login')}>
-                          <Text style={styles.Text}>Login</Text>
+            }
+             
+            {(!this.props.isSigned)?
+                <TouchableOpacity style={styles.list}
+                                  onPress={()=>this.props.navigation.navigate('Login')}>
+                        <Text style={styles.Text}>Login</Text>
+                </TouchableOpacity>
+            :
+                <TouchableOpacity style={styles.list}
+                                    onPress={()=>this.handleSignOutUser()}>
+                        <Text style={styles.Text}>Logout</Text>
                   </TouchableOpacity>
-                :
-                  <TouchableOpacity style={styles.list}
-                                      onPress={()=>this.handleSignOutUser()}>
-                            <Text style={styles.Text}>Logout</Text>
-                  </TouchableOpacity>
-                }
+            }
             </View>
         </View>
           <ProfileItems navigation={this.props.navigation}/>

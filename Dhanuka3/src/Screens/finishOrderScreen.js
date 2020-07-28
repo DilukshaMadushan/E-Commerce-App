@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
-import {StyleSheet,View,Dimensions,Text,TouchableOpacity } from 'react-native';
-
+import {StyleSheet,View,Dimensions} from 'react-native';
 import FinishOrderInfo from '../components/FinishOrderInfo';
 
  class finishOrderScreen extends Component {

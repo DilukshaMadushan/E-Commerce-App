@@ -1,13 +1,9 @@
 import React,{Component} from "react";
 import { View, FlatList, Image, Text,TouchableOpacity,Dimensions,ScrollView } from "react-native";
-
 import SelectedItem from '../SelectedItem';
-
 import styles from "./styles";
 import { Icon } from 'react-native-elements';
-
 import {connect} from 'react-redux';
-
 
 class CartItems extends Component{
     render(){

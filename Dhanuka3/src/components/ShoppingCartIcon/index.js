@@ -1,7 +1,6 @@
-import React, { Component  } from 'react';
-import {StyleSheet,View,TouchableOpacity,Text } from 'react-native';
+import React, {Component} from 'react';
+import {StyleSheet,View,TouchableOpacity,Text} from 'react-native';
 import { Icon } from 'react-native-elements';
-
 import { connect } from 'react-redux';
 
 class ShoppingCartIcon extends Component {

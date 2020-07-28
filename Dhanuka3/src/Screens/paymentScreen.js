@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import {StyleSheet,View,Dimensions,Text,TouchableOpacity } from 'react-native';
-
 import PaymentInfo from '../components/PaymentInfo';
 
  class paymentScreen extends Component {

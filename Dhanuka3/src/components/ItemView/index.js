@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { View, FlatList, Image, Text,TouchableOpacity,Dimensions, StatusBarIOS } from "react-native";
-import { connect } from "react-redux";
-import Images from "../../common/Images";
 import styles from "./styles";
 import RatingStars from "../RatingStars";
 import DropDownMenu from '../DropDownMenu';
+import { connect } from "react-redux";
+import Images from "../../common/Images";
 
 
 const { width, height } = Dimensions.get("window");

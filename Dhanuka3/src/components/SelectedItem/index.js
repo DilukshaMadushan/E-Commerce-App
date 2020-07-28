@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { View, FlatList, Image, Text,TouchableOpacity,Dimensions,} from "react-native";
-
 import styles from "./styles";
 import { Icon } from 'react-native-elements';
 import EmptyCart from './EmptyCart';
-
 import {connect} from 'react-redux';
 import {removecartItem,incrementCount,decrementCount} from "../../store/cartItemRedux";
 

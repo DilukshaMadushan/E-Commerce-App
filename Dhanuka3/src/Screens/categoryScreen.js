@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet,View,Dimensions,ScrollView} from 'react-native';
-
+import {StyleSheet,View,ScrollView} from 'react-native';
 import Categories from '../components/ColumnCategories';
 
  class categoryScreen extends Component {

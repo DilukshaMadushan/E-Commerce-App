@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import { View,Text,ScrollView,TouchableOpacity,Image,FlatList,ActivityIndicator, StatusBar, Dimensions} from "react-native";
-
+import { View,Text,ScrollView,TouchableOpacity,Image,ActivityIndicator, StatusBar, Dimensions} from "react-native";
 import styles from "./styles";
-import { Icon } from 'react-native-elements';
 import Images from "../../common/Images";
-
 import {connect} from 'react-redux';
 import {emptyCart} from "../../store/cartItemRedux";
+import PostAPI from "../../services/PostAPI";
 
 
 class PaymentInputs extends Component{
@@ -31,12 +29,8 @@ class PaymentInputs extends Component{
         lineItems.push(item_1);
 
       } 
-
-        fetch('https://www.waytoogo.com/wp-json/wc/v3/orders?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',
-              {
-                method:'POST',
-                headers : { 'Content-Type': 'application/json'},
-                body: JSON.stringify({
+        PostAPI.paymentInputsApi(
+                JSON.stringify({
                     payment_method: "bacs",
                     payment_method_title: "Cache on Delivery",
                     set_paid: false,
@@ -74,8 +68,8 @@ class PaymentInputs extends Component{
                       }
                     ]
 
-                  }),
-              }).then((response) => response.json())
+                  }),)
+                 .then((response) => response.json())
                  .then((responseJson) => {
                   this.setState({isLoading:false});
                    try{

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import {StyleSheet,View,TouchableOpacity} from 'react-native';
+import {StyleSheet,TouchableOpacity} from 'react-native';
 import { Icon } from 'react-native-elements';
-
 
 class Wishlist extends Component {
 

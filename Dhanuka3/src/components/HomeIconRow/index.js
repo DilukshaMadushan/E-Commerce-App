@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import {Text,View,TouchableOpacity,ScrollView,FlatList,Image,Animated,Easing} from 'react-native';
-
+import {Text,View,TouchableOpacity,ScrollView,FlatList,Image} from 'react-native';
 import Images from '../../common/Images'
 import styles from './styles'
-
 
 class HomeIconRow extends Component {
   render() {

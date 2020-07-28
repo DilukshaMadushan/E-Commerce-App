@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { View, FlatList, Image,Text,Dimensions,ScrollView,ActivityIndicator, StatusBar} from "react-native";
+import { View, FlatList,Text,Dimensions,ScrollView,ActivityIndicator, StatusBar} from "react-native";
 import {connect} from 'react-redux';
-
 import styles from "./styles";
 import EmptyMyOrders from './EmptyMyOrders';
+import GetAPI from "../../services/GetApi";
 
 function Item({ItemNumber,Date,Status,PaymentMethod,Total}) {
   return (
@@ -59,13 +59,7 @@ class MyOrders extends Component {
   
   getOrderedList(){
   
-    fetch('https://www.waytoogo.com/wp-json/wc/v3/orders?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd&customer='+this.props.signInId,{
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json'
-      }
-      
-      })
+    GetAPI.myOrdersApi(this.props.signInId)
     .then((response) => response.json())
     .then((responsejson) => {
        this.setState({OrderedList:responsejson});

@@ -1,17 +1,15 @@
 import React, { Component  } from 'react';
 import {StyleSheet,View,ScrollView,TouchableOpacity,Text } from 'react-native';
-
 import ItemView from '../components/ItemView';
-
 import { connect } from 'react-redux';
 import { addcartItem} from "../store/cartItemRedux";
 
- class ItemViewScreen extends Component {
+class ItemViewScreen extends Component {
 
-handleItemPasing = (item) => {
-  item.count = 1;
-  this.props.addItemToCart(item);
-}
+  handleItemPasing = (item) => {
+    item.count = 1;
+    this.props.addItemToCart(item);
+  }
 
   render() {
     return (

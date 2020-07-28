@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { View, FlatList, Image, Text,TouchableOpacity,StyleSheet } from "react-native";
-
+import {StyleSheet } from "react-native";
 import { Dropdown } from 'react-native-material-dropdown';
 
 class DropDownMenu extends Component {
 
-
-
   render() {
- 
     return (
       <Dropdown
         label='Options'

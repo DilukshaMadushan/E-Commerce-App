@@ -1,5 +1,4 @@
 import {createStore,combineReducers} from 'redux';
-
 import cartItems from './cartItemRedux';
 import counterWishlist from './wishlistRedux';
 import Auth from './AuthRedux';

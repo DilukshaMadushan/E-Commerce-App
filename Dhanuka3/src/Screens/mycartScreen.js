@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet,View,Dimensions,Text,TouchableOpacity } from 'react-native';
-
 import {connect} from 'react-redux';
-
 import CartItems from '../components/CartItems';
 
  class myCartScreen extends Component {

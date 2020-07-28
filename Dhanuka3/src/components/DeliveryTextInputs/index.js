@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { View, TextInput,Text,ScrollView,TouchableOpacity, Picker, ActivityIndicator, StatusBar, Dimensions} from "react-native";
 import styles from "./styles";
-
 import {connect} from 'react-redux';
+import GetAPI from "../../services/GetApi";
+import PostAPI from "../../services/PostAPI";
 
 class DeliveryTextInputs extends Component{
     state={
@@ -52,14 +53,7 @@ class DeliveryTextInputs extends Component{
  
       getItemPlaceholders(){
       
-        fetch('https://www.waytoogo.com/wp-json/wc/v3/customers/'+this.props.signInId+'?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',{
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json'
-              //'Authorization': ('Bearer '+token)
-          }
-          
-          })
+        GetAPI.deliveryTextInputApi(this.props.signInId)
         .then((response) => response.json())
         .then((json) => {
           try {
@@ -99,12 +93,9 @@ class DeliveryTextInputs extends Component{
         if((this.state.first_name!==null)&&(this.state.last_name!==null)&&(this.state.address_1!==null)&&(this.state.city!==null)
           &&(this.state.postcode!==null)&&(this.state.State!==null)&&(this.state.email!==null || this.state.phone!==null)){
               this.setState({isLoading:true});
-              console.log(this.props.signInId);
-              fetch('https://www.waytoogo.com/wp-json/wc/v3/customers/'+this.props.signInId+'?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',
-              {
-                method:'PUT',
-                headers : { 'Content-Type': 'application/json'},
-                body: JSON.stringify({
+              
+              PostAPI.deliveryTextInputsApi(this.props.signInId,
+                JSON.stringify({
                   first_name:this.state.first_name,
                   last_name:this.state.last_name,
                   billing:{
@@ -132,8 +123,8 @@ class DeliveryTextInputs extends Component{
                     state:this.state.state,
                 },
 
-                  }),
-              }).then((response) => response.json())
+                  }),)
+                 .then((response) => response.json())
                  .then((responseJson) => {
                      console.log(responseJson);
                      

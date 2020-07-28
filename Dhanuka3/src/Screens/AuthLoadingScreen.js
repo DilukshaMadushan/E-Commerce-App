@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {View,ActivityIndicator,StatusBar,AsyncStorage } from 'react-native';
-
 import {connect} from 'react-redux';
 import {signInUser} from "../store/AuthRedux";
+import GetAPI from '../services/GetApi';
 
 class AuthLoadingScreen extends Component{
     constructor(props){
@@ -49,15 +49,8 @@ class AuthLoadingScreen extends Component{
         }
     }
 
-    handleSignInIdPassing = (id) => {
-        fetch('https://www.waytoogo.com/wp-json/wc/v3/customers/'+id+'?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',{
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json'
-              //'Authorization': ('Bearer '+token)
-          }
-          
-          })
+    handleSignInIdPassing = (id) => { 
+      GetAPI.authLoadingApi(id) 
         .then((response) => response.json())
         .then((json) => {
           try {
@@ -65,7 +58,6 @@ class AuthLoadingScreen extends Component{
               
               this.setState({isLoading:false});
               this.props.addSignInId(json);
-              console.log(json);
              
             }else{
               this.setState({isLoading:false});

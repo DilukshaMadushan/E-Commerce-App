@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {StyleSheet, Text, View, Image, Dimensions,TouchableOpacity,ScrollView,TextInput,AsyncStorage, ActivityIndicator, StatusBar } from 'react-native';
-
 import Images from '../common/Images';
 import { connect } from 'react-redux';
 import {signInUser} from "../store/AuthRedux";
+import PostAPI from '../services/PostAPI';
 
 
 class registerScreen extends Component {
@@ -40,16 +40,12 @@ class registerScreen extends Component {
     if((this.state.username!==null)&&(this.state.email!==null)&&(this.state.password!==null)&&(this.state.comfirm_password!==null)){
       if(this.state.password == this.state.comfirm_password){
           this.setState({isLoading:true});
-          fetch('https://www.waytoogo.com/wp-json/wc/v3/customers?consumer_key=ck_62bbbe337d050335cacf5b4ae4ea791c5862125d&consumer_secret=cs_67f41238f54e68ffbd473a3ca6c64c455e735ecd',
-          {
-            method:'POST',
-            headers : { 'Content-Type': 'application/json'},
-            body: JSON.stringify({
+          PostAPI.registerApi(JSON.stringify({
               user_name:this.state.username,
               email:this.state.email,
               password:this.state.password,
-              }),
-          }).then((response) => response.json())
+              }))
+             .then((response) => response.json())
              .then((responseJson) => {
                 
                 this._storeData('isSigned','true');

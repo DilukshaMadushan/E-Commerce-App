@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Text, View, Image, Dimensions,FlatList,TouchableOpacity,ScrollView,} from 'react-native';
-
 import styles from "./styles";
 import EmptySearch from './EmptySearch';
 

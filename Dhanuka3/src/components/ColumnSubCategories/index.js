@@ -1,18 +1,8 @@
-import React, { useState  } from 'react';
-import {
-  FlatList,
-  Text, 
-  View, 
-  Image, 
-  Dimensions,
-  TouchableOpacity, 
-} from 'react-native';
-
+import React, {Component} from 'react';
+import {Text,View,TouchableOpacity} from 'react-native';
 import { withNavigation } from 'react-navigation'; 
-
 import styles from './styles';
 import { Icon } from 'react-native-elements';
-
 import SubSecCategories from '../ColumnSubSecCategories';
 
 
@@ -27,7 +17,7 @@ function SubSecCategorylist({SubSecCategorylist,subStatus}){
       <View/>
     );}    
 } 
-class SubCategories extends React.Component{
+class SubCategories extends Component{
   state = {
     SubSecCategoryStatus : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     CategoryList:[],

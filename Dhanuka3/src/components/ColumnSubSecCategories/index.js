@@ -1,20 +1,11 @@
-import React, { useState  } from 'react';
-import {
-  FlatList,
-  Text, 
-  View, 
-  Image, 
-  Dimensions,
-  TouchableOpacity, 
-} from 'react-native';
-
+import React, {Component} from 'react';
+import {Text,View,TouchableOpacity} from 'react-native';
 import { withNavigation } from 'react-navigation'; 
-
 import styles from './styles';
 import { Icon } from 'react-native-elements';
 
 
-class SubSecCategories extends React.Component{
+class SubSecCategories extends Component{
 
   state = {
     SubSecCategorylist:[]
@@ -32,7 +23,7 @@ class SubSecCategories extends React.Component{
               <TouchableOpacity
                 onPress = {()=>{
                   this.props.navigation.navigate('Items',{"id":item.id});
-                },()=>{console.log(item.id)} }
+                }}
                 key = {item.id}
                 style = {styles.ListItem}>
                     <Text style={{flex:1,paddingStart:25,textAlign:'center',fontSize:15,fontWeight:'bold'}}>

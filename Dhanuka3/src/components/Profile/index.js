@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList,Text,View, Image, Dimension,TouchableOpacity,} from 'react-native';
-
+import {Text,View,TouchableOpacity} from 'react-native';
 import styles from './styles';
 import { Icon } from 'react-native-elements';
   

@@ -1,10 +1,9 @@
 import React, { Component  } from 'react';
 import {StyleSheet,View,ScrollView,TouchableOpacity,Text } from 'react-native';
-
 import ProfileUpdate from '../components/ProfileUpdate';
 
 
- class UpdateProfileScreen extends Component {   
+class UpdateProfileScreen extends Component {   
        
   render() {
     return (

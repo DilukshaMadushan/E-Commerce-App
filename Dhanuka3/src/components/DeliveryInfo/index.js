@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { View, FlatList, Image, Text,TouchableOpacity,Dimensions,ScrollView } from "react-native";
-import { connect } from "react-redux";
-import Images from "../../common/Images";
 import styles from "./styles";
 import { Icon } from 'react-native-elements';
 import DeliveryTextInputs from '../DeliveryTextInputs';
+import { connect } from "react-redux";
+import Images from "../../common/Images";
 
 
-class DeliveryInfo extends React.Component{
+class DeliveryInfo extends Component{
     
     render(){
       return (

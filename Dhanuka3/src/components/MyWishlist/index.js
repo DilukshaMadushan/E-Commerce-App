@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { View, FlatList, Image,Text,Dimensions,TouchableOpacity} from "react-native";
-
 import { Icon } from 'react-native-elements';
 import styles from "./styles";
 import EmptyWishlist from  './EmptyWishlist'
-
 import {connect} from 'react-redux';
 import {addcartItem} from "../../store/cartItemRedux";
 import {removewishItem} from "../../store/wishlistRedux";

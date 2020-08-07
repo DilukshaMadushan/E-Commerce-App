@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
-import {StyleSheet,View} from 'react-native';
-import MyWishlist from '../components/MyWishlist';
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
+import MyWishlist from "../components/MyWishlist";
 
 class myWishlistScreen extends Component {
-
   render() {
     return (
-        <View style={styles.container}>
-          <MyWishlist navigation={this.props.navigation}/>
-        </View>
+      <View style={styles.container}>
+        <MyWishlist navigation={this.props.navigation} />
+      </View>
     );
   }
 }
@@ -16,7 +15,7 @@ class myWishlistScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
 });
 

@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import { StyleSheet } from "react-native";
-import { Dropdown } from "react-native-material-dropdown";
+import DropDownPicker from "react-native-dropdown-picker";
 
 class DropDownMenu extends Component {
   render() {
     return (
-      <Dropdown
-        label='Options'
-        containerStyle={styles.DropDownView}
-        data={this.props.itemOptions.map((item) => {
-          return { value: item };
+      <DropDownPicker
+        dropDownStyle={{ backgroundColor: "#fafafa" }}
+        placeholder='Select an option'
+        items={this.props.itemOptions.map((item) => {
+          return { value: item, label: item };
         })}
-        shadeOpacity={0.2}
+        defaultIndex={0}
+        containerStyle={styles.DropDownView}
+        labelStyle={{ fontSize: 16, color: "grey" }}
+        activeLabelStyle={{ color: "red" }}
+        //onChangeItem={item => console.log(item.label, item.value)}
       />
     );
   }
@@ -21,7 +25,6 @@ const styles = StyleSheet.create({
   DropDownView: {
     height: 50,
     justifyContent: "center",
-    padding: 10,
     marginVertical: 15,
   },
 });

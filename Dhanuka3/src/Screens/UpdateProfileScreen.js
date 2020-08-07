@@ -1,15 +1,19 @@
-import React, { Component  } from 'react';
-import {StyleSheet,View,ScrollView,TouchableOpacity,Text } from 'react-native';
-import ProfileUpdate from '../components/ProfileUpdate';
+import React, { Component } from "react";
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Text,
+} from "react-native";
+import ProfileUpdate from "../components/ProfileUpdate";
 
-
-class UpdateProfileScreen extends Component {   
-       
+class UpdateProfileScreen extends Component {
   render() {
     return (
-        <View style={styles.container}>
-            <ProfileUpdate navigation={this.props.navigation}/>       
-        </View>
+      <View style={styles.container}>
+        <ProfileUpdate navigation={this.props.navigation} />
+      </View>
     );
   }
 }
@@ -17,10 +21,8 @@ class UpdateProfileScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop:10
+    marginTop: 10,
   },
-  
 });
-
 
 export default UpdateProfileScreen;

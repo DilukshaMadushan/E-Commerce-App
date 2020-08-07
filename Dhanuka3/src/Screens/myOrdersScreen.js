@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
-import {View,StyleSheet,Dimensions} from 'react-native';
-import MyOrders from '../components/MyOrders';
+import React, { Component } from "react";
+import { View, StyleSheet, Dimensions } from "react-native";
+import MyOrders from "../components/MyOrders";
 
 class myOrdersScreen extends Component {
-
   render() {
     return (
-        <View style={styles.container}>
-          <MyOrders navigation={this.props.navigation}/>
-        </View>
+      <View style={styles.container}>
+        <MyOrders navigation={this.props.navigation} />
+      </View>
     );
   }
 }
@@ -16,7 +15,7 @@ class myOrdersScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
 });
 

@@ -139,7 +139,7 @@ class CategoryItems extends Component {
                 />
               </View>
             ) : (
-              <EmptyItems />
+              <EmptyItems navigation={this.props.navigation} />
             )}
           </View>
         ) : (

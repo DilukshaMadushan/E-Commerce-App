@@ -15,8 +15,6 @@ import { SliderBox } from "react-native-image-slider-box";
 import { connect } from "react-redux";
 import Images from "../../common/Images";
 
-import { shareOnFacebook } from "react-native-social-share";
-
 const { width, height } = Dimensions.get("window");
 
 class ItemView extends Component {
@@ -210,25 +208,4 @@ class ItemView extends Component {
     );
   }
 }
-
-/* var ReactNativeSocialShare = React.createClass({
-   
-    facebookShare : function() {
-   
-      shareOnFacebook({
-          'text':'Global democratized marketplace for art',
-          'link':'https://artboost.com/',
-          'imagelink':'https://artboost.com/apple-touch-icon-144x144.png',
-          //or use image
-          'image': 'artboost-icon',
-        },
-        (results) => {
-          console.log(results);
-        }
-      );
-    }
-    
-  })  
-    
-    AppRegistry.registerComponent('ReactNativeSocialShare', () => ReactNativeSocialShare);*/
 export default ItemView;

@@ -46,6 +46,18 @@ class ProfileItems extends Component{
                 type='Entypo'
                 color={'black'}/>
           </TouchableOpacity>
+          <TouchableOpacity  onPress={()=>this.props.navigation.navigate('EmailList')} 
+            style={styles.ListItem}>
+            <Icon name='envelope'
+                containerStyle={styles.ItemIcon}
+                type='font-awesome'
+                color={'black'}/>
+            <Text style={{flex:1,textAlign:'center'}}>Email Your Order List</Text>
+            <Icon name='chevron-right'
+                containerStyle={styles.ArrowIcon}
+                type='Entypo'
+                color={'black'}/>
+          </TouchableOpacity>
           <TouchableOpacity 
             style={styles.ListItem}>
             <Icon name='bell'

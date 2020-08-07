@@ -25,6 +25,7 @@ import myOrdersScreen from './src/Screens/myOrdersScreen';
 import myWishlistScreen from './src/Screens/myWishlistScreen';
 import payhereScreen from './src/Screens/payhereScreen';
 import UpdateProfileScreen from './src/Screens/UpdateProfileScreen';
+import emailListScreen from './src/Screens/emailListScreen';
 import AuthLoadingScreen from './src/Screens/AuthLoadingScreen';
 
 
@@ -187,7 +188,9 @@ const App = createStackNavigator({
   //PayHere screen
   payhere : payhereScreen,
   //Update Delivery Screen
-  UpdateProfile : UpdateProfileScreen
+  UpdateProfile : UpdateProfileScreen,
+  //Email List
+  EmailList:emailListScreen,
 });
 
 const AuthStack = createStackNavigator({

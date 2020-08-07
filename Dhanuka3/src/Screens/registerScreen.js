@@ -27,8 +27,6 @@ class registerScreen extends Component {
   _retrieveToken = async () => {
     try {
         const value = await AsyncStorage.getItem('profileId');
-        console.log('1');
-        console.log(value);
 
     } catch (error) {
         console.log(error);

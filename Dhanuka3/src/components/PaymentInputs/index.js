@@ -149,7 +149,7 @@ class PaymentInputs extends Component{
 const mapStateToProps = (state) =>{ 
   return{ 
     TotalPrice:state.cartItems.totalPrice,
-    signInId:state.Authid.signInId,
+    signInId:state.Auth.signInId,
     cartItemList:state.cartItems.cartList
   }
 }

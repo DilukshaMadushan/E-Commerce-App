@@ -1,45 +1,52 @@
-import React, { Component } from 'react';
-import {StyleSheet,TouchableOpacity} from 'react-native';
-import { Icon } from 'react-native-elements';
+import React, { Component } from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { Icon } from "react-native-elements";
+import { connect } from "react-redux";
+import { addwishItem, removewishItem } from "../../store/wishlistRedux";
 
 class Wishlist extends Component {
-
-  state={
-    wishListState:this.props.item.wishListState
+  setToWishlist() {
+    if (!this.props.item.wishlistState) {
+      this.props.addItemToWishlist(this.props.item);
+    } else {
+      this.props.removeItemFromWishlist(this.props.item);
+    }
   }
 
-  onWishlistPress() {
-    this.props.addItemToWishlist(this.props.item);
-    this.setState({wishListState:true});
-  }
-
-  onWishlistPressAgain() {
-    this.props.addItemToWishlist(this.props.item);
-    this.setState({wishListState:false});
-  }
   render() {
     return (
-      <TouchableOpacity
-        onPressIn={() =>{ if(this.state.wishListState==false){
-                                this.onWishlistPress()}
-                        else{this.onWishlistPressAgain()}}}>
-        <Icon name={this.state.wishListState ? 'heart' : 'heart-o'}
-              containerStyle={styles.Wishlist}
-              type='font-awesome'
-              size={24}
-              color={this.state.wishListState ? 'red' : 'grey'}/>
+      <TouchableOpacity onPress={() => this.setToWishlist()}>
+        <Icon
+          name={this.props.item.wishlistState ? "heart" : "heart"}
+          containerStyle={styles.Wishlist}
+          type='font-awesome'
+          size={24}
+          color={
+            this.props.item.wishlistState ? "red" : "rgba(250,250,250,0.8)"
+          }
+        />
       </TouchableOpacity>
     );
   }
 }
 
-
-
-
 const styles = StyleSheet.create({
   Wishlist: {
-    padding:6,
+    padding: 6,
   },
 });
+const mapStateToProps = (state) => {
+  return {
+    wishlist: state.wishList.wishlist,
+  };
+};
 
-export default Wishlist;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addItemToCart: (product) => dispatch(addcartItem(product)),
+    addItemToWishlist: (item) => dispatch(addwishItem(item)),
+    removeItemFromWishlist: (item) => dispatch(removewishItem(item)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wishlist);

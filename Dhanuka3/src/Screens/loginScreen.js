@@ -5,6 +5,16 @@ import Images from '../common/Images';
 
 class loginScreen extends Component {
  
+  constructor() {
+    super();
+
+    this.state = { hidePassword: true }
+  }
+
+  setPasswordVisibility = () => {
+    this.setState({ hidePassword: !this.state.hidePassword });
+  }
+
   loginHadler = () => {
     
   }
@@ -36,7 +46,16 @@ class loginScreen extends Component {
               <TextInput  style={styles.TextInput}
                 placeholder="Password"
                 maxLength={20}
+                secureTextEntry={this.state.hidePassword}
               />
+              <TouchableOpacity 
+                                activeOpacity={0.5}
+                                onPress={this.setPasswordVisibility}>
+                  <Icon name={(this.state.hidePassword) ?'eye-slash':'eye'}
+                        size={25}
+                        type='materialIcons'
+                        color={'grey'}/>
+              </TouchableOpacity>
             </View>
             <TouchableOpacity style={styles.Button}
                               activeOpacity={0.5}
@@ -87,6 +106,7 @@ const styles = StyleSheet.create({
     backgroundColor:'rgba(0,0,0,0.1)',
   },
   TextInput:{
+    flex:1,
     fontSize:16,
     paddingStart:15,
   },

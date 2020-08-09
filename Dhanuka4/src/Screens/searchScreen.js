@@ -10,6 +10,8 @@ import {
   ActivityIndicator,
   StatusBar,
 } from "react-native";
+import Filters from "../components/Filters";
+import Modal from "react-native-modal";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Images from "../common/Images";
 import SearchList from "../components/SearchList";
@@ -19,8 +21,9 @@ class searchScreen extends Component {
   state = {
     search: null,
     searchList: [],
-    listStaus: false,
+    listStatus: false,
     isLoading: false,
+    isModalVisible: false,
   };
 
   handleSearch() {
@@ -32,16 +35,36 @@ class searchScreen extends Component {
       .then((response) => response.json())
       .then((responsejson) => {
         this.setState({ searchList: responsejson });
-        this.setState({ listStaus: true });
+        this.setState({ listStatus: true });
         this.setState({ isLoading: true });
       });
   }
 
+  filterItem(item) {
+    this.setState({ isModalVisible: false });
+    console.log(item);
+  }
   render() {
     const { width } = Dimensions.get("window");
     return (
       <View style={styles.container}>
-        <Text style={styles.Search}>Search</Text>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Text style={styles.Search}>Search</Text>
+          <Modal isVisible={this.state.isModalVisible}>
+            <Filters toggleModal={(item) => this.filterItem(item)} />
+          </Modal>
+          <TouchableOpacity
+            onPress={() => this.setState({ isModalVisible: true })}
+          >
+            <Icon
+              style={{ marginRight: 22 }}
+              name='th-list'
+              size={20}
+              type='font-awsome'
+              color={"grey"}
+            />
+          </TouchableOpacity>
+        </View>
         <View style={styles.SearchView}>
           <TextInput
             style={styles.SearchInput}
@@ -53,7 +76,7 @@ class searchScreen extends Component {
             <Icon name='search' size={25} type='Entypo' color={"black"} />
           </TouchableOpacity>
         </View>
-        {this.state.listStaus == false ? (
+        {this.state.listStatus == false ? (
           <View style={styles.SearchBack}>
             <Image source={Images.logo} style={styles.SearchImage} />
             <Text>Search item you are looking for...!!!</Text>
@@ -89,6 +112,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   Search: {
+    flex: 1,
     fontSize: 25,
     padding: 10,
   },

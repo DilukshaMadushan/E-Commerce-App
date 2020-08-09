@@ -3,6 +3,10 @@ import { StyleSheet } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 
 class DropDownMenu extends Component {
+  PassDataToParent = (item) => {
+    this.props.updateData(item);
+  };
+
   render() {
     return (
       <DropDownPicker
@@ -15,7 +19,9 @@ class DropDownMenu extends Component {
         containerStyle={styles.DropDownView}
         labelStyle={{ fontSize: 16, color: "grey" }}
         activeLabelStyle={{ color: "red" }}
-        //onChangeItem={item => console.log(item.label, item.value)}
+        onChangeItem={(item) => {
+          this.PassDataToParent(item.value);
+        }}
       />
     );
   }

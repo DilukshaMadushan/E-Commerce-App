@@ -32,7 +32,6 @@ export default StyleSheet.create({
   },
   ReviewNumber: {
     fontSize: 17,
-    paddingTop: 5,
   },
   ItemTab: {
     width: "50%",

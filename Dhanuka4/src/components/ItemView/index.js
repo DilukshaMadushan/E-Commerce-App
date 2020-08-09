@@ -100,18 +100,36 @@ class ItemView extends Component {
     }
   }
 
+  updateData = (data) => {
+    this.props.updateData(data);
+  };
+
+  ItemImageShow() {
+    if (this.state.item.images.length == 0) {
+      return (
+        <Image style={styles.ItemImage} source={Images.splashScreen}></Image>
+      );
+    } else if (this.state.item.images.length == 1) {
+      return (
+        <Image
+          style={styles.ItemImage}
+          source={{ uri: this.state.item.images[0].src }}
+        ></Image>
+      );
+    } else if (this.state.item.images.length > 1) {
+      return (
+        <SliderBox
+          style={styles.ItemImage}
+          images={this.state.item.images}
+        ></SliderBox>
+      );
+    }
+  }
+
   render() {
     return (
       <View style={{ paddingBottom: 10, paddingTop: 10 }}>
-        {
-          //(this.state.item.images[i].length<1)?
-          <Image
-            style={styles.ItemImage}
-            source={{ uri: this.state.item.images[0].src }}
-          ></Image>
-          //:
-          //<SliderBox style={styles.ItemImage} source={{uri:this.state.item.images}}></SliderBox>
-        }
+        {this.ItemImageShow()}
         <Text style={styles.ItemName}>{this.state.item.name}</Text>
         {this.state.item.stock_status == "instock" ? (
           <View></View>
@@ -122,18 +140,24 @@ class ItemView extends Component {
         )}
         <Text style={styles.ItemPrice}>Rs. {this.state.item.price}</Text>
         <View style={styles.ItemReviews}>
-          <RatingStars item={this.state.item} />
+          <RatingStars
+            item={this.state.item}
+            average_rating={this.state.item.average_rating}
+            rating_count={this.state.item.rating_count}
+          />
           <Text style={styles.ReviewNumber}>
             {" "}
             {this.state.item.average_rating} ({this.state.item.rating_count})
           </Text>
         </View>
         {this.state.item.attributes.length > 0 ? (
-          <DropDownMenu itemOptions={this.state.item.attributes[0].options} />
+          <DropDownMenu
+            itemOptions={this.state.item.attributes[0].options}
+            updateData={(val) => this.updateData(val)}
+          />
         ) : (
           <View></View>
         )}
-
         <View
           style={{
             width: width,
@@ -183,6 +207,7 @@ class ItemView extends Component {
               this.state.statusTab == 3
                 ? this.setState({ statusTab: 3 })
                 : this.setState({ statusTab: 3 });
+              console.log(this.state.item.images.length);
             }}
           >
             <Text style={{ fontWeight: "bold", fontSize: 15, color: "black" }}>
@@ -193,17 +218,6 @@ class ItemView extends Component {
         <View style={styles.DescriptionView}>
           {this.Tabs(width, height, this.state.item.short_description)}
         </View>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={
-            this.state.statusTab == 3 ? styles.button : styles.buttonPressed
-          }
-          onPress={() => this.facebookShare()}
-        >
-          <Text style={{ fontWeight: "bold", fontSize: 15, color: "black" }}>
-            Facebook
-          </Text>
-        </TouchableOpacity>
       </View>
     );
   }

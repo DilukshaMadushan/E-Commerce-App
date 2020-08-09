@@ -16,11 +16,18 @@ class ItemViewScreen extends Component {
     this.props.addItemToCart(item);
   };
 
+  updateData = (data) => {
+    console.log(data);
+  };
+
   render() {
     return (
       <View style={{ flex: 1 }}>
         <ScrollView style={styles.categoryScreen}>
-          <ItemView item={this.props.navigation.getParam("item")} />
+          <ItemView
+            item={this.props.navigation.getParam("item")}
+            updateData={(val) => this.updateData(val)}
+          />
         </ScrollView>
         <View style={{ flexDirection: "row", height: 45 }}>
           <TouchableOpacity

@@ -13,7 +13,7 @@ import {
 import styles from "./styles";
 import { Icon } from "react-native-elements";
 import Wishlist from "../Wishlist";
-import RatingStars from "../RatingStars";
+import StarRating from "react-native-star-rating";
 import { connect } from "react-redux";
 import { addcartItem } from "../../store/cartItemRedux";
 import { addwishItem, removewishItem } from "../../store/wishlistRedux";
@@ -35,6 +35,7 @@ function Item({
     item.wishlistState = false;
   }
 
+  const rate = Math.round(Number(item.average_rating));
   return (
     <View style={styles.item} activeOpacity={0.7}>
       <View style={styles.itemView}>
@@ -57,7 +58,19 @@ function Item({
       <Text style={styles.ItemPrice}>{ItemPrice}</Text>
       <View style={{ flexDirection: "row", paddingTop: 2 }}>
         <View style={{ flex: 1, paddingEnd: 40, justifyContent: "center" }}>
-          <RatingStars ItemRate={ItemRate} />
+          <StarRating
+            emptyStar={"ios-star-outline"}
+            fullStar={"ios-star"}
+            iconSet={"Ionicons"}
+            maxStars={5}
+            starSize={19}
+            starStyle={{
+              paddingEnd: 1,
+            }}
+            disabled={true}
+            rating={rate}
+            fullStarColor={"rgba(0,179,155,1)"}
+          />
         </View>
         <TouchableOpacity onPress={() => addItemToCart(item)}>
           <Icon

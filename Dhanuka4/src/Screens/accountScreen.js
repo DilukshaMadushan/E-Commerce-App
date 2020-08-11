@@ -11,7 +11,7 @@ import {
 import ProfileItems from "../components/Profile";
 import Images from "../common/Images";
 import { connect } from "react-redux";
-import { signOutUser } from "../store/AuthRedux";
+import { signOutUser } from "../store/authRedux";
 
 class accountScreen extends Component {
   handleSignOutUser = () => {
@@ -91,9 +91,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    isSigned: state.Auth.isSigned,
-    profile_pic: state.Auth.profile_pic,
-    profile_name: state.Auth.profile_name,
+    isSigned: state.auth.isSigned,
+    profile_pic: state.auth.profile_pic,
+    profile_name: state.auth.profile_name,
   };
 };
 

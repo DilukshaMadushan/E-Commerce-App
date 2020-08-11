@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import Images from "../common/Images";
 import { connect } from "react-redux";
-import { signInUser } from "../store/AuthRedux";
+import { signInUser } from "../store/authRedux";
 import PostAPI from "../services/PostAPI";
 
 class registerScreen extends Component {

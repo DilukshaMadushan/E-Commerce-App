@@ -27,6 +27,8 @@ class searchScreen extends Component {
   };
 
   handleSearch() {
+    this.setState({ listStatus: true });
+    this.setState({ isLoading: true });
     this.getItems(this.state.search);
   }
 
@@ -34,15 +36,25 @@ class searchScreen extends Component {
     GetAPI.searchApi(search)
       .then((response) => response.json())
       .then((responsejson) => {
+        this.setState({ isLoading: false });
         this.setState({ searchList: responsejson });
-        this.setState({ listStatus: true });
-        this.setState({ isLoading: true });
       });
   }
 
-  filterItem(item) {
-    this.setState({ isModalVisible: false });
-    console.log(item);
+  getItemsByTags(item) {
+    if (item == null) {
+      this.setState({ isModalVisible: false });
+    } else {
+      this.setState({ isModalVisible: false });
+      this.setState({ listStatus: true });
+      this.setState({ isLoading: true });
+      GetAPI.searchByTagsApi(item)
+        .then((response) => response.json())
+        .then((responsejson) => {
+          this.setState({ isLoading: false });
+          this.setState({ searchList: responsejson });
+        });
+    }
   }
   render() {
     const { width } = Dimensions.get("window");
@@ -51,7 +63,10 @@ class searchScreen extends Component {
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Text style={styles.Search}>Search</Text>
           <Modal isVisible={this.state.isModalVisible}>
-            <Filters toggleModal={(item) => this.filterItem(item)} />
+            <Filters
+              toggleModal={(item) => this.getItemsByTags(item)}
+              navigation={this.props.navigation}
+            />
           </Modal>
           <TouchableOpacity
             onPress={() => this.setState({ isModalVisible: true })}
@@ -68,7 +83,7 @@ class searchScreen extends Component {
         <View style={styles.SearchView}>
           <TextInput
             style={styles.SearchInput}
-            placeholder=' search for the item'
+            placeholder='Search...'
             maxLength={20}
             onChangeText={(text) => this.setState({ search: text })}
           />
@@ -81,7 +96,7 @@ class searchScreen extends Component {
             <Image source={Images.logo} style={styles.SearchImage} />
             <Text>Search item you are looking for...!!!</Text>
           </View>
-        ) : this.state.isLoading == false ? (
+        ) : this.state.isLoading == true ? (
           <View
             style={{
               flex: 1,

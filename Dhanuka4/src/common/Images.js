@@ -1,4 +1,7 @@
 const Images = {
+  //Back
+  BackButton: require("../images/ic_arrow_back_36pt.png"),
+
   //Logo
   logo: require("../images/logo-main.png"),
 

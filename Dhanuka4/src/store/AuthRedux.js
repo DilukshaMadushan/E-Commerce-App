@@ -17,7 +17,7 @@ const initialState = {
   profile_pic: null,
 };
 
-function Auth(state = initialState, action) {
+function auth(state = initialState, action) {
   switch (action.type) {
     case "SIGN_IN_USER":
       const newState = {
@@ -40,4 +40,4 @@ function Auth(state = initialState, action) {
   return state;
 }
 
-export default Auth;
+export default auth;

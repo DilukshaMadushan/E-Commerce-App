@@ -12,24 +12,15 @@ import {
 } from "react-native";
 import { withNavigation } from "react-navigation";
 import styles from "./styles";
-import Images from "../../common/Images";
-import SubCategories from "../ColumnSubCategories";
-import GetAPI from "../../services/GetApi";
+import Images from "../../../common/Images";
+import SubCategories from "../DrawerSubCategories";
+import GetAPI from "../../../services/GetApi";
 
-function Item({ title, uri, id, product }) {
+function Item({ title, status }) {
   return (
-    <View style={styles.item} activeOpacity={0.7}>
-      <Image style={styles.imagecategories} source={uri}></Image>
-      <View style={styles.dark}></View>
-      <View
-        style={[
-          id % 2 == 0 && { alignItems: "flex-end", paddingEnd: 20 },
-          id % 2 != 0 && { alignItems: "flex-start", paddingStart: 20 },
-        ]}
-      >
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.product}>{product}</Text>
-      </View>
+    <View style={{ flexDirection: "row" }}>
+      <Text style={styles.title}>{status == 0 ? "+" : "-"}</Text>
+      <Text style={[styles.title, { width: "88%" }]}>{title} </Text>
     </View>
   );
 }
@@ -46,11 +37,11 @@ function SubCategorylist({ CategoryList, status, SubCategoryList }) {
   return <View />;
 }
 
-class Categories extends React.Component {
+class DrawerCategories extends React.Component {
   state = {
     CategoryList: [],
     MainCategoryList: [],
-    SubCategoryStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    SubCategoryStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     SubCategoryList: [],
     isLoading: true,
   };
@@ -87,10 +78,7 @@ class Categories extends React.Component {
                 <View>
                   <TouchableOpacity
                     onPress={() => {
-                      this.props.navigation.navigate("Items", {
-                        id: item.id,
-                      });
-                      /*if (
+                      if (
                         this.state.CategoryList.filter(function (cat) {
                           return cat.parent == item.id;
                         }).length == 0
@@ -110,14 +98,15 @@ class Categories extends React.Component {
                           this.setState({ SubCategoryStatus: dup_array });
                         }
                       }
-                    }}*/
                     }}
                   >
                     <Item
                       title={item.name}
-                      uri={Images.default_Category}
-                      id={this.state.MainCategoryList.indexOf(item)}
-                      product={item.count.toString()}
+                      status={
+                        this.state.SubCategoryStatus[
+                          this.state.MainCategoryList.indexOf(item)
+                        ]
+                      }
                     />
                   </TouchableOpacity>
                   <SubCategorylist
@@ -156,4 +145,4 @@ class Categories extends React.Component {
   }
 }
 
-export default withNavigation(Categories);
+export default withNavigation(DrawerCategories);

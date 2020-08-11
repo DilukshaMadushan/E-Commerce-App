@@ -43,7 +43,6 @@ function cartItems(state = initialState, action) {
       const num = state.cartList.filter(
         (cartItems) => cartItems.id == action.payload.id
       ).length;
-      console.log(action.payload.price);
       if (num == 0) {
         const newState = {
           cartList: [...state.cartList, action.payload],
@@ -63,7 +62,7 @@ function cartItems(state = initialState, action) {
           state.totalPrice -
           parseInt(action.payload.price * action.payload.count),
       };
-
+      action.payload.count = 1;
       return newState1;
 
     case "INCREASE_COUNTER":

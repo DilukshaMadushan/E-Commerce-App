@@ -17,6 +17,7 @@ import EmptyItems from "./EmptyItems";
 import { Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import { addcartItem } from "../../store/cartItemRedux";
+import { addRelatedItemList } from "../../store/relatedProductsRedux";
 import GetAPI from "../../services/GetApi";
 
 function Item({ ItemName, ItemPrice, item, uri, navigation, addItemToCart }) {
@@ -85,6 +86,7 @@ class CategoryItems extends Component {
         //console.log(json);
         this.setState({ ItemList: json });
         this.setState({ isLoading: false });
+        this.props.addRelatedItemList(json);
         //console.log(this.props.catId)
         //this.setState({MainCategoryList:json.filter(function(cat){return cat.parent == 0;})})
       });
@@ -176,6 +178,7 @@ const mapDispatchToProps = (dispatch) => {
     addItemToCart: (product) => dispatch(addcartItem(product)),
     addItemToWishlist: (item) => dispatch(addwishItem(item)),
     removeItemFromWishlist: (item) => dispatch(removewishItem(item)),
+    addRelatedItemList: (item) => dispatch(addRelatedItemList(item)),
   };
 };
 

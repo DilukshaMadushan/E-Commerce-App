@@ -5,36 +5,68 @@ import {
   Dimensions,
   TouchableOpacity,
   StyleSheet,
+  ScrollView,
 } from "react-native";
+import DropDownPicker from "react-native-dropdown-picker";
+import GetAPI from "../../services/GetApi";
 
 class Filters extends Component {
-  toggleModal = (item) => {
-    this.props.toggleModal(item);
+  state = {
+    SelectedTag: null,
+    TagsList: [],
+  };
+
+  componentWillMount() {
+    this.getItemTags();
+  }
+
+  getItemTags() {
+    GetAPI.ItemTagsApi()
+      .then((response) => response.json())
+      .then((json) => {
+        this.setState({ TagsList: json });
+      });
+  }
+
+  toggleModal = () => {
+    this.props.toggleModal(this.state.SelectedTag);
   };
 
   render() {
     return (
       <View style={styles.Modal}>
         <Text style={styles.FilterText}>Filters</Text>
-        <Text style={styles.Catalog}>Product Catalog</Text>
-        <View style={{ height: "40%" }}>
-          <TouchableOpacity style={styles.Types}>
-            <Text style={styles.TypesText}>Mens</Text>
-          </TouchableOpacity>
+        <View style={{ height: "65%" }}>
+          <Text style={styles.Catalog}>Product Tags</Text>
+          <DropDownPicker
+            dropDownStyle={{
+              backgroundColor: "rgba(240,240,240,1)",
+              height: 250,
+            }}
+            placeholder='Select a Tag'
+            items={this.state.TagsList.map((item) => {
+              return { value: item.id, label: item.name };
+            })}
+            defaultIndex={0}
+            containerStyle={styles.DropDownView}
+            labelStyle={{ fontSize: 17, color: "grey" }}
+            activeLabelStyle={{ color: "red", fontWeight: "bold" }}
+            onChangeItem={(item) => {
+              this.setState({ SelectedTag: item.value });
+            }}
+          />
         </View>
-        <Text style={styles.Catalog}>Product Tags</Text>
-        <View style={{ height: "34%" }}></View>
+
         <TouchableOpacity
-          title='Hide modal'
-          onPress={() => this.toggleModal("AAA")}
+          onPress={() => this.toggleModal()}
           style={styles.SearchFilter}
         >
           <Text style={{ fontSize: 20, color: "#FFF", fontWeight: "900" }}>
             Search By Filter
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.ClearFilter}>Clear Filter</Text>
+        <TouchableOpacity onPress={() => this.toggleModal()}>
+          <Text style={styles.ClearFilter}>Back</Text>
         </TouchableOpacity>
       </View>
     );
@@ -43,7 +75,7 @@ class Filters extends Component {
 const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   Modal: {
-    height: "100%",
+    height: "60%",
     backgroundColor: "#FFF",
     borderRadius: 10,
     padding: 15,
@@ -58,6 +90,7 @@ const styles = StyleSheet.create({
   },
   SearchFilter: {
     width: "100%",
+    marginTop: 10,
     height: 40,
     backgroundColor: "rgba(0, 179, 155,0.7)",
     borderRadius: 10,
@@ -71,19 +104,10 @@ const styles = StyleSheet.create({
     color: "rgba(0, 179, 155,0.7)",
     alignSelf: "center",
   },
-  Types: {
-    alignItems: "center",
+  DropDownView: {
+    height: 50,
     justifyContent: "center",
-    width: 80,
-    height: 40,
-    backgroundColor: "rgba(100,100,100,0.5)",
-    borderRadius: 20,
-  },
-  TypesText: {
-    alignSelf: "center",
-    color: "#FFF",
-    fontWeight: "900",
-    fontSize: 17,
+    marginVertical: 15,
   },
 });
 

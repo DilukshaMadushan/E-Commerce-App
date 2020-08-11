@@ -2,8 +2,6 @@ import React from "react";
 import { View, TouchableOpacity, Image, Dimensions } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import Images from "../common/Images";
-import loginScreen from "../Screens/loginScreen";
-import registerScreen from "../Screens/registerScreen";
 import ItemsScreen from "../Screens/categoryItemsScreen";
 import ItemViewScreen from "../Screens/ItemViewScreen";
 import deliveryScreen from "../Screens/deliveryScreen";
@@ -16,6 +14,10 @@ import UpdateProfileScreen from "../Screens/UpdateProfileScreen";
 import emailListScreen from "../Screens/emailListScreen";
 import ShoppingCartIcon from "../components/ShoppingCartIcon";
 import Filters from "../components/Filters";
+import AboutUs from "../components/AboutUs";
+import ContactUs from "../components/ContactUs";
+import PrivacyAndPolicy from "../components/PrivacyAndPolicy";
+import Terms from "../components/Terms";
 import TabScreen from "../navigations/TabNavigate";
 
 const { width } = Dimensions.get("window");
@@ -110,9 +112,38 @@ const App = createStackNavigator({
       headerLeft: null,
     }),
   },
-  //Register,Login
-  Login: loginScreen,
-  Register: registerScreen,
+  //AboutUs
+  AboutUs: {
+    screen: AboutUs,
+    navigationOptions: () => ({
+      headerStyle: {
+        backgroundColor: "#FFFFFF",
+      },
+      title: "About Us",
+    }),
+  },
+  //ContactUs
+  ContactUs: {
+    screen: ContactUs,
+    navigationOptions: () => ({
+      headerStyle: {
+        backgroundColor: "#FFFFFF",
+      },
+      title: "Contact Us",
+    }),
+  },
+  //Privacy And Policy
+  PrivacyAndPolicy: {
+    screen: PrivacyAndPolicy,
+    navigationOptions: () => ({
+      headerStyle: {
+        backgroundColor: "#FFFFFF",
+      },
+      title: "Privacy And Policy",
+    }),
+  },
+  //Terms
+  Terms: Terms,
   //Delivery_Info
   Delivery: deliveryScreen,
   //Payment Methods

@@ -10,9 +10,9 @@ import {
 } from "react-native";
 import styles from "./styles";
 import RatingStars from "../RatingStars";
+import RelatedProducts from "../RelatedProducts";
 import DropDownMenu from "../DropDownMenu";
 import { SliderBox } from "react-native-image-slider-box";
-import { connect } from "react-redux";
 import Images from "../../common/Images";
 
 const { width, height } = Dimensions.get("window");
@@ -70,7 +70,7 @@ class ItemView extends Component {
         }
         i = i + 1;
       }
-      console.log(this.state.item);
+      //console.log(this.state.item);
       return (
         <View style={{ width: "100%", paddingLeft: 60, paddingTop: 30 }}>
           <FlatList
@@ -102,6 +102,10 @@ class ItemView extends Component {
 
   updateData = (data) => {
     this.props.updateData(data);
+  };
+
+  relatedItemChange = (relatedItem) => {
+    this.setState({ item: relatedItem });
   };
 
   ItemImageShow() {
@@ -218,6 +222,16 @@ class ItemView extends Component {
         <View style={styles.DescriptionView}>
           {this.Tabs(width, height, this.state.item.short_description)}
         </View>
+        {this.state.item.related_ids.length > 0 ? (
+          <RelatedProducts
+            related_ids={this.state.item.related_ids}
+            navigation={this.props.navigation}
+            relatedItem={(item) => this.relatedItemChange(item)}
+            Scroll={this.props.Scroll}
+          />
+        ) : (
+          <View />
+        )}
       </View>
     );
   }

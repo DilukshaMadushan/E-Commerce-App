@@ -9,7 +9,9 @@ import {
 } from "react-native";
 import Images from "../../common/Images";
 import { connect } from "react-redux";
-import { signOutUser } from "../../store/AuthRedux";
+import { signOutUser } from "../../store/authRedux";
+import DrawerCategories from "./DrawerCategories";
+import { ScrollView } from "react-native-gesture-handler";
 
 class SideBar extends Component {
   handleSignOutUser = () => {
@@ -39,36 +41,56 @@ class SideBar extends Component {
             )}
           </View>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.list}
-          onPress={() => this.props.navigation.navigate("Category")}
-        >
-          <Text style={styles.Text}>Shop</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.list}>
-          <Text style={styles.Text}>News</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.list}>
-          <Text style={styles.Text}>Contact Us</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.list}>
-          <Text style={styles.Text}>About Us</Text>
-        </TouchableOpacity>
-        {!this.props.isSigned ? (
+        <ScrollView>
           <TouchableOpacity
             style={styles.list}
-            onPress={() => this.props.navigation.navigate("Login")}
+            onPress={() => this.props.navigation.navigate("Category")}
           >
-            <Text style={styles.Text}>Login</Text>
+            <Text style={styles.Text}>Shop</Text>
           </TouchableOpacity>
-        ) : (
           <TouchableOpacity
             style={styles.list}
-            onPress={() => this.handleSignOutUser()}
+            onPress={() => this.props.navigation.navigate("ContactUs")}
           >
-            <Text style={styles.Text}>Logout</Text>
+            <Text style={styles.Text}>Contact Us</Text>
           </TouchableOpacity>
-        )}
+          <TouchableOpacity
+            style={styles.list}
+            onPress={() => this.props.navigation.navigate("AboutUs")}
+          >
+            <Text style={styles.Text}>About Us</Text>
+          </TouchableOpacity>
+          {!this.props.isSigned ? (
+            <TouchableOpacity
+              style={styles.list}
+              onPress={() => this.props.navigation.navigate("Login")}
+            >
+              <Text style={styles.Text}>Login</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={styles.list}
+              onPress={() => this.handleSignOutUser()}
+            >
+              <Text style={styles.Text}>Logout</Text>
+            </TouchableOpacity>
+          )}
+
+          <View>
+            <Text
+              style={{
+                paddingTop: 25,
+                textAlign: "center",
+                color: "black",
+                fontWeight: "bold",
+                fontSize: 25,
+              }}
+            >
+              Categories
+            </Text>
+            <DrawerCategories />
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -106,9 +128,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    isSigned: state.Auth.isSigned,
-    profile_pic: state.Auth.profile_pic,
-    profile_name: state.Auth.profile_name,
+    isSigned: state.auth.isSigned,
+    profile_pic: state.auth.profile_pic,
+    profile_name: state.auth.profile_name,
   };
 };
 

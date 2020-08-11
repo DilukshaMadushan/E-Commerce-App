@@ -2,8 +2,14 @@ import React, { Component } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import { Icon } from "react-native-elements";
+import Modal from "react-native-modal";
+import RateApp from "../RateApp";
 
 class ProfileItems extends Component {
+  state = {
+    isModalVisible: false,
+  };
+
   render() {
     return (
       <View>
@@ -64,7 +70,7 @@ class ProfileItems extends Component {
               color={"black"}
             />
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => this.props.navigation.navigate("EmailList")}
             style={styles.ListItem}
           >
@@ -83,7 +89,7 @@ class ProfileItems extends Component {
               type='Entypo'
               color={"black"}
             />
-          </TouchableOpacity>
+          </TouchableOpacity>*/}
           <TouchableOpacity style={styles.ListItem}>
             <Icon
               name='bell'
@@ -101,7 +107,10 @@ class ProfileItems extends Component {
               color={"black"}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.ListItem}>
+          <TouchableOpacity
+            style={styles.ListItem}
+            onPress={() => this.setState({ isModalVisible: true })}
+          >
             <Icon
               name='star'
               containerStyle={styles.ItemIcon}
@@ -116,7 +125,15 @@ class ProfileItems extends Component {
               color={"black"}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.ListItem}>
+          <Modal isVisible={this.state.isModalVisible}>
+            <RateApp
+              toggleModal={() => this.setState({ isModalVisible: false })}
+            />
+          </Modal>
+          <TouchableOpacity
+            style={styles.ListItem}
+            onPress={() => this.props.navigation.navigate("PrivacyAndPolicy")}
+          >
             <Icon
               name='grav'
               containerStyle={styles.ItemIcon}
@@ -124,7 +141,7 @@ class ProfileItems extends Component {
               color={"black"}
             />
             <Text style={{ flex: 1, textAlign: "center" }}>
-              Privacy and Term
+              Privacy Policy and Term
             </Text>
             <Icon
               name='chevron-right'
@@ -133,7 +150,10 @@ class ProfileItems extends Component {
               color={"black"}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.ListItem}>
+          <TouchableOpacity
+            style={styles.ListItem}
+            onPress={() => this.props.navigation.navigate("AboutUs")}
+          >
             <Icon
               name='info'
               containerStyle={(styles.ItemIcon, { paddingStart: 22 })}

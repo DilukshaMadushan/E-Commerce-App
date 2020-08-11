@@ -118,7 +118,7 @@ class MyOrders extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    signInId: state.Auth.signInId,
+    signInId: state.auth.signInId,
   };
 };
 

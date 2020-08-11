@@ -23,10 +23,12 @@ class ItemViewScreen extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <ScrollView style={styles.categoryScreen}>
+        <ScrollView style={styles.categoryScreen} ref='_scrollView'>
           <ItemView
             item={this.props.navigation.getParam("item")}
             updateData={(val) => this.updateData(val)}
+            navigation={this.props.navigation}
+            Scroll={() => this.refs._scrollView.scrollTo(0)}
           />
         </ScrollView>
         <View style={{ flexDirection: "row", height: 45 }}>

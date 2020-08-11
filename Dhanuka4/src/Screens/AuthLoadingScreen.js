@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, ActivityIndicator, StatusBar, AsyncStorage } from "react-native";
 import { connect } from "react-redux";
-import { signInUser } from "../store/AuthRedux";
+import { signInUser } from "../store/authRedux";
 import GetAPI from "../services/GetApi";
 
 class AuthLoadingScreen extends Component {

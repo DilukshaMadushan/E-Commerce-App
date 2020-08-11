@@ -70,7 +70,7 @@ class ProfileItems extends Component {
               color={"black"}
             />
           </TouchableOpacity>
-          {/* <TouchableOpacity
+          <TouchableOpacity
             onPress={() => this.props.navigation.navigate("EmailList")}
             style={styles.ListItem}
           >
@@ -89,8 +89,8 @@ class ProfileItems extends Component {
               type='Entypo'
               color={"black"}
             />
-          </TouchableOpacity>*/}
-          <TouchableOpacity style={styles.ListItem}>
+          </TouchableOpacity>
+          {/* <TouchableOpacity style={styles.ListItem}>
             <Icon
               name='bell'
               containerStyle={styles.ItemIcon}
@@ -106,7 +106,7 @@ class ProfileItems extends Component {
               type='Entypo'
               color={"black"}
             />
-          </TouchableOpacity>
+          </TouchableOpacity>/ */}
           <TouchableOpacity
             style={styles.ListItem}
             onPress={() => this.setState({ isModalVisible: true })}

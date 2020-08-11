@@ -70,7 +70,7 @@ class PaymentInputs extends Component {
           {
             method_id: "flat_rate",
             method_title: "Flat Rate",
-            total: "10",
+            total: "100",
           },
         ],
       })
@@ -150,7 +150,7 @@ class PaymentInputs extends Component {
                 <Text style={{ flex: 1, paddingStart: 20, fontSize: 17 }}>
                   Delivery Payment
                 </Text>
-                <Text style={{ paddingEnd: 20, fontSize: 17 }}>Rs 0</Text>
+                <Text style={{ paddingEnd: 20, fontSize: 17 }}>Rs 100</Text>
               </View>
               <View
                 style={{
@@ -166,7 +166,7 @@ class PaymentInputs extends Component {
                   Total
                 </Text>
                 <Text style={{ paddingEnd: 20, fontSize: 17 }}>
-                  Rs {this.props.TotalPrice}
+                  Rs {this.props.TotalPrice + 100}
                 </Text>
               </View>
             </ScrollView>
@@ -202,7 +202,7 @@ class PaymentInputs extends Component {
 const mapStateToProps = (state) => {
   return {
     TotalPrice: state.cartItems.totalPrice,
-    signInId: state.Auth.signInId,
+    signInId: state.auth.signInId,
     cartItemList: state.cartItems.cartList,
   };
 };

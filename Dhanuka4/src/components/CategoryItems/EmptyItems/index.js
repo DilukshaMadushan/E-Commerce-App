@@ -26,7 +26,7 @@ class EmptyItems extends Component {
           activeOpacity={0.5}
           onPress={() => this.props.navigation.navigate("Category")}
         >
-          <Text style={{ color: "black", fontWeight: "bold", fontSize: 20 }}>
+          <Text style={{ color: "#FFF", fontWeight: "bold", fontSize: 20 }}>
             Shop Now
           </Text>
         </TouchableOpacity>

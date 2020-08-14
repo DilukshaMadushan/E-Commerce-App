@@ -6,8 +6,8 @@ export default StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "rgb(100,100,100)",
+    color: "rgb(150,150,150)",
     paddingLeft: 15,
-    paddingTop: 10,
+    paddingTop: 15,
   },
 });

@@ -41,17 +41,14 @@ export default StyleSheet.create({
   Cross: {
     flexDirection: "row",
     position: "absolute",
-    top: "60%",
+    top: "63%",
     width: 0.8 * width,
-    height: 10,
-    borderTopWidth: 2,
-    borderBottomWidth: 2,
-    borderColor: "rgba(184,184,184,1)",
+    height: 5,
   },
   TotalPrice: {
     paddingHorizontal: 10,
     paddingTop: 10,
-    backgroundColor: "#fff",
+    backgroundColor: "#FFF",
     flexDirection: "row",
   },
   SelectedItemsView: {

@@ -47,9 +47,11 @@ class ContactUs extends Component {
 const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
-    height: "80%",
+    flex: 1,
     justifyContent: "center",
     paddingHorizontal: 20,
+    paddingBottom: 100,
+    backgroundColor: "#FFF",
   },
   Text: {
     flex: 1,

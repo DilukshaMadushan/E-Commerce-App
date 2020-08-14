@@ -22,7 +22,7 @@ class Wishlist extends Component {
           type='font-awesome'
           size={24}
           color={
-            this.props.item.wishlistState ? "red" : "rgba(250,250,250,0.8)"
+            this.props.item.wishlistState ? "red" : "rgba(150,150,150,0.5)"
           }
         />
       </TouchableOpacity>

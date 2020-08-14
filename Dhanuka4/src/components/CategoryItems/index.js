@@ -117,22 +117,21 @@ class CategoryItems extends Component {
           <View>
             {this.state.ItemList.length > 0 ? (
               <View>
-                <View>
+                <View
+                  style={{
+                    backgroundColor: "rgba(200,200,200,0.5)",
+                    marginBottom: 15,
+                  }}
+                >
                   <Picker
+                    mode='dropdown'
                     selectedValue={this.state.pickerSelectedValue}
                     onValueChange={this.show}
                   >
-                    <Picker.Item
-                      label='Sort By'
-                      value='0'
-                      color='gray'
-                    ></Picker.Item>
-                    <Picker.Item
-                      label='Alphabetical Order'
-                      value='1'
-                    ></Picker.Item>
-                    <Picker.Item label='Price' value='2'></Picker.Item>
-                    <Picker.Item label='Rating' value='3'></Picker.Item>
+                    <Picker.Item label='Sort By' value='0' color='gray' />
+                    <Picker.Item label='Alphabetical Order' value='1' />
+                    <Picker.Item label='Price' value='2' />
+                    <Picker.Item label='Rating' value='3' />
                   </Picker>
                 </View>
                 <FlatList
@@ -159,9 +158,11 @@ class CategoryItems extends Component {
           <View
             style={{
               flex: 1,
+              backgroundColor: "#FFF",
               justifyContent: "center",
               alignItems: "center",
-              marginTop: width * 0.7,
+              marginTop: width * 0.8,
+              marginBottom: width * 1.3,
             }}
           >
             <ActivityIndicator />

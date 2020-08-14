@@ -16,11 +16,9 @@ function Item({ ItemName, ItemPrice, uri, item, navigation }) {
   return (
     <View
       style={{
-        marginTop: 7,
-        borderTopWidth: 0.3,
-        borderBottomWidth: 1,
+        borderTopWidth: 4,
         paddingVertical: 10,
-        borderColor: "rgba(184,184,184,1)",
+        borderColor: "rgba(150,150,150,0.2)",
         width: width,
         backgroundColor: "#fff",
       }}

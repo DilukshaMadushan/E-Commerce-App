@@ -38,7 +38,6 @@ export default StyleSheet.create({
     backgroundColor: "rgba(220,220,220,0.5)",
   },
   ButtonsScreen: {
-    backgroundColor: "#fff",
     position: "absolute",
     flexDirection: "row",
     width: width,

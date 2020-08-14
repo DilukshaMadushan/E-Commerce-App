@@ -144,7 +144,7 @@ class Categories extends React.Component {
               flex: 1,
               justifyContent: "center",
               alignItems: "center",
-              marginTop: width * 0.7,
+              marginTop: width * 0.8,
             }}
           >
             <ActivityIndicator />

@@ -13,7 +13,7 @@ export default StyleSheet.create({
     padding: 10,
     alignItems: "center",
     borderRadius: 5,
-    backgroundColor: "rgba(250,250,250,0.5)",
+    backgroundColor: "#FFF",
     fontSize: 18,
   },
   Button: {

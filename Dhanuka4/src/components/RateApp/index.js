@@ -10,7 +10,7 @@ import StarRating from "react-native-star-rating";
 
 class RateApp extends Component {
   state = {
-    rating_count: 2,
+    rating_count: 0,
   };
   toggleModal = () => {
     this.props.toggleModal();

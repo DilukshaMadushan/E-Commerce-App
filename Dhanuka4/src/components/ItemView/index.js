@@ -6,7 +6,6 @@ import {
   Text,
   TouchableOpacity,
   Dimensions,
-  RefreshControl,
 } from "react-native";
 import styles from "./styles";
 import Modal from "react-native-modal";
@@ -91,9 +90,7 @@ class ItemView extends Component {
                     fontSize: 15,
                     marginRight: 10,
                   }}
-                >
-                  -
-                </Text>
+                ></Text>
                 <Text style={styles.Description}>{item}</Text>
               </View>
             )}
@@ -104,8 +101,9 @@ class ItemView extends Component {
       return (
         <View>
           <AddReview
-            id={this.props.item.id}
+            reviewList={this.props.reviewList}
             email={this.props.profile_email}
+            profile_name={this.props.profile_name}
             toggleModel={(review) => {
               this.setState({ review: review, isModalVisible: true });
             }}
@@ -139,6 +137,8 @@ class ItemView extends Component {
     )
       .then((response) => response.json())
       .then((responseJson) => {
+        this.props._onRefresh();
+        this.props.Scroll();
         console.log(responseJson);
       });
   }

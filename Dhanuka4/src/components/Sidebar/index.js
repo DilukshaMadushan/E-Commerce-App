@@ -35,9 +35,11 @@ class SideBar extends Component {
           )}
           <View style={styles.Profileright}>
             {this.props.isSigned ? (
-              <Text style={{ fontSize: 30 }}>{this.props.profile_name}</Text>
+              <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+                {this.props.profile_name}
+              </Text>
             ) : (
-              <Text style={{ fontSize: 30 }}>Guest</Text>
+              <Text style={{ fontSize: 30, fontWeight: "bold" }}>Guest</Text>
             )}
           </View>
         </TouchableOpacity>
@@ -79,8 +81,8 @@ class SideBar extends Component {
           <View>
             <Text
               style={{
-                paddingTop: 25,
-                textAlign: "center",
+                paddingTop: 15,
+                paddingStart: 25,
                 color: "black",
                 fontWeight: "bold",
                 fontSize: 25,
@@ -100,13 +102,14 @@ const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    //backgroundColor: "rgba(0,0,0,0.04)",
   },
   Upper: {
-    backgroundColor: "rgba(0,0,0,0.04)",
     paddingVertical: 50,
     flexDirection: "row",
     alignItems: "center",
+    borderBottomWidth: 1,
+    borderColor: "rgba(150,150,150,0.1)",
   },
   ProfileImage: {
     marginLeft: 30,
@@ -118,11 +121,15 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   list: {
-    paddingTop: 30,
+    borderBottomWidth: 1,
+    borderColor: "rgba(150,150,150,0.1)",
+    paddingVertical: 10,
   },
   Text: {
     fontSize: 17,
     paddingStart: 25,
+    fontWeight: "bold",
+    justifyContent: "center",
   },
 });
 

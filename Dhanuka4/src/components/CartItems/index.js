@@ -64,8 +64,12 @@ class CartItems extends Component {
           </View>
         </View>
         <View style={styles.TotalPrice}>
-          <Text style={{ fontSize: 20, flex: 1 }}>Total Price</Text>
-          <Text style={{ fontSize: 20 }}>Rs. {this.props.TotalPrice}</Text>
+          <Text style={{ fontWeight: "bold", fontSize: 20, flex: 1 }}>
+            Total Price
+          </Text>
+          <Text style={{ fontWeight: "bold", fontSize: 20 }}>
+            Rs. {this.props.TotalPrice}
+          </Text>
         </View>
         <ScrollView style={styles.SelectedItemsView}>
           <SelectedItem navigation={this.props.navigation} />

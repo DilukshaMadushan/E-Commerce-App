@@ -28,9 +28,10 @@ class AboutUs extends Component {
 const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
-    height: "80%",
+    paddingVertical: "80%",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#FFF",
   },
 });
 

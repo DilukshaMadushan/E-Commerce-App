@@ -165,7 +165,7 @@ class ProfileUpdate extends Component {
   render() {
     return (
       <View>
-        <ScrollView style={{ flexDirection: "column", paddingBottom: 12 }}>
+        <ScrollView style={{ flexDirection: "column", paddingVertical: 11 }}>
           <View style={styles.Itemrows}>
             <Text style={styles.TextInputsName}>First Name</Text>
             <TextInput

@@ -31,13 +31,11 @@ function Item({
     <View
       style={{
         flexDirection: "row",
-        marginTop: 7,
-        borderTopWidth: 0.3,
-        borderBottomWidth: 1,
+        borderTopWidth: 5,
         paddingVertical: 10,
-        borderColor: "rgba(184,184,184,1)",
+        backgroundColor: "#FFF",
+        borderColor: "rgba(184,184,184,0.1)",
         width: width,
-        backgroundColor: "#fff",
       }}
     >
       <Image style={styles.ItemImage} source={{ uri: uri }}></Image>

@@ -60,7 +60,6 @@ class PaymentInfo extends Component {
         </View>
         <View style={styles.TotalPrice}>
           <Text style={{ fontSize: 20, flex: 1 }}>
-            {" "}
             Select Your Payment Method:
           </Text>
         </View>

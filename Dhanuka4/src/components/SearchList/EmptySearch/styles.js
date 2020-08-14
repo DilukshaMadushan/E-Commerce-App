@@ -6,7 +6,7 @@ export default StyleSheet.create({
   container: {
     alignItems: "center",
     paddingTop: "50%",
-    backgroundColor: "rgba(255,255,255,0.3)",
+    backgroundColor: "#FFF",
     height: height,
   },
 });

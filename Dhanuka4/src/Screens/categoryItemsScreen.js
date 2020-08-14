@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, View } from "react-native";
 import CategoryItems from "../components/CategoryItems";
 import { connect } from "react-redux";
 
 class ItemsScreen extends Component {
   render() {
     return (
-      <ScrollView style={styles.categoryScreen}>
+      <View style={styles.categoryScreen}>
         <CategoryItems
           navigation={this.props.navigation}
           catId={this.props.navigation.getParam("id")}
         />
-      </ScrollView>
+      </View>
     );
   }
 }
@@ -19,6 +19,7 @@ class ItemsScreen extends Component {
 const styles = StyleSheet.create({
   categoryScreen: {
     padding: 10,
+    backgroundColor: "#FFF",
   },
 });
 

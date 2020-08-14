@@ -20,7 +20,7 @@ class accountScreen extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.accountScreen}>
+      <View>
         <View style={styles.Upper}>
           {this.props.isSigned ? (
             <Image
@@ -32,9 +32,11 @@ class accountScreen extends Component {
           )}
           <View style={styles.Profileright}>
             {this.props.isSigned ? (
-              <Text style={{ fontSize: 30 }}>{this.props.profile_name}</Text>
+              <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+                {this.props.profile_name}
+              </Text>
             ) : (
-              <Text style={{ fontSize: 30 }}>Guest</Text>
+              <Text style={{ fontSize: 30, fontWeight: "bold" }}>Guest</Text>
             )}
 
             {!this.props.isSigned ? (
@@ -55,18 +57,15 @@ class accountScreen extends Component {
           </View>
         </View>
         <ProfileItems navigation={this.props.navigation} />
-      </ScrollView>
+      </View>
     );
   }
 }
 
 const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
-  accountScreen: {
-    paddingTop: 5,
-  },
   Upper: {
-    backgroundColor: "#fff",
+    backgroundColor: "#FFF",
     width: width,
     height: 0.5 * width,
     flexDirection: "row",

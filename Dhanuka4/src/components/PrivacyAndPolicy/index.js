@@ -129,6 +129,7 @@ const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+    backgroundColor: "#FFF",
   },
   Title: {
     fontSize: 25,

@@ -26,11 +26,9 @@ function Item({
   return (
     <View
       style={{
-        marginTop: 7,
-        borderTopWidth: 0.3,
-        borderBottomWidth: 1,
+        borderTopWidth: 5,
         paddingTop: 10,
-        borderColor: "rgba(184,184,184,1)",
+        borderColor: "rgba(184,184,184,0.1)",
         width: width,
         backgroundColor: "#fff",
       }}

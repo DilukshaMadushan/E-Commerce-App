@@ -10,7 +10,7 @@ class DropDownMenu extends Component {
   render() {
     return (
       <DropDownPicker
-        dropDownStyle={{ backgroundColor: "#fafafa" }}
+        dropDownStyle={{ backgroundColor: "#FFF" }}
         placeholder='Select an option'
         items={this.props.itemOptions.map((item) => {
           return { value: item, label: item };

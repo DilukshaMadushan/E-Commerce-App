@@ -45,7 +45,7 @@ export default StyleSheet.create({
     flex: 1,
     height: "100%",
     alignItems: "center",
-    backgroundColor: "rgba(10, 10, 10, 0.05)",
+    backgroundColor: "rgba(10, 10, 10, 0.1)",
     padding: 10,
     borderBottomWidth: 2,
     borderBottomColor: "rgba(0, 179, 155, 1)",
@@ -54,15 +54,14 @@ export default StyleSheet.create({
     flex: 1,
     height: "100%",
     alignItems: "center",
-    backgroundColor: "rgba(20, 20, 20, 0.02)",
+    backgroundColor: "rgba(20, 20, 20, 0.2)",
     padding: 10,
   },
 
   DescriptionView: {
-    // height: 300,
-    backgroundColor: "rgba(10, 10, 10, 0.05)",
+    backgroundColor: "rgba(10, 10, 10, 0.1)",
     marginBottom: 5,
-    paddingBottom: 20,
+    paddingBottom: 40,
   },
   Description: {
     fontWeight: "500",

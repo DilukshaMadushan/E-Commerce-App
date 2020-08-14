@@ -5,7 +5,6 @@ const { width, height } = Dimensions.get("window");
 export default StyleSheet.create({
   List: {
     flexDirection: "column",
-    padding: 5,
   },
   ListItem: {
     width: width,
@@ -14,7 +13,7 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#FFF",
   },
   ItemIcon: {
     paddingStart: 15,
@@ -22,6 +21,12 @@ export default StyleSheet.create({
   },
   ArrowIcon: {
     justifyContent: "flex-end",
-    paddingRight: 10,
+    paddingRight: 5,
+  },
+  Text: {
+    flex: 1,
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "grey",
   },
 });

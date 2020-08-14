@@ -1,36 +1,20 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, RefreshControl } from "react-native";
 import styles from "./styles";
 import AutoheightTextInput from "react-native-textinput-autoheight";
-import GetAPI from "../../services/GetApi";
-import stripHtml from "string-strip-html";
 
 class AddReview extends Component {
   state = {
-    id: this.props.id,
     review: null,
-    reviewList: [],
+    reviewList: this.props.reviewList,
   };
 
   postReviewCheck(review) {
     if (this.state.review != null) {
       this.props.toggleModel(review);
-      //this.state.reviewList.push(review.replace(/(<([^>]+)>)/gi, ""));
     } else {
       alert("Please enter a Review!");
     }
-  }
-  componentWillMount() {
-    this.getReviews();
-  }
-
-  getReviews() {
-    GetAPI.getReviewsApi(this.state.id)
-      .then((response) => response.json())
-      .then((responsejson) => {
-        this.setState({ reviewList: responsejson });
-        //console.log(responsejson);
-      });
   }
 
   render() {
@@ -56,11 +40,13 @@ class AddReview extends Component {
             <AutoheightTextInput
               onChangeText={(text) => this.setState({ review: text })}
               style={[styles.TextView, { paddingVertical: 30 }]}
-              placeholder='Enter your Review'
+              placeholder='Enter your Review...'
             />
             <TouchableOpacity
               style={styles.Button}
-              onPress={() => this.postReviewCheck(this.state.review)}
+              onPress={() => {
+                this.postReviewCheck(this.state.review);
+              }}
             >
               <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
                 Post Review

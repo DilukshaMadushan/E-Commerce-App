@@ -75,8 +75,8 @@ const App = createStackNavigator({
       headerStyle: {
         backgroundColor: "#FFFFFF",
       },
-      //headerTintColor: '#633689',
-      title: "Items",
+      title: "Choose Item",
+      headerTitleStyle: { paddingLeft: 50 },
       headerRight: (
         <View style={{ paddingRight: 15 }}>
           <ShoppingCartIcon navigation={navigation} />
@@ -90,10 +90,10 @@ const App = createStackNavigator({
     screen: ItemViewScreen,
     navigationOptions: ({ navigation, screenProps }) => ({
       headerStyle: {
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#FFF",
       },
-      //headerTintColor: '#633689',
-      title: "Item",
+      title: "Shop Item",
+      headerTitleStyle: { paddingLeft: 60 },
       headerRight: (
         <View style={{ paddingRight: 15 }}>
           <ShoppingCartIcon navigation={navigation} />
@@ -106,9 +106,10 @@ const App = createStackNavigator({
     screen: finishOrderScreen,
     navigationOptions: () => ({
       headerStyle: {
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#FFF",
       },
       title: "Finish Order",
+      headerTitleStyle: { paddingLeft: 110 },
       headerLeft: null,
     }),
   },
@@ -117,9 +118,10 @@ const App = createStackNavigator({
     screen: AboutUs,
     navigationOptions: () => ({
       headerStyle: {
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#FFF",
       },
       title: "About Us",
+      headerTitleStyle: { paddingLeft: 70 },
     }),
   },
   //ContactUs
@@ -127,9 +129,10 @@ const App = createStackNavigator({
     screen: ContactUs,
     navigationOptions: () => ({
       headerStyle: {
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#FFF",
       },
       title: "Contact Us",
+      headerTitleStyle: { paddingLeft: 80 },
     }),
   },
   //Privacy And Policy
@@ -137,27 +140,91 @@ const App = createStackNavigator({
     screen: PrivacyAndPolicy,
     navigationOptions: () => ({
       headerStyle: {
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#FFF",
       },
       title: "Privacy And Policy",
+      headerTitleStyle: { paddingLeft: 35 },
     }),
   },
   //Terms
-  Terms: Terms,
-  //Delivery_Info
-  Delivery: deliveryScreen,
-  //Payment Methods
-  Payment: paymentScreen,
-  //MyOrdes
-  MyOrders: myOrdersScreen,
+  Terms: {
+    screen: Terms,
+    navigationOptions: () => ({
+      headerStyle: {
+        backgroundColor: "#FFF",
+      },
+      title: "Terms",
+      headerTitleStyle: { paddingLeft: 85 },
+    }),
+  },
+  //Email List
+  EmailList: {
+    screen: emailListScreen,
+    navigationOptions: () => ({
+      headerStyle: {
+        backgroundColor: "#FFF",
+      },
+      title: "WaytooGo Email List",
+      headerTitleStyle: { paddingLeft: 25 },
+    }),
+  },
   //MyWishlist
-  MyWishlist: myWishlistScreen,
+  MyWishlist: {
+    screen: myWishlistScreen,
+    navigationOptions: () => ({
+      headerStyle: {
+        backgroundColor: "#FFF",
+      },
+      title: "My Wishlist",
+      headerTitleStyle: { paddingLeft: 60 },
+    }),
+  },
+  //MyOrdes
+  MyOrders: {
+    screen: myOrdersScreen,
+    navigationOptions: () => ({
+      headerStyle: {
+        backgroundColor: "#FFF",
+      },
+      title: "My Orders",
+      headerTitleStyle: { paddingLeft: 70 },
+    }),
+  },
+  //Update Delivery Screen
+  UpdateProfile: {
+    screen: UpdateProfileScreen,
+    navigationOptions: () => ({
+      headerStyle: {
+        backgroundColor: "#FFF",
+      },
+      title: "Update Your Profile",
+      headerTitleStyle: { paddingLeft: 30 },
+    }),
+  },
+  //Delivery_Info
+  Delivery: {
+    screen: deliveryScreen,
+    navigationOptions: () => ({
+      headerStyle: {
+        backgroundColor: "#FFF",
+      },
+      title: " Delivery Infomations",
+      headerTitleStyle: { paddingLeft: 25 },
+    }),
+  },
+  //Payment Methods
+  Payment: {
+    screen: paymentScreen,
+    navigationOptions: () => ({
+      headerStyle: {
+        backgroundColor: "#FFF",
+      },
+      title: "Payment Methods",
+      headerTitleStyle: { paddingLeft: 35 },
+    }),
+  },
   //PayHere screen
   payhere: payhereScreen,
-  //Update Delivery Screen
-  UpdateProfile: UpdateProfileScreen,
-  //Email List
-  EmailList: emailListScreen,
   //Filters
   Filters: Filters,
 });

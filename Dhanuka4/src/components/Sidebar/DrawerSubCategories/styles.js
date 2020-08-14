@@ -6,6 +6,6 @@ export default StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "rgb(150,150,150)",
+    color: "rgb(175,175,175)",
   },
 });

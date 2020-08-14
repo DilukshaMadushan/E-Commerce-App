@@ -4,27 +4,21 @@ const { width, height } = Dimensions.get("window");
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     padding: 20,
     justifyContent: "center",
   },
-  Logo: {
-    width: 0.52 * width,
-    height: 0.2 * width,
-    alignSelf: "center",
-  },
   TextView: {
     marginHorizontal: 5,
-    marginVertical: 10,
+    marginTop: 20,
     padding: 10,
     alignItems: "center",
     borderRadius: 5,
-    backgroundColor: "rgba(0,0,0,0.1)",
+    backgroundColor: "rgba(250,250,250,0.5)",
     fontSize: 18,
   },
   Button: {
-    marginTop: 30,
-    height: 50,
+    marginTop: 20,
+    height: 40,
     marginVertical: 5,
     marginHorizontal: 10,
     alignItems: "center",

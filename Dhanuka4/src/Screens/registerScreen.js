@@ -67,7 +67,6 @@ class registerScreen extends Component {
             this.setState({ isLoading: false });
             //this._storeData('profilePic',responseJson.avatar_url);
             //this._storeData('profileName',responseJson.user_name);
-
             //global.profileId[0] = responseJson.id;
             //global.profilePic[0] = responseJson.avatar_url;
             //global.name[0] = responseJson.user_name;

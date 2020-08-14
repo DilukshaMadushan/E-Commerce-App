@@ -59,9 +59,10 @@ export default StyleSheet.create({
   },
 
   DescriptionView: {
-    height: 300,
+    // height: 300,
     backgroundColor: "rgba(10, 10, 10, 0.05)",
     marginBottom: 5,
+    paddingBottom: 20,
   },
   Description: {
     fontWeight: "500",

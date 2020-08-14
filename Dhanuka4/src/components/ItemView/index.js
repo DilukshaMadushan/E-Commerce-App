@@ -6,14 +6,19 @@ import {
   Text,
   TouchableOpacity,
   Dimensions,
-  AppRegistry,
+  RefreshControl,
 } from "react-native";
 import styles from "./styles";
+import Modal from "react-native-modal";
+import StarRating from "react-native-star-rating";
 import RatingStars from "../RatingStars";
 import RelatedProducts from "../RelatedProducts";
+import AddReview from "../Review";
 import DropDownMenu from "../DropDownMenu";
 import { SliderBox } from "react-native-image-slider-box";
 import Images from "../../common/Images";
+import PostAPI from "../../services/PostAPI";
+import { connect } from "react-redux";
 
 const { width, height } = Dimensions.get("window");
 
@@ -27,6 +32,8 @@ class ItemView extends Component {
 
   state = {
     item: null,
+    isModalVisible: false,
+    review: null,
   };
 
   componentWillMount() {
@@ -94,15 +101,47 @@ class ItemView extends Component {
         </View>
       );
     } else if (this.state.statusTab === 2) {
-      return <View style={{ width: "100%" }}></View>;
+      return (
+        <View>
+          <AddReview
+            id={this.props.item.id}
+            email={this.props.profile_email}
+            toggleModel={(review) => {
+              this.setState({ review: review, isModalVisible: true });
+            }}
+          />
+          <Modal isVisible={this.state.isModalVisible}>
+            <RatingStars toggleModal={(rating) => this.postingReview(rating)} />
+          </Modal>
+        </View>
+      );
     } else if (this.state.statusTab === 3) {
-      return <View style={{ width: "100%" }}></View>;
+      return <View style={{ width: "100%", height: 200 }}></View>;
     }
   }
 
-  updateData = (data) => {
-    this.props.updateData(data);
-  };
+  postingReview(rating) {
+    this.setState({ isModalVisible: false });
+    const review = this.state.review;
+    const average_rating =
+      (this.state.item.average_rating * this.state.item.rating_count + rating) /
+      (this.state.item.rating_count + 1);
+    const New_Avarege = Math.round(Number(average_rating));
+
+    PostAPI.reviewApi(
+      JSON.stringify({
+        product_id: this.state.item.id,
+        review: review,
+        reviewer: this.props.profile_name,
+        reviewer_email: this.props.profile_email,
+        rating: New_Avarege,
+      })
+    )
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+      });
+  }
 
   relatedItemChange = (relatedItem) => {
     this.setState({ item: relatedItem });
@@ -129,8 +168,12 @@ class ItemView extends Component {
       );
     }
   }
+  updateData = (item) => {
+    this.props.updateData(item);
+  };
 
   render() {
+    const rate = Math.round(Number(this.state.item.average_rating));
     return (
       <View style={{ paddingBottom: 10, paddingTop: 10 }}>
         {this.ItemImageShow()}
@@ -144,10 +187,18 @@ class ItemView extends Component {
         )}
         <Text style={styles.ItemPrice}>Rs. {this.state.item.price}</Text>
         <View style={styles.ItemReviews}>
-          <RatingStars
-            item={this.state.item}
-            average_rating={this.state.item.average_rating}
-            rating_count={this.state.item.rating_count}
+          <StarRating
+            emptyStar={"ios-star-outline"}
+            fullStar={"ios-star"}
+            iconSet={"Ionicons"}
+            maxStars={5}
+            starSize={19}
+            starStyle={{
+              paddingEnd: 1,
+            }}
+            disabled={true}
+            rating={rate}
+            fullStarColor={"rgba(0,179,155,1)"}
           />
           <Text style={styles.ReviewNumber}>
             {" "}
@@ -236,4 +287,11 @@ class ItemView extends Component {
     );
   }
 }
-export default ItemView;
+const mapStateToProps = (state) => {
+  return {
+    profile_name: state.auth.profile_name,
+    profile_email: state.auth.profile_email,
+  };
+};
+
+export default connect(mapStateToProps, null)(ItemView);

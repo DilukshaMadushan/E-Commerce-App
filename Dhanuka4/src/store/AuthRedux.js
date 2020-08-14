@@ -15,6 +15,7 @@ const initialState = {
   isSigned: false,
   profile_name: null,
   profile_pic: null,
+  profile_email: null,
 };
 
 function auth(state = initialState, action) {
@@ -25,6 +26,7 @@ function auth(state = initialState, action) {
         isSigned: true,
         profile_name: action.user.username,
         profile_pic: action.user.avatar_url,
+        profile_email: action.user.email,
       };
       return newState;
 

@@ -50,6 +50,7 @@
     "react-native-smtp": "^1.0.1",
     "react-native-social-share": "^1.6.5",
     "react-native-star-rating": "^1.1.0",
+    "react-native-textinput-autoheight": "^1.0.2",
     "react-native-textinput-effects": "^0.6.1",
     "react-native-vector-icons": "^6.6.0",
     "react-native-video": "^4.4.5",
@@ -61,7 +62,8 @@
     "react-navigation-stack": "^2.3.12",
     "react-navigation-tabs": "^2.8.11",
     "react-redux": "^7.2.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "string-strip-html": "^4.5.1"
   },
   "devDependencies": {
     "babel-preset-expo": "~8.1.0",

@@ -5,7 +5,6 @@ import {
   Dimensions,
   TouchableOpacity,
   StyleSheet,
-  ScrollView,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import GetAPI from "../../services/GetApi";
@@ -17,6 +16,7 @@ class Filters extends Component {
   };
 
   componentWillMount() {
+    this.setState({ isLoading: true });
     this.getItemTags();
   }
 

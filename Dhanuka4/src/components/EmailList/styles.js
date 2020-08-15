@@ -5,7 +5,8 @@ const { width, height } = Dimensions.get("window");
 export default StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 20,
     justifyContent: "center",
   },
   Logo: {
@@ -25,7 +26,7 @@ export default StyleSheet.create({
   Button: {
     marginTop: 30,
     height: 50,
-    marginVertical: 5,
+    marginTop: 20,
     marginHorizontal: 10,
     alignItems: "center",
     justifyContent: "center",

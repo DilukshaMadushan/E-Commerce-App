@@ -16,11 +16,7 @@ class emailListScreen extends Component {
 
 const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
-  ItemsScreen: {
-    height: "100%",
-    backgroundColor: "#fff",
-    paddingBottom: 100,
-  },
+  ItemsScreen: { height: "100%", backgroundColor: "#FFF" },
 });
 
 export default emailListScreen;

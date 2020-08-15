@@ -139,7 +139,7 @@ class HomeImageRow2 extends Component {
               flex: 1,
               justifyContent: "center",
               alignItems: "center",
-              marginTop: width * 0.7,
+              marginTop: width * 0.1,
             }}
           >
             <ActivityIndicator />

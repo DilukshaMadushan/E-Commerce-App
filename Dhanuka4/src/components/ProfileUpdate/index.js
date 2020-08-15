@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   ScrollView,
   Picker,
+  ActivityIndicator,
+  StatusBar,
 } from "react-native";
 import styles from "./styles";
 import { connect } from "react-redux";
@@ -165,145 +167,165 @@ class ProfileUpdate extends Component {
   render() {
     return (
       <View>
-        <ScrollView style={{ flexDirection: "column", paddingVertical: 11 }}>
-          <View style={styles.Itemrows}>
-            <Text style={styles.TextInputsName}>First Name</Text>
-            <TextInput
-              style={styles.TextInputs}
-              placeholder={this.state.customerDetails.first_name}
-              maxLength={30}
-              onChangeText={(text) => this.setState({ first_name: text })}
-            />
+        {this.state.isLoading ? (
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: "#FFF",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: "90%",
+              marginBottom: "100%",
+            }}
+          >
+            <ActivityIndicator />
+            <StatusBar barStyle='default' />
           </View>
-          <View style={styles.Itemrows}>
-            <Text style={styles.TextInputsName}>Last Name</Text>
-            <TextInput
-              style={styles.TextInputs}
-              placeholder={this.state.customerDetails.last_name}
-              maxLength={30}
-              onChangeText={(text) => this.setState({ last_name: text })}
-            />
-          </View>
-          <View style={styles.Itemrows}>
-            <Text style={styles.TextInputsName}>Company</Text>
-            <TextInput
-              style={styles.TextInputs}
-              placeholder={this.state.customerDetails.billing.company}
-              maxLength={30}
-              onChangeText={(text) => this.setState({ company: text })}
-            />
-          </View>
-          <View style={styles.Itemrows}>
-            <Text style={styles.TextInputsName}>Address Line 1</Text>
-            <TextInput
-              style={styles.TextInputs}
-              placeholder={this.state.customerDetails.billing.address_1}
-              maxLength={50}
-              onChangeText={(text) => this.setState({ address_1: text })}
-            />
-          </View>
-          <View style={styles.Itemrows}>
-            <Text style={styles.TextInputsName}>Address Line 2</Text>
-            <TextInput
-              style={styles.TextInputs}
-              placeholder={this.state.customerDetails.billing.address_2}
-              maxLength={50}
-              onChangeText={(text) => this.setState({ address_2: text })}
-            />
-          </View>
-          {/* <View style={styles.Itemrows}>
+        ) : (
+          <View>
+            <ScrollView
+              style={{ flexDirection: "column", paddingVertical: 11 }}
+            >
+              <View style={styles.Itemrows}>
+                <Text style={styles.TextInputsName}>First Name</Text>
+                <TextInput
+                  style={styles.TextInputs}
+                  placeholder={this.state.customerDetails.first_name}
+                  maxLength={30}
+                  onChangeText={(text) => this.setState({ first_name: text })}
+                />
+              </View>
+              <View style={styles.Itemrows}>
+                <Text style={styles.TextInputsName}>Last Name</Text>
+                <TextInput
+                  style={styles.TextInputs}
+                  placeholder={this.state.customerDetails.last_name}
+                  maxLength={30}
+                  onChangeText={(text) => this.setState({ last_name: text })}
+                />
+              </View>
+              <View style={styles.Itemrows}>
+                <Text style={styles.TextInputsName}>Company</Text>
+                <TextInput
+                  style={styles.TextInputs}
+                  placeholder={this.state.customerDetails.billing.company}
+                  maxLength={30}
+                  onChangeText={(text) => this.setState({ company: text })}
+                />
+              </View>
+              <View style={styles.Itemrows}>
+                <Text style={styles.TextInputsName}>Address Line 1</Text>
+                <TextInput
+                  style={styles.TextInputs}
+                  placeholder={this.state.customerDetails.billing.address_1}
+                  maxLength={50}
+                  onChangeText={(text) => this.setState({ address_1: text })}
+                />
+              </View>
+              <View style={styles.Itemrows}>
+                <Text style={styles.TextInputsName}>Address Line 2</Text>
+                <TextInput
+                  style={styles.TextInputs}
+                  placeholder={this.state.customerDetails.billing.address_2}
+                  maxLength={50}
+                  onChangeText={(text) => this.setState({ address_2: text })}
+                />
+              </View>
+              {/* <View style={styles.Itemrows}>
                     <Text style={styles.TextInputsName}>Select Country</Text>
                     <TextInput  style={styles.TextInputs}
                         placeholder={this.state.customerDetails.billing.country}
                         maxLength={30}
                         onChangeText={text => this.setState({country:text})}/>
                 </View> */}
-          <View style={styles.Itemrows}>
-            <Text style={styles.TextInputsName}>Town/City</Text>
-            <TextInput
-              style={styles.TextInputs}
-              placeholder={this.state.customerDetails.billing.city}
-              maxLength={30}
-              onChangeText={(text) => this.setState({ city: text })}
-            />
-          </View>
-          <View style={styles.Itemrows}>
-            <Text style={styles.TextInputsName}>State</Text>
-            <View style={(styles.TextInputs, styles.Picker)}>
-              <Picker
-                selectedValue={this.state.pickerSelectedValue}
-                onValueChange={this.show}
+              <View style={styles.Itemrows}>
+                <Text style={styles.TextInputsName}>Town/City</Text>
+                <TextInput
+                  style={styles.TextInputs}
+                  placeholder={this.state.customerDetails.billing.city}
+                  maxLength={30}
+                  onChangeText={(text) => this.setState({ city: text })}
+                />
+              </View>
+              <View style={styles.Itemrows}>
+                <Text style={styles.TextInputsName}>State</Text>
+                <View style={(styles.TextInputs, styles.Picker)}>
+                  <Picker
+                    selectedValue={this.state.pickerSelectedValue}
+                    onValueChange={this.show}
+                  >
+                    <Picker.Item label='Central' value='Central'></Picker.Item>
+                    <Picker.Item label='South' value='South'></Picker.Item>
+                    <Picker.Item label='Western' value='Western'></Picker.Item>
+                    <Picker.Item label='North' value='North'></Picker.Item>
+                  </Picker>
+                </View>
+              </View>
+              <View style={styles.Itemrows}>
+                <Text style={styles.TextInputsName}>Postcode</Text>
+                <TextInput
+                  style={styles.TextInputs}
+                  placeholder={this.state.customerDetails.billing.postcode}
+                  maxLength={30}
+                  onChangeText={(text) => this.setState({ postcode: text })}
+                />
+              </View>
+              <View style={styles.Itemrows}>
+                <Text style={styles.TextInputsName}>Email</Text>
+                <TextInput
+                  style={styles.TextInputs}
+                  placeholder={this.state.customerDetails.billing.email}
+                  maxLength={30}
+                  onChangeText={(text) => this.setState({ email: text })}
+                />
+              </View>
+              <View style={styles.Itemrows}>
+                <Text style={styles.TextInputsName}>Phone Number</Text>
+                <TextInput
+                  style={styles.TextInputs}
+                  placeholder={this.state.customerDetails.billing.phone}
+                  keyboardType={"number-pad"}
+                  maxLength={15}
+                  onChangeText={(text) => this.setState({ phone: text })}
+                />
+              </View>
+            </ScrollView>
+            <View style={{ flexDirection: "row", height: 45 }}>
+              <TouchableOpacity
+                style={styles.Back}
+                activeOpacity={0.5}
+                onPress={() => this.props.navigation.navigate("Account")}
               >
-                <Picker.Item label='Central' value='Central'></Picker.Item>
-                <Picker.Item label='South' value='South'></Picker.Item>
-                <Picker.Item label='Western' value='Western'></Picker.Item>
-                <Picker.Item label='North' value='North'></Picker.Item>
-              </Picker>
+                <Text
+                  style={{
+                    color: "#fff",
+                    fontSize: 18,
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Back
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.Save}
+                activeOpacity={0.5}
+                onPress={() => this.handleDeliveryInput()}
+              >
+                <Text
+                  style={{
+                    color: "#fff",
+                    fontSize: 18,
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Save
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.Itemrows}>
-            <Text style={styles.TextInputsName}>Postcode</Text>
-            <TextInput
-              style={styles.TextInputs}
-              placeholder={this.state.customerDetails.billing.postcode}
-              maxLength={30}
-              onChangeText={(text) => this.setState({ postcode: text })}
-            />
-          </View>
-          <View style={styles.Itemrows}>
-            <Text style={styles.TextInputsName}>Email</Text>
-            <TextInput
-              style={styles.TextInputs}
-              placeholder={this.state.customerDetails.billing.email}
-              maxLength={30}
-              onChangeText={(text) => this.setState({ email: text })}
-            />
-          </View>
-          <View style={styles.Itemrows}>
-            <Text style={styles.TextInputsName}>Phone Number</Text>
-            <TextInput
-              style={styles.TextInputs}
-              placeholder={this.state.customerDetails.billing.phone}
-              keyboardType={"number-pad"}
-              maxLength={15}
-              onChangeText={(text) => this.setState({ phone: text })}
-            />
-          </View>
-        </ScrollView>
-        <View style={{ flexDirection: "row", height: 45 }}>
-          <TouchableOpacity
-            style={styles.Back}
-            activeOpacity={0.5}
-            onPress={() => this.props.navigation.navigate("Account")}
-          >
-            <Text
-              style={{
-                color: "#fff",
-                fontSize: 18,
-                textAlign: "center",
-                fontWeight: "bold",
-              }}
-            >
-              Back
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.Save}
-            activeOpacity={0.5}
-            onPress={() => this.handleDeliveryInput()}
-          >
-            <Text
-              style={{
-                color: "#fff",
-                fontSize: 18,
-                textAlign: "center",
-                fontWeight: "bold",
-              }}
-            >
-              Save
-            </Text>
-          </TouchableOpacity>
-        </View>
+        )}
       </View>
     );
   }

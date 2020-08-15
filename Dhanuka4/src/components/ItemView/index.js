@@ -101,7 +101,7 @@ class ItemView extends Component {
       return (
         <View>
           <AddReview
-            reviewList={this.props.reviewList}
+            id={this.props.item.id}
             email={this.props.profile_email}
             profile_name={this.props.profile_name}
             toggleModel={(review) => {

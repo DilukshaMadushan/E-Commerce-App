@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
-import { Icon } from "react-native-elements";
-import { connect } from "react-redux";
-import { addwishItem, removewishItem } from "../../store/wishlistRedux";
+import React, {Component} from 'react';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import {Icon} from 'react-native-elements';
+import {connect} from 'react-redux';
+import {addwishItem, removewishItem} from '../../store/wishlistRedux';
 
 class Wishlist extends Component {
   setToWishlist() {
@@ -17,12 +17,12 @@ class Wishlist extends Component {
     return (
       <TouchableOpacity onPress={() => this.setToWishlist()}>
         <Icon
-          name={this.props.item.wishlistState ? "heart" : "heart"}
+          name={this.props.item.wishlistState ? 'heart' : 'heart'}
           containerStyle={styles.Wishlist}
-          type='font-awesome'
+          type="font-awesome"
           size={24}
           color={
-            this.props.item.wishlistState ? "red" : "rgba(150,150,150,0.5)"
+            this.props.item.wishlistState ? 'red' : 'rgba(150,150,150,0.5)'
           }
         />
       </TouchableOpacity>

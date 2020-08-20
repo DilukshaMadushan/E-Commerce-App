@@ -1,31 +1,29 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   FlatList,
   Image,
   Text,
   TouchableOpacity,
-  ScrollView,
   ActivityIndicator,
   StatusBar,
   Dimensions,
-} from "react-native";
-import { withNavigation } from "react-navigation";
-import styles from "./styles";
-import Images from "../../../common/Images";
-import SubCategories from "../DrawerSubCategories";
-import GetAPI from "../../../services/GetApi";
+} from 'react-native';
+import {withNavigation} from 'react-navigation';
+import styles from './styles';
+import SubCategories from '../DrawerSubCategories';
+import GetAPI from '../../../services/GetApi';
 
-function Item({ title, status }) {
+function Item({title, status}) {
   return (
-    <View style={{ flexDirection: "row" }}>
-      <Text style={styles.title}>{status == 0 ? "+" : "-"}</Text>
-      <Text style={[styles.title, { width: "88%" }]}>{title} </Text>
+    <View style={{flexDirection: 'row'}}>
+      <Text style={styles.title}>{status == 0 ? '+' : '-'}</Text>
+      <Text style={[styles.title, {width: '88%'}]}>{title} </Text>
     </View>
   );
 }
 
-function SubCategorylist({ CategoryList, status, SubCategoryList }) {
+function SubCategorylist({CategoryList, status, SubCategoryList}) {
   if (status === 1) {
     return (
       <SubCategories
@@ -55,26 +53,26 @@ class DrawerCategories extends React.Component {
       .then((response) => response.json())
       .then((json) => {
         //console.log(json);
-        this.setState({ CategoryList: json });
+        this.setState({CategoryList: json});
         this.setState({
           MainCategoryList: json.filter(function (cat) {
             return cat.parent == 0;
           }),
         });
         console.log(json.id);
-        this.setState({ isLoading: false });
+        this.setState({isLoading: false});
       });
   }
 
   render() {
-    const { width } = Dimensions.get("window");
+    const {width} = Dimensions.get('window');
     return (
       <View>
         {this.state.isLoading == false ? (
-          <View style={{ alignSelf: "center", paddingBottom: 15 }}>
+          <View style={{alignSelf: 'center', paddingBottom: 15}}>
             <FlatList
               data={this.state.MainCategoryList}
-              renderItem={({ item }) => (
+              renderItem={({item}) => (
                 <View>
                   <TouchableOpacity
                     onPress={() => {
@@ -83,7 +81,7 @@ class DrawerCategories extends React.Component {
                           return cat.parent == item.id;
                         }).length == 0
                       ) {
-                        this.props.navigation.navigate("Items", {
+                        this.props.navigation.navigate('Items', {
                           id: item.id,
                         });
                       } else {
@@ -91,15 +89,14 @@ class DrawerCategories extends React.Component {
                         if (this.state.SubCategoryStatus[index] == 0) {
                           const dup_array = this.state.SubCategoryStatus;
                           dup_array[index] = 1;
-                          this.setState({ SubCategoryStatus: dup_array });
+                          this.setState({SubCategoryStatus: dup_array});
                         } else {
                           const dup_array = this.state.SubCategoryStatus;
                           dup_array[index] = 0;
-                          this.setState({ SubCategoryStatus: dup_array });
+                          this.setState({SubCategoryStatus: dup_array});
                         }
                       }
-                    }}
-                  >
+                    }}>
                     <Item
                       title={item.name}
                       status={
@@ -117,7 +114,7 @@ class DrawerCategories extends React.Component {
                     }
                     CategoryList={this.state.CategoryList}
                     SubCategoryList={this.state.CategoryList.filter(function (
-                      cat
+                      cat,
                     ) {
                       return cat.parent == item.id;
                     })}
@@ -131,13 +128,12 @@ class DrawerCategories extends React.Component {
           <View
             style={{
               flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
+              justifyContent: 'center',
+              alignItems: 'center',
               marginTop: width * 0.35,
-            }}
-          >
+            }}>
             <ActivityIndicator />
-            <StatusBar barStyle='default' />
+            <StatusBar barStyle="default" />
           </View>
         )}
       </View>

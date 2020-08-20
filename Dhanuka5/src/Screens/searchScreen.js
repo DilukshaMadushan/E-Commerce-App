@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   TextInput,
   StyleSheet,
@@ -9,13 +9,13 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   StatusBar,
-} from "react-native";
-import Filters from "../components/Filters";
-import Modal from "react-native-modal";
-import Icon from "react-native-vector-icons/FontAwesome";
-import Images from "../common/Images";
-import SearchList from "../components/SearchList";
-import GetAPI from "../services/GetApi";
+} from 'react-native';
+import Filters from '../components/Filters';
+import Modal from 'react-native-modal';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Images from '../common/Images';
+import SearchList from '../components/SearchList';
+import GetAPI from '../services/GetApi';
 
 class searchScreen extends Component {
   state = {
@@ -27,8 +27,8 @@ class searchScreen extends Component {
   };
 
   handleSearch() {
-    this.setState({ listStatus: true });
-    this.setState({ isLoading: true });
+    this.setState({listStatus: true});
+    this.setState({isLoading: true});
     this.getItems(this.state.search);
   }
 
@@ -36,31 +36,31 @@ class searchScreen extends Component {
     GetAPI.searchApi(search)
       .then((response) => response.json())
       .then((responsejson) => {
-        this.setState({ isLoading: false });
-        this.setState({ searchList: responsejson });
+        this.setState({isLoading: false});
+        this.setState({searchList: responsejson});
       });
   }
 
   getItemsByTags(item) {
     if (item == null) {
-      this.setState({ isModalVisible: false });
+      this.setState({isModalVisible: false});
     } else {
-      this.setState({ isModalVisible: false });
-      this.setState({ listStatus: true });
-      this.setState({ isLoading: true });
+      this.setState({isModalVisible: false});
+      this.setState({listStatus: true});
+      this.setState({isLoading: true});
       GetAPI.searchByTagsApi(item)
         .then((response) => response.json())
         .then((responsejson) => {
-          this.setState({ isLoading: false });
-          this.setState({ searchList: responsejson });
+          this.setState({isLoading: false});
+          this.setState({searchList: responsejson});
         });
     }
   }
   render() {
-    const { width } = Dimensions.get("window");
+    const {width} = Dimensions.get('window');
     return (
       <View style={styles.container}>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Text style={styles.Search}>Search</Text>
           <Modal isVisible={this.state.isModalVisible}>
             <Filters
@@ -69,26 +69,25 @@ class searchScreen extends Component {
             />
           </Modal>
           <TouchableOpacity
-            onPress={() => this.setState({ isModalVisible: true })}
-          >
+            onPress={() => this.setState({isModalVisible: true})}>
             <Icon
-              style={{ marginRight: 22 }}
-              name='th-list'
+              style={{marginRight: 22}}
+              name="th-list"
               size={20}
-              type='font-awsome'
-              color={"grey"}
+              type="font-awsome"
+              color={'grey'}
             />
           </TouchableOpacity>
         </View>
         <View style={styles.SearchView}>
           <TextInput
             style={styles.SearchInput}
-            placeholder='Search...'
+            placeholder="Search..."
             maxLength={20}
-            onChangeText={(text) => this.setState({ search: text })}
+            onChangeText={(text) => this.setState({search: text})}
           />
           <TouchableOpacity onPress={() => this.handleSearch()}>
-            <Icon name='search' size={25} type='Entypo' color={"black"} />
+            <Icon name="search" size={25} type="Entypo" color={'black'} />
           </TouchableOpacity>
         </View>
         {this.state.listStatus == false ? (
@@ -100,13 +99,12 @@ class searchScreen extends Component {
           <View
             style={{
               flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: "50%",
-            }}
-          >
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: '50%',
+            }}>
             <ActivityIndicator />
-            <StatusBar barStyle='default' />
+            <StatusBar barStyle="default" />
           </View>
         ) : (
           <SearchList
@@ -120,11 +118,11 @@ class searchScreen extends Component {
   }
 }
 
-const { width } = Dimensions.get("window");
+const {width} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
   Search: {
     flex: 1,
@@ -132,14 +130,14 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   SearchView: {
-    flexDirection: "row",
+    flexDirection: 'row',
     height: 50,
     marginHorizontal: 10,
     paddingHorizontal: 10,
     marginBottom: 10,
-    alignItems: "center",
+    alignItems: 'center',
     borderRadius: 5,
-    backgroundColor: "rgba(0,0,0,0.1)",
+    backgroundColor: 'rgba(0,0,0,0.1)',
   },
   SearchInput: {
     flex: 1,
@@ -148,10 +146,10 @@ const styles = StyleSheet.create({
   },
   SearchBack: {
     opacity: 0.4,
-    top: "45%",
-    alignSelf: "center",
-    position: "absolute",
-    alignItems: "center",
+    top: '45%',
+    alignSelf: 'center',
+    position: 'absolute',
+    alignItems: 'center',
   },
   SearchImage: {
     width: 0.53 * width,

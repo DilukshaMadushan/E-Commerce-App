@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   Text,
   View,
@@ -9,15 +9,15 @@ import {
   Dimensions,
   ActivityIndicator,
   StatusBar,
-} from "react-native";
-import styles from "./styles";
-import { Icon } from "react-native-elements";
-import Wishlist from "../Wishlist";
-import StarRating from "react-native-star-rating";
-import { connect } from "react-redux";
-import { addcartItem } from "../../store/cartItemRedux";
-import { addwishItem, removewishItem } from "../../store/wishlistRedux";
-import GetAPI from "../../services/GetApi";
+} from 'react-native';
+import styles from './styles';
+import {Icon} from 'react-native-elements';
+import Wishlist from '../Wishlist';
+import StarRating from 'react-native-star-rating';
+import {connect} from 'react-redux';
+import {addcartItem} from '../../store/cartItemRedux';
+import {addwishItem, removewishItem} from '../../store/wishlistRedux';
+import GetAPI from '../../services/GetApi';
 
 function Item({
   ItemName,
@@ -41,11 +41,10 @@ function Item({
       <View style={styles.itemView}>
         <TouchableOpacity
           activeOpacity={0.5}
-          onPress={() => navigation.navigate("ItemView", { item: item })}
-        >
-          <Image style={styles.itemImage} source={{ uri: uri }}></Image>
+          onPress={() => navigation.navigate('ItemView', {item: item})}>
+          <Image style={styles.itemImage} source={{uri: uri}}></Image>
         </TouchableOpacity>
-        <View style={{ position: "absolute", alignSelf: "flex-end", top: 5 }}>
+        <View style={{position: 'absolute', alignSelf: 'flex-end', top: 5}}>
           <Wishlist
             item={item}
             addItemToWishlist={addItemToWishlist}
@@ -56,12 +55,12 @@ function Item({
 
       <Text style={styles.ItemName}>{ItemName}</Text>
       <Text style={styles.ItemPrice}>{ItemPrice}</Text>
-      <View style={{ flexDirection: "row", paddingTop: 2 }}>
-        <View style={{ flex: 1, paddingEnd: 40, justifyContent: "center" }}>
+      <View style={{flexDirection: 'row', paddingTop: 2}}>
+        <View style={{flex: 1, paddingEnd: 40, justifyContent: 'center'}}>
           <StarRating
-            emptyStar={"ios-star-outline"}
-            fullStar={"ios-star"}
-            iconSet={"Ionicons"}
+            emptyStar={'star-o'}
+            fullStar={'star'}
+            iconSet={'FontAwesome'}
             maxStars={5}
             starSize={19}
             starStyle={{
@@ -69,15 +68,15 @@ function Item({
             }}
             disabled={true}
             rating={rate}
-            fullStarColor={"rgba(0,179,155,1)"}
+            fullStarColor={'rgba(0,179,155,1)'}
           />
         </View>
         <TouchableOpacity onPress={() => addItemToCart(item)}>
           <Icon
-            name='shopping-cart'
+            name="shopping-cart"
             containerStyle={styles.ShopItemIcon}
-            type='font-awesome'
-            color={"black"}
+            type="font-awesome"
+            color={'black'}
           />
         </TouchableOpacity>
       </View>
@@ -96,16 +95,16 @@ class HomeImageRow2 extends Component {
   }
 
   getItems() {
-    this.setState({ isLoading: true });
+    this.setState({isLoading: true});
     GetAPI.homeImageRow2Api()
       .then((response) => response.json())
       .then((json) => {
-        this.setState({ isLoading: false });
-        this.setState({ ItemList: json });
+        this.setState({isLoading: false});
+        this.setState({ItemList: json});
       });
   }
   render() {
-    const { width } = Dimensions.get("window");
+    const {width} = Dimensions.get('window');
     return (
       <View>
         {this.state.isLoading == false ? (
@@ -115,12 +114,12 @@ class HomeImageRow2 extends Component {
                 data={this.state.ItemList}
                 numColumns={1}
                 horizontal={true}
-                renderItem={({ item }) => (
+                renderItem={({item}) => (
                   <Item
                     ItemName={item.name}
                     uri={item.images[0].src}
                     item={item}
-                    ItemPrice={"Rs " + item.price}
+                    ItemPrice={'Rs ' + item.price}
                     ItemRate={item.average_rating}
                     navigation={this.props.navigation}
                     addItemToCart={this.props.addItemToCart}
@@ -137,13 +136,12 @@ class HomeImageRow2 extends Component {
           <View
             style={{
               flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
+              justifyContent: 'center',
+              alignItems: 'center',
               marginTop: width * 0.1,
-            }}
-          >
+            }}>
             <ActivityIndicator />
-            <StatusBar barStyle='default' />
+            <StatusBar barStyle="default" />
           </View>
         )}
       </View>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   View,
   FlatList,
@@ -7,11 +7,11 @@ import {
   TouchableOpacity,
   Dimensions,
   ScrollView,
-} from "react-native";
-import SelectedItem from "../SelectedItem";
-import styles from "./styles";
-import { Icon } from "react-native-elements";
-import { connect } from "react-redux";
+} from 'react-native';
+import SelectedItem from '../SelectedItem';
+import styles from './styles';
+import {Icon} from 'react-native-elements';
+import {connect} from 'react-redux';
 
 class CartItems extends Component {
   render() {
@@ -19,18 +19,18 @@ class CartItems extends Component {
       <View style={styles.container}>
         <View style={styles.Upper}>
           <View style={styles.Cross}>
-            <View style={{ flex: 1 }}></View>
-            <View style={{ flex: 1 }}></View>
-            <View style={{ flex: 1 }}></View>
+            <View style={{flex: 1}}></View>
+            <View style={{flex: 1}}></View>
+            <View style={{flex: 1}}></View>
           </View>
           <View style={styles.UpperItems}>
             <Text>cart</Text>
             <View style={(styles.IconView, styles.Border)}>
               <Icon
-                name='shopping-cart'
+                name="shopping-cart"
                 size={15}
-                type='font-awesome'
-                color={"rgba(0, 179, 155,1)"}
+                type="font-awesome"
+                color={'rgba(0, 179, 155,1)'}
               />
             </View>
           </View>
@@ -38,10 +38,10 @@ class CartItems extends Component {
             <Text>Delivery</Text>
             <View style={styles.IconView}>
               <Icon
-                name='paper-plane'
+                name="paper-plane"
                 size={15}
-                type='font-awesome'
-                color={"black"}
+                type="font-awesome"
+                color={'black'}
               />
             </View>
           </View>
@@ -49,25 +49,25 @@ class CartItems extends Component {
             <Text>Payment</Text>
             <View style={styles.IconView}>
               <Icon
-                name='paypal'
+                name="paypal"
                 size={15}
-                type='font-awesome'
-                color={"black"}
+                type="font-awesome"
+                color={'black'}
               />
             </View>
           </View>
           <View style={styles.UpperItems}>
             <Text>Order</Text>
             <View style={styles.IconView}>
-              <Icon name='flag' size={20} type='Entypo' color={"black"} />
+              <Icon name="flag" size={20} type="Entypo" color={'black'} />
             </View>
           </View>
         </View>
         <View style={styles.TotalPrice}>
-          <Text style={{ fontWeight: "bold", fontSize: 20, flex: 1 }}>
+          <Text style={{fontWeight: 'bold', fontSize: 20, flex: 1}}>
             Total Price
           </Text>
-          <Text style={{ fontWeight: "bold", fontSize: 20 }}>
+          <Text style={{fontWeight: 'bold', fontSize: 20}}>
             Rs. {this.props.TotalPrice}
           </Text>
         </View>

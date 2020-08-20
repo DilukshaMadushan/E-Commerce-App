@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-import { withNavigation } from "react-navigation";
-import styles from "./styles";
-import { Icon } from "react-native-elements";
+import React, {Component} from 'react';
+import {Text, View, TouchableOpacity} from 'react-native';
+import {withNavigation} from 'react-navigation';
+import styles from './styles';
 
 class SubSecCategories extends Component {
   state = {
@@ -10,7 +9,7 @@ class SubSecCategories extends Component {
   };
 
   componentWillMount() {
-    this.setState({ SubSecCategorylist: this.props.SubSecCategorylist });
+    this.setState({SubSecCategorylist: this.props.SubSecCategorylist});
     console.log(this.props.name);
   }
 
@@ -20,15 +19,14 @@ class SubSecCategories extends Component {
         {this.props.SubSecCategorylist.map((item, index) => (
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate("Items", { id: item.id });
+              this.props.navigation.navigate('Items', {id: item.id});
             }}
             key={item.id}
             style={{
-              flexDirection: "row",
+              flexDirection: 'row',
               paddingLeft: 80,
               paddingVertical: 6,
-            }}
-          >
+            }}>
             <Text style={styles.title}>{item.name}</Text>
           </TouchableOpacity>
         ))}

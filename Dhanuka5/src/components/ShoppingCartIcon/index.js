@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
-import { Icon } from "react-native-elements";
-import { connect } from "react-redux";
+import React, {Component} from 'react';
+import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {connect} from 'react-redux';
 
 class ShoppingCartIcon extends Component {
   render() {
@@ -9,18 +9,17 @@ class ShoppingCartIcon extends Component {
       <View>
         <TouchableOpacity
           onPress={() => {
-            this.props.navigation.navigate("Mycart");
-          }}
-        >
+            this.props.navigation.navigate('Mycart');
+          }}>
           <Icon
-            name='shopping-cart'
+            name="shopping-cart"
             containerStyle={styles.Icon}
-            type='font-awesome'
-            color={"black"}
+            type="font-awesome"
+            color={'black'}
             size={34}
           />
           <View style={styles.Number}>
-            <Text style={{ color: "#FFF", fontWeight: "bold" }}>
+            <Text style={{color: '#FFF', fontWeight: 'bold'}}>
               {this.props.cartItems.length.toString()}
             </Text>
           </View>
@@ -37,10 +36,10 @@ const styles = StyleSheet.create({
   Number: {
     width: 20,
     height: 20,
-    alignItems: "center",
+    alignItems: 'center',
     borderRadius: 10,
-    backgroundColor: "rgba(0, 179, 155,0.7)",
-    position: "absolute",
+    backgroundColor: 'rgba(0, 179, 155,0.7)',
+    position: 'absolute',
   },
 });
 

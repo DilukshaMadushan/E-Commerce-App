@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   Text,
   View,
   TouchableOpacity,
   ActivityIndicator,
   StatusBar,
-} from "react-native";
-import styles from "./styles";
-import AutoheightTextInput from "react-native-textinput-autoheight";
-import GetAPI from "../../services/GetApi";
+} from 'react-native';
+import styles from './styles';
+import AutoheightTextInput from 'react-native-textinput-autoheight';
+import GetAPI from '../../services/GetApi';
 
 class AddReview extends Component {
   state = {
@@ -21,29 +21,29 @@ class AddReview extends Component {
   };
   componentWillMount() {
     this.getReviews();
-    this.setState({ isLoading: true });
+    this.setState({isLoading: true});
   }
   getReviews() {
     GetAPI.getReviewsApi(this.state.id)
       .then((response) => response.json())
       .then((responsejson) => {
-        this.setState({ reviewList: responsejson });
-        this.setState({ isLoading: false });
+        this.setState({reviewList: responsejson});
+        this.setState({isLoading: false});
       });
   }
 
   postReviewCheck(review) {
-    this.setState({ fastReviewState: true });
+    this.setState({fastReviewState: true});
     if (this.state.review != null) {
       this.props.toggleModel(review);
     } else {
-      alert("Please enter a Review!");
+      alert('Please enter a Review!');
     }
   }
 
   render() {
     const checkReview = this.state.reviewList.filter(
-      (items) => items.reviewer_email == this.props.email
+      (items) => items.reviewer_email == this.props.email,
     ).length;
     return (
       <View style={styles.container}>
@@ -51,46 +51,43 @@ class AddReview extends Component {
           <View
             style={{
               flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: "7%",
-            }}
-          >
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: '7%',
+            }}>
             <ActivityIndicator />
-            <StatusBar barStyle='default' />
+            <StatusBar barStyle="default" />
           </View>
         ) : (
           <View>
             {this.state.reviewList.map((item, index) => (
-              <View style={{ flexDirection: "row" }}>
-                <Text style={{ fontSize: 15, fontWeight: "bold" }}>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={{fontSize: 15, fontWeight: 'bold'}}>
                   {item.reviewer} :
                 </Text>
                 <Text
                   style={{
                     flex: 1,
                     fontSize: 15,
-                    color: "grey",
+                    color: 'grey',
                     paddingLeft: 30,
-                  }}
-                >
-                  {item.review.replace(/(<([^>]+)>)/gi, "")}
+                  }}>
+                  {item.review.replace(/(<([^>]+)>)/gi, '')}
                 </Text>
               </View>
             ))}
             {this.state.fastReviewState != null ? (
-              <View style={{ flexDirection: "row" }}>
-                <Text style={{ fontSize: 15, fontWeight: "bold" }}>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={{fontSize: 15, fontWeight: 'bold'}}>
                   {this.state.profile_name} :
                 </Text>
                 <Text
                   style={{
                     flex: 1,
                     fontSize: 15,
-                    color: "grey",
+                    color: 'grey',
                     paddingLeft: 30,
-                  }}
-                >
+                  }}>
                   {this.state.review}
                 </Text>
               </View>
@@ -101,19 +98,17 @@ class AddReview extends Component {
             {checkReview < 1 || checkReview == null ? (
               <View>
                 <AutoheightTextInput
-                  onChangeText={(text) => this.setState({ review: text })}
-                  style={[styles.TextView, { paddingVertical: 30 }]}
-                  placeholder='Enter your Review...'
+                  onChangeText={(text) => this.setState({review: text})}
+                  style={[styles.TextView, {paddingVertical: 30}]}
+                  placeholder="Enter your Review..."
                 />
                 <TouchableOpacity
                   style={styles.Button}
                   onPress={() => {
                     this.postReviewCheck(this.state.review);
-                  }}
-                >
+                  }}>
                   <Text
-                    style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}
-                  >
+                    style={{color: '#fff', fontWeight: 'bold', fontSize: 20}}>
                     Post Review
                   </Text>
                 </TouchableOpacity>

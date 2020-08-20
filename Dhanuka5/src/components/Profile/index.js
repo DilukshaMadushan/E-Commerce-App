@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-import styles from "./styles";
-import { Icon } from "react-native-elements";
-import Modal from "react-native-modal";
-import RateApp from "../RateApp";
+import React, {Component} from 'react';
+import {Text, View, TouchableOpacity} from 'react-native';
+import styles from './styles';
+import {Icon} from 'react-native-elements';
+import Modal from 'react-native-modal';
+import RateApp from '../RateApp';
 
 class ProfileItems extends Component {
   state = {
@@ -14,75 +14,71 @@ class ProfileItems extends Component {
     return (
       <View style={styles.List}>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("UpdateProfile")}
-          style={styles.ListItem}
-        >
+          onPress={() => this.props.navigation.navigate('UpdateProfile')}
+          style={styles.ListItem}>
           <Icon
-            name='pencil-square'
+            name="pencil-square"
             containerStyle={styles.ItemIcon}
-            type='font-awesome'
-            color={"grey"}
+            type="font-awesome"
+            color={'grey'}
           />
           <Text style={styles.Text}>Update Your Informations</Text>
           <Icon
-            name='chevron-right'
+            name="chevron-right"
             containerStyle={styles.ArrowIcon}
-            type='Entypo'
-            color={"grey"}
+            type="Entypo"
+            color={'grey'}
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("MyOrders")}
-          style={styles.ListItem}
-        >
+          onPress={() => this.props.navigation.navigate('MyOrders')}
+          style={styles.ListItem}>
           <Icon
-            name='shopping-cart'
+            name="shopping-cart"
             containerStyle={styles.ItemIcon}
-            type='font-awesome'
-            color={"grey"}
+            type="font-awesome"
+            color={'grey'}
           />
           <Text style={styles.Text}>My Orders</Text>
           <Icon
-            name='chevron-right'
+            name="chevron-right"
             containerStyle={styles.ArrowIcon}
-            type='Entypo'
-            color={"grey"}
+            type="Entypo"
+            color={'grey'}
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("MyWishlist")}
-          style={styles.ListItem}
-        >
+          onPress={() => this.props.navigation.navigate('MyWishlist')}
+          style={styles.ListItem}>
           <Icon
-            name='heart'
+            name="heart"
             containerStyle={styles.ItemIcon}
-            type='font-awesome'
-            color={"grey"}
+            type="font-awesome"
+            color={'grey'}
           />
           <Text style={styles.Text}>My Wishlists</Text>
           <Icon
-            name='chevron-right'
+            name="chevron-right"
             containerStyle={styles.ArrowIcon}
-            type='Entypo'
-            color={"grey"}
+            type="Entypo"
+            color={'grey'}
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("EmailList")}
-          style={styles.ListItem}
-        >
+          onPress={() => this.props.navigation.navigate('EmailList')}
+          style={styles.ListItem}>
           <Icon
-            name='envelope'
+            name="envelope"
             containerStyle={styles.ItemIcon}
-            type='font-awesome'
-            color={"grey"}
+            type="font-awesome"
+            color={'grey'}
           />
           <Text style={styles.Text}>Email Your Order List</Text>
           <Icon
-            name='chevron-right'
+            name="chevron-right"
             containerStyle={styles.ArrowIcon}
-            type='Entypo'
-            color={"grey"}
+            type="Entypo"
+            color={'grey'}
           />
         </TouchableOpacity>
         {/* <TouchableOpacity style={styles.ListItem}>
@@ -104,61 +100,56 @@ class ProfileItems extends Component {
           </TouchableOpacity>/ */}
         <TouchableOpacity
           style={styles.ListItem}
-          onPress={() => this.setState({ isModalVisible: true })}
-        >
+          onPress={() => this.setState({isModalVisible: true})}>
           <Icon
-            name='star'
+            name="star"
             containerStyle={styles.ItemIcon}
-            type='font-awesome'
-            color={"grey"}
+            type="font-awesome"
+            color={'grey'}
           />
           <Text style={styles.Text}>Rate the App</Text>
           <Icon
-            name='chevron-right'
+            name="chevron-right"
             containerStyle={styles.ArrowIcon}
-            type='Entypo'
-            color={"grey"}
+            type="Entypo"
+            color={'grey'}
           />
         </TouchableOpacity>
         <Modal isVisible={this.state.isModalVisible}>
-          <RateApp
-            toggleModal={() => this.setState({ isModalVisible: false })}
-          />
+          <RateApp toggleModal={() => this.setState({isModalVisible: false})} />
         </Modal>
         <TouchableOpacity
           style={styles.ListItem}
-          onPress={() => this.props.navigation.navigate("PrivacyAndPolicy")}
-        >
+          onPress={() => this.props.navigation.navigate('PrivacyAndPolicy')}>
           <Icon
-            name='grav'
+            name="grav"
             containerStyle={styles.ItemIcon}
-            type='font-awesome'
-            color={"grey"}
+            type="font-awesome"
+            color={'grey'}
           />
           <Text style={styles.Text}>Privacy Policy and Term</Text>
           <Icon
-            name='chevron-right'
+            name="chevron-right"
             containerStyle={styles.ArrowIcon}
-            type='Entypo'
-            color={"grey"}
+            type="Entypo"
+            color={'grey'}
           />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.ListItem}
-          onPress={() => this.props.navigation.navigate("AboutUs")}
-        >
+          onPress={() => this.props.navigation.navigate('AboutUs')}>
           <Icon
-            name='info'
-            containerStyle={(styles.ItemIcon, { paddingStart: 22 })}
-            type='font-awesome'
-            color={"grey"}
+            name="info"
+            containerStyle={(styles.ItemIcon, {paddingStart: 22})}
+            type="font-awesome"
+            color={'grey'}
           />
           <Text style={styles.Text}>About Us</Text>
           <Icon
-            name='chevron-right'
+            name="chevron-right"
             containerStyle={styles.ArrowIcon}
-            type='Entypo'
-            color={"grey"}
+            type="Entypo"
+            color={'grey'}
           />
         </TouchableOpacity>
       </View>

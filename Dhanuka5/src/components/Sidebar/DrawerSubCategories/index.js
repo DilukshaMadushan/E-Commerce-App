@@ -1,11 +1,10 @@
-import React, { Component } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-import { withNavigation } from "react-navigation";
-import styles from "./styles";
-import { Icon } from "react-native-elements";
-import SubSecCategories from "../DrawerSubSecCategories";
+import React, {Component} from 'react';
+import {Text, View, TouchableOpacity} from 'react-native';
+import {withNavigation} from 'react-navigation';
+import styles from './styles';
+import SubSecCategories from '../DrawerSubSecCategories';
 
-function SubSecCategorylist({ SubSecCategorylist, subStatus }) {
+function SubSecCategorylist({SubSecCategorylist, subStatus}) {
   if (subStatus == 1) {
     return <SubSecCategories SubSecCategorylist={SubSecCategorylist} />;
   } else {
@@ -52,8 +51,8 @@ class SubCategories extends Component {
   };
 
   componentWillMount() {
-    this.setState({ CategoryList: this.props.CategoryList });
-    this.setState({ SubCategoryList: this.props.SubCategoryList });
+    this.setState({CategoryList: this.props.CategoryList});
+    this.setState({SubCategoryList: this.props.SubCategoryList});
   }
 
   render() {
@@ -68,43 +67,40 @@ class SubCategories extends Component {
                     return cat.parent == item.id;
                   }).length == 0
                 ) {
-                  this.props.navigation.navigate("Items", { id: item.id });
+                  this.props.navigation.navigate('Items', {id: item.id});
                 } else {
                   const index = this.state.SubCategoryList.indexOf(item);
                   if (this.state.SubSecCategoryStatus[index] == 0) {
                     const dup_array = this.state.SubSecCategoryStatus;
                     dup_array[index] = 1;
-                    this.setState({ SubSecCategoryStatus: dup_array });
+                    this.setState({SubSecCategoryStatus: dup_array});
                     //console.log(this.state.SubSecCategoryStatus);
                   } else {
                     const dup_array = this.state.SubSecCategoryStatus;
                     dup_array[index] = 0;
-                    this.setState({ SubSecCategoryStatus: dup_array });
+                    this.setState({SubSecCategoryStatus: dup_array});
                     //console.log(this.state.SubSecCategoryStatus);
                   }
                 }
               }}
               key={item.id}
               style={{
-                flexDirection: "row",
+                flexDirection: 'row',
                 paddingLeft: 40,
                 paddingVertical: 10,
-              }}
-            >
+              }}>
               <Text style={styles.title}>
                 {this.state.SubSecCategoryStatus[
                   this.state.SubCategoryList.indexOf(item)
                 ]
-                  ? "-"
-                  : "+"}
+                  ? '-'
+                  : '+'}
               </Text>
-              <Text style={[styles.title, { paddingLeft: 10 }]}>
-                {item.name}
-              </Text>
+              <Text style={[styles.title, {paddingLeft: 10}]}>{item.name}</Text>
             </TouchableOpacity>
             <SubSecCategorylist
               SubSecCategorylist={this.state.CategoryList.filter(function (
-                cat
+                cat,
               ) {
                 return cat.parent == item.id;
               })}

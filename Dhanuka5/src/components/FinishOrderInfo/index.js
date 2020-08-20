@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import styles from "./styles";
-import { Icon } from "react-native-elements";
+import React, {Component} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import styles from './styles';
+import {Icon} from 'react-native-elements';
 
 class FinishOrderInfo extends Component {
   render() {
@@ -10,23 +10,20 @@ class FinishOrderInfo extends Component {
         <View style={styles.Upper}>
           <View style={styles.Cross}>
             <View
-              style={{ flex: 1, backgroundColor: "rgba(0, 179, 155,1)" }}
-            ></View>
+              style={{flex: 1, backgroundColor: 'rgba(0, 179, 155,1)'}}></View>
             <View
-              style={{ flex: 1, backgroundColor: "rgba(0, 179, 155,1)" }}
-            ></View>
+              style={{flex: 1, backgroundColor: 'rgba(0, 179, 155,1)'}}></View>
             <View
-              style={{ flex: 1, backgroundColor: "rgba(0, 179, 155,1)" }}
-            ></View>
+              style={{flex: 1, backgroundColor: 'rgba(0, 179, 155,1)'}}></View>
           </View>
           <View style={styles.UpperItems}>
             <Text>cart</Text>
             <View style={(styles.IconView, styles.Border)}>
               <Icon
-                name='shopping-cart'
+                name="shopping-cart"
                 size={15}
-                type='font-awesome'
-                color={"rgba(0, 179, 155,1)"}
+                type="font-awesome"
+                color={'rgba(0, 179, 155,1)'}
               />
             </View>
           </View>
@@ -34,10 +31,10 @@ class FinishOrderInfo extends Component {
             <Text>Delivery</Text>
             <View style={(styles.IconView, styles.Border)}>
               <Icon
-                name='paper-plane'
+                name="paper-plane"
                 size={15}
-                type='font-awesome'
-                color={"rgba(0, 179, 155,1)"}
+                type="font-awesome"
+                color={'rgba(0, 179, 155,1)'}
               />
             </View>
           </View>
@@ -45,10 +42,10 @@ class FinishOrderInfo extends Component {
             <Text>Payment</Text>
             <View style={(styles.IconView, styles.Border)}>
               <Icon
-                name='paypal'
+                name="paypal"
                 size={15}
-                type='font-awesome'
-                color={"rgba(0, 179, 155,1)"}
+                type="font-awesome"
+                color={'rgba(0, 179, 155,1)'}
               />
             </View>
           </View>
@@ -56,31 +53,30 @@ class FinishOrderInfo extends Component {
             <Text>Order</Text>
             <View style={(styles.IconView, styles.Border)}>
               <Icon
-                name='flag'
+                name="flag"
                 size={20}
-                type='Entypo'
-                color={"rgba(0, 179, 155,1)"}
+                type="Entypo"
+                color={'rgba(0, 179, 155,1)'}
               />
             </View>
           </View>
         </View>
         <View style={styles.ThankYouScreen}>
           <View style={styles.ThankIconView}>
-            <Icon name='check' size={50} type='Entypo' color={"#FFF"} />
+            <Icon name="check" size={50} type="Entypo" color={'#FFF'} />
           </View>
-          <Text style={{ fontSize: 30, fontWeight: "bold", paddingTop: 20 }}>
+          <Text style={{fontSize: 30, fontWeight: 'bold', paddingTop: 20}}>
             Thank You
           </Text>
-          <Text style={{ fontSize: 15, paddingTop: 20, textAlign: "center" }}>
+          <Text style={{fontSize: 15, paddingTop: 20, textAlign: 'center'}}>
             Thank you so much for your purchased,to check your delivery status
             please go to My Order
           </Text>
           <TouchableOpacity
             style={styles.buttonViewOrader}
             activeOpacity={0.5}
-            onPress={() => this.props.navigation.navigate("MyOrders")}
-          >
-            <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
+            onPress={() => this.props.navigation.navigate('MyOrders')}>
+            <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 20}}>
               View My Orders
             </Text>
           </TouchableOpacity>
@@ -88,9 +84,8 @@ class FinishOrderInfo extends Component {
           <TouchableOpacity
             style={styles.buttonViewOrader}
             activeOpacity={0.5}
-            onPress={() => this.props.navigation.navigate("Home")}
-          >
-            <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
+            onPress={() => this.props.navigation.navigate('Home')}>
+            <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 20}}>
               Go to Home
             </Text>
           </TouchableOpacity>

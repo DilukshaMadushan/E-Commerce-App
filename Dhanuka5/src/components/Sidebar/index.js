@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,12 +6,12 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
-} from "react-native";
-import Images from "../../common/Images";
-import { connect } from "react-redux";
-import { signOutUser } from "../../store/authRedux";
-import DrawerCategories from "./DrawerCategories";
-import { ScrollView } from "react-native-gesture-handler";
+} from 'react-native';
+import Images from '../../common/Images';
+import {connect} from 'react-redux';
+import {signOutUser} from '../../store/authRedux';
+import DrawerCategories from './DrawerCategories';
+import {ScrollView} from 'react-native-gesture-handler';
 
 class SideBar extends Component {
   handleSignOutUser = () => {
@@ -23,11 +23,10 @@ class SideBar extends Component {
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.Upper}
-          onPress={() => this.props.navigation.navigate("Account")}
-        >
+          onPress={() => this.props.navigation.navigate('Account')}>
           {this.props.isSigned ? (
             <Image
-              source={{ uri: this.props.profile_pic }}
+              source={{uri: this.props.profile_pic}}
               style={styles.ProfileImage}
             />
           ) : (
@@ -35,45 +34,40 @@ class SideBar extends Component {
           )}
           <View style={styles.Profileright}>
             {this.props.isSigned ? (
-              <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+              <Text style={{fontSize: 30, fontWeight: 'bold'}}>
                 {this.props.profile_name}
               </Text>
             ) : (
-              <Text style={{ fontSize: 30, fontWeight: "bold" }}>Guest</Text>
+              <Text style={{fontSize: 30, fontWeight: 'bold'}}>Guest</Text>
             )}
           </View>
         </TouchableOpacity>
         <ScrollView>
           <TouchableOpacity
             style={styles.list}
-            onPress={() => this.props.navigation.navigate("Category")}
-          >
+            onPress={() => this.props.navigation.navigate('Category')}>
             <Text style={styles.Text}>Shop</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.list}
-            onPress={() => this.props.navigation.navigate("ContactUs")}
-          >
+            onPress={() => this.props.navigation.navigate('ContactUs')}>
             <Text style={styles.Text}>Contact Us</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.list}
-            onPress={() => this.props.navigation.navigate("AboutUs")}
-          >
+            onPress={() => this.props.navigation.navigate('AboutUs')}>
             <Text style={styles.Text}>About Us</Text>
           </TouchableOpacity>
           {!this.props.isSigned ? (
             <TouchableOpacity
               style={styles.list}
-              onPress={() => this.props.navigation.navigate("Login")}
-            >
+              onPress={() => this.props.navigation.navigate('Login')}>
               <Text style={styles.Text}>Login</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
               style={styles.list}
-              onPress={() => this.handleSignOutUser()}
-            >
+              onPress={() => this.handleSignOutUser()}>
               <Text style={styles.Text}>Logout</Text>
             </TouchableOpacity>
           )}
@@ -83,11 +77,10 @@ class SideBar extends Component {
               style={{
                 paddingTop: 15,
                 paddingStart: 25,
-                color: "black",
-                fontWeight: "bold",
+                color: 'black',
+                fontWeight: 'bold',
                 fontSize: 25,
-              }}
-            >
+              }}>
               Categories
             </Text>
             <DrawerCategories />
@@ -98,7 +91,7 @@ class SideBar extends Component {
   }
 }
 
-const { width } = Dimensions.get("window");
+const {width} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -106,10 +99,10 @@ const styles = StyleSheet.create({
   },
   Upper: {
     paddingVertical: 50,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     borderBottomWidth: 1,
-    borderColor: "rgba(150,150,150,0.1)",
+    borderColor: 'rgba(150,150,150,0.1)',
   },
   ProfileImage: {
     marginLeft: 30,
@@ -122,14 +115,14 @@ const styles = StyleSheet.create({
   },
   list: {
     borderBottomWidth: 1,
-    borderColor: "rgba(150,150,150,0.1)",
+    borderColor: 'rgba(150,150,150,0.1)',
     paddingVertical: 10,
   },
   Text: {
     fontSize: 17,
     paddingStart: 25,
-    fontWeight: "bold",
-    justifyContent: "center",
+    fontWeight: 'bold',
+    justifyContent: 'center',
   },
 });
 

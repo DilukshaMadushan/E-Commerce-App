@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   View,
   FlatList,
@@ -6,13 +6,13 @@ import {
   Text,
   Dimensions,
   TouchableOpacity,
-} from "react-native";
-import { Icon } from "react-native-elements";
-import styles from "./styles";
-import EmptyWishlist from "./EmptyWishlist";
-import { connect } from "react-redux";
-import { addcartItem } from "../../store/cartItemRedux";
-import { removewishItem } from "../../store/wishlistRedux";
+} from 'react-native';
+import {Icon} from 'react-native-elements';
+import styles from './styles';
+import EmptyWishlist from './EmptyWishlist';
+import {connect} from 'react-redux';
+import {addcartItem} from '../../store/cartItemRedux';
+import {removewishItem} from '../../store/wishlistRedux';
 
 function Item({
   ItemName,
@@ -28,47 +28,43 @@ function Item({
       style={{
         borderTopWidth: 5,
         paddingTop: 10,
-        borderColor: "rgba(184,184,184,0.1)",
+        borderColor: 'rgba(184,184,184,0.1)',
         width: width,
-        backgroundColor: "#fff",
-      }}
-    >
+        backgroundColor: '#fff',
+      }}>
       <TouchableOpacity
-        onPress={() => navigation.navigate("ItemView", { item: item })}
-      >
-        <View style={{ flexDirection: "row" }}>
-          <Image style={styles.ItemImage} source={{ uri: uri }}></Image>
+        onPress={() => navigation.navigate('ItemView', {item: item})}>
+        <View style={{flexDirection: 'row'}}>
+          <Image style={styles.ItemImage} source={{uri: uri}}></Image>
           <View style={styles.ItemName}>
-            <Text style={{ fontSize: 16 }}>{ItemName}</Text>
-            <Text style={{ fontSize: 16, color: "rgba(184,184,184,1)" }}>
+            <Text style={{fontSize: 16}}>{ItemName}</Text>
+            <Text style={{fontSize: 16, color: 'rgba(184,184,184,1)'}}>
               Rs {ItemPrice}
             </Text>
           </View>
         </View>
       </TouchableOpacity>
-      <View style={{ flexDirection: "row", marginTop: 10, height: 40 }}>
+      <View style={{flexDirection: 'row', marginTop: 10, height: 40}}>
         <TouchableOpacity
           style={styles.IconDelete}
           activeOpacity={0.5}
           onPress={() => {
             removeItemFromWishlist(item);
-          }}
-        >
-          <Icon name='trash' type='font-awesome' color={"#FFF"} />
+          }}>
+          <Icon name="trash" type="font-awesome" color={'#FFF'} />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.IconAddCart}
           activeOpacity={0.5}
-          onPress={() => addItemToCart(item)}
-        >
-          <Icon name='shopping-cart' type='font-awesome' color={"#FFF"} />
+          onPress={() => addItemToCart(item)}>
+          <Icon name="shopping-cart" type="font-awesome" color={'#FFF'} />
         </TouchableOpacity>
       </View>
     </View>
   );
 }
 
-const { width, height } = Dimensions.get("window");
+const {width, height} = Dimensions.get('window');
 
 class MyWishlist extends Component {
   render() {
@@ -78,7 +74,7 @@ class MyWishlist extends Component {
           <FlatList
             data={this.props.wishList}
             numColumns={1}
-            renderItem={({ item }) => (
+            renderItem={({item}) => (
               <Item
                 ItemName={item.name}
                 item={item}

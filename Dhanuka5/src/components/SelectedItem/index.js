@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   View,
   FlatList,
@@ -6,16 +6,16 @@ import {
   Text,
   TouchableOpacity,
   Dimensions,
-} from "react-native";
-import styles from "./styles";
-import { Icon } from "react-native-elements";
-import EmptyCart from "./EmptyCart";
-import { connect } from "react-redux";
+} from 'react-native';
+import styles from './styles';
+import {Icon} from 'react-native-elements';
+import EmptyCart from './EmptyCart';
+import {connect} from 'react-redux';
 import {
   removecartItem,
   incrementCount,
   decrementCount,
-} from "../../store/cartItemRedux";
+} from '../../store/cartItemRedux';
 
 function Item({
   ItemName,
@@ -30,51 +30,49 @@ function Item({
   return (
     <View
       style={{
-        flexDirection: "row",
+        flexDirection: 'row',
         borderTopWidth: 5,
         paddingVertical: 10,
-        backgroundColor: "#FFF",
-        borderColor: "rgba(184,184,184,0.1)",
+        backgroundColor: '#FFF',
+        borderColor: 'rgba(184,184,184,0.1)',
         width: width,
-      }}
-    >
-      <Image style={styles.ItemImage} source={{ uri: uri }}></Image>
+      }}>
+      <Image style={styles.ItemImage} source={{uri: uri}}></Image>
       <View style={styles.ItemName}>
-        <Text style={{ fontSize: 16 }}>{ItemName}</Text>
-        <Text style={{ fontSize: 16, color: "rgba(184,184,184,1)" }}>
+        <Text style={{fontSize: 16}}>{ItemName}</Text>
+        <Text style={{fontSize: 16, color: 'rgba(184,184,184,1)'}}>
           Rs {ItemPrice}
         </Text>
       </View>
       <TouchableOpacity style={styles.Delete} onPress={() => removeItem(item)}>
-        <Icon name='trash' type='font-awesome' color={"rgba(184,184,184,1)"} />
+        <Icon name="trash" type="font-awesome" color={'rgba(184,184,184,1)'} />
       </TouchableOpacity>
       <View style={styles.ItemCount}>
         <TouchableOpacity onPress={() => counterIncrease(item)}>
           <Icon
-            name='caret-up'
+            name="caret-up"
             containerStyle={styles.IconMathPlus}
             size={25}
-            type='font-awesome'
-            color={"black"}
+            type="font-awesome"
+            color={'black'}
           />
         </TouchableOpacity>
         <View
           style={{
-            backgroundColor: "rgba(230,230,230,1)",
+            backgroundColor: 'rgba(230,230,230,1)',
             borderLeftWidth: 1,
             borderRightWidth: 1,
-            borderColor: "rgba(184,184,184,1)",
-          }}
-        >
-          <Text style={{ alignSelf: "center", fontSize: 20 }}>{count}</Text>
+            borderColor: 'rgba(184,184,184,1)',
+          }}>
+          <Text style={{alignSelf: 'center', fontSize: 20}}>{count}</Text>
         </View>
         <TouchableOpacity onPress={() => counterDecrease(item)}>
           <Icon
-            name='caret-down'
+            name="caret-down"
             containerStyle={styles.IconMathMinus}
             size={25}
-            type='font-awesome'
-            color={"black"}
+            type="font-awesome"
+            color={'black'}
           />
         </TouchableOpacity>
       </View>
@@ -82,7 +80,7 @@ function Item({
   );
 }
 
-const { width, height } = Dimensions.get("window");
+const {width, height} = Dimensions.get('window');
 
 class SelectedItem extends Component {
   handle = () => {
@@ -96,7 +94,7 @@ class SelectedItem extends Component {
           <FlatList
             data={this.props.cartItems}
             numColumns={1}
-            renderItem={({ item }) => (
+            renderItem={({item}) => (
               <Item
                 ItemName={item.name}
                 item={item}

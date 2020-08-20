@@ -1,12 +1,12 @@
-import React, { StyleSheet, Dimensions } from "react-native";
+import React, {StyleSheet, Dimensions} from 'react-native';
 
-const { width, height } = Dimensions.get("window");
+const {width, height} = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
-    alignItems: "center",
-    paddingTop: "50%",
-    backgroundColor: "#FFF",
+    alignItems: 'center',
+    paddingTop: '30%',
+    backgroundColor: '#FFF',
     height: height,
   },
 });

@@ -1,22 +1,21 @@
-import React, { StyleSheet, Dimensions } from "react-native";
+import React, {StyleSheet, Dimensions} from 'react-native';
 
-const { width, height } = Dimensions.get("window");
+const {width, height} = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
-    alignItems: "center",
-    marginVertical: 100,
-    height: 280,
-    backgroundColor: "#FFF",
+    alignItems: 'center',
+    marginVertical: 70,
+    backgroundColor: '#FFF',
   },
   ShoppingButton: {
     height: 50,
     width: 200,
     marginHorizontal: 30,
-    marginVertical: 50,
-    alignItems: "center",
-    justifyContent: "center",
+    marginVertical: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 30,
-    backgroundColor: "rgba(0, 179, 155,0.7)",
+    backgroundColor: 'rgba(0, 179, 155,0.7)',
   },
 });

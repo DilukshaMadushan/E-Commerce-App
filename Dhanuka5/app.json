@@ -1,26 +1,4 @@
 {
-  "expo": {
-    "name": "Waytoogo",
-    "slug": "Waytoogo",
-    "platforms": ["ios", "android", "web"],
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.jpg",
-    "splash": {
-      "image": "./assets/icon.jpg",
-      "resizeMode": "",
-      "backgroundColor": "#FFF"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "package": "com.waytoogo.waytoogo",
-      "versionCode": 1
-    }
-  }
+  "name": "app2",
+  "displayName": "app2"
 }

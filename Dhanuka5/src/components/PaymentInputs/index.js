@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   View,
   Text,
@@ -8,22 +8,22 @@ import {
   ActivityIndicator,
   StatusBar,
   Dimensions,
-} from "react-native";
-import styles from "./styles";
-import Images from "../../common/Images";
-import { connect } from "react-redux";
-import { emptyCart } from "../../store/cartItemRedux";
-import PostAPI from "../../services/PostAPI";
+} from 'react-native';
+import styles from './styles';
+import Images from '../../common/Images';
+import {connect} from 'react-redux';
+import {emptyCart} from '../../store/cartItemRedux';
+import PostAPI from '../../services/PostAPI';
 
 class PaymentInputs extends Component {
-  state = this.props.navigation.getParam("state");
+  state = this.props.navigation.getParam('state');
 
   componentWillMount() {
-    this.setState({ isLoading: false });
+    this.setState({isLoading: false});
   }
 
   postPayments() {
-    this.setState({ isLoading: true });
+    this.setState({isLoading: true});
     const cart_item = this.props.cartItemList;
     let lineItems = [];
     for (let i = 0; i < cart_item.length; i++) {
@@ -37,8 +37,8 @@ class PaymentInputs extends Component {
     }
     PostAPI.paymentInputsApi(
       JSON.stringify({
-        payment_method: "bacs",
-        payment_method_title: "Cache on Delivery",
+        payment_method: 'bacs',
+        payment_method_title: 'Cache on Delivery',
         set_paid: false,
         customer_id: this.props.signInId,
         total: this.props.TotalPrice.toString(),
@@ -68,27 +68,27 @@ class PaymentInputs extends Component {
         line_items: lineItems,
         shipping_lines: [
           {
-            method_id: "flat_rate",
-            method_title: "Flat Rate",
-            total: "100",
+            method_id: 'flat_rate',
+            method_title: 'Flat Rate',
+            total: '100',
           },
         ],
-      })
+      }),
     )
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({ isLoading: false });
+        this.setState({isLoading: false});
         try {
-          if (responseJson.role == "customer") {
+          if (responseJson.role == 'customer') {
             this.props.emptyCart();
-            this.props.navigation.navigate("Finish_Order");
+            this.props.navigation.navigate('Finish_Order');
           } else {
             this.props.emptyCart();
-            this.props.navigation.navigate("Finish_Order");
+            this.props.navigation.navigate('Finish_Order');
             //alert("Error");
           }
         } catch {
-          alert("Error");
+          alert('Error');
         }
         console.log(responseJson);
       })
@@ -99,73 +99,68 @@ class PaymentInputs extends Component {
   }
 
   render() {
-    const { width } = Dimensions.get("window");
+    const {width} = Dimensions.get('window');
     return (
       <View>
         {this.state.isLoading == false ? (
           <View style={styles.container}>
-            <ScrollView style={{ marginBottom: 135 }}>
-              <View style={{ flexDirection: "row" }}>
+            <ScrollView style={{marginBottom: 135}}>
+              <View style={{flexDirection: 'row'}}>
                 <TouchableOpacity
                   style={styles.paymentMethods}
                   onPress={() => {
                     this.postPayments();
-                  }}
-                >
+                  }}>
                   <Image
                     source={Images.CashOnDelivery}
-                    style={{ height: "60%", width: "100%" }}
+                    style={{height: '60%', width: '100%'}}
                   />
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.paymentMethods}
                   onPress={() => {
                     this.postPayments();
-                  }}
-                >
+                  }}>
                   <Image
                     source={Images.PayHere}
-                    style={{ height: "60%", width: "100%" }}
+                    style={{height: '60%', width: '100%'}}
                   />
                 </TouchableOpacity>
               </View>
 
               <View
-                style={{ flexDirection: "row", width: "100%", paddingTop: 20 }}
-              >
-                <Text style={{ flex: 1, paddingStart: 20, fontSize: 17 }}>
+                style={{flexDirection: 'row', width: '100%', paddingTop: 20}}>
+                <Text style={{flex: 1, paddingStart: 20, fontSize: 17}}>
                   Subtotal
                 </Text>
-                <Text style={{ paddingEnd: 20, fontSize: 17 }}>
+                <Text style={{paddingEnd: 20, fontSize: 17}}>
                   Rs {this.props.TotalPrice}
                 </Text>
               </View>
               <View
                 style={{
-                  flexDirection: "row",
-                  width: "100%",
+                  flexDirection: 'row',
+                  width: '100%',
                   paddingVertical: 20,
-                }}
-              >
-                <Text style={{ flex: 1, paddingStart: 20, fontSize: 17 }}>
+                }}>
+                <Text style={{flex: 1, paddingStart: 20, fontSize: 17}}>
                   Delivery Payment
                 </Text>
-                <Text style={{ paddingEnd: 20, fontSize: 17 }}>Rs 100</Text>
+                <Text style={{paddingEnd: 20, fontSize: 17}}>Rs 100</Text>
               </View>
               <View
                 style={{
-                  flexDirection: "row",
-                  width: "100%",
+                  flexDirection: 'row',
+                  width: '100%',
                   paddingTop: 15,
                   paddingBottom: 20,
                   borderTopWidth: 1,
-                  borderColor: "rgba(200,200,200,1)",
-                }}
-              >
-                <Text style={{ flex: 1, paddingStart: 20, fontSize: 17 }}>
+                  borderColor: 'rgba(200,200,200,1)',
+                }}>
+                <Text style={{flex: 1, paddingStart: 20, fontSize: 17}}>
                   Total
                 </Text>
-                <Text style={{ paddingEnd: 20, fontSize: 17 }}>
+                <Text style={{paddingEnd: 20, fontSize: 17}}>
                   Rs {this.props.TotalPrice + 100}
                 </Text>
               </View>
@@ -185,13 +180,12 @@ class PaymentInputs extends Component {
           <View
             style={{
               flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
+              justifyContent: 'center',
+              alignItems: 'center',
               marginTop: width * 0.7,
-            }}
-          >
+            }}>
             <ActivityIndicator />
-            <StatusBar barStyle='default' />
+            <StatusBar barStyle="default" />
           </View>
         )}
       </View>

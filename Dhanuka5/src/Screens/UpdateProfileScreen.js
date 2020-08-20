@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
-import ProfileUpdate from "../components/ProfileUpdate";
+import React, {Component} from 'react';
+import {StyleSheet, View} from 'react-native';
+import ProfileUpdate from '../components/ProfileUpdate';
 
 class UpdateProfileScreen extends Component {
   render() {
@@ -14,7 +14,7 @@ class UpdateProfileScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#FFF",
+    backgroundColor: '#FFF',
   },
 });
 

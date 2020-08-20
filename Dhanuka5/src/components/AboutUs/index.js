@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { Text, View, Dimensions, StyleSheet } from "react-native";
+import React, {Component} from 'react';
+import {Text, View, Dimensions, StyleSheet} from 'react-native';
 
 class AboutUs extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{ fontSize: 40, fontWeight: "bold", marginVertical: 20 }}>
+        <Text style={{fontSize: 40, fontWeight: 'bold', marginVertical: 20}}>
           About Us
         </Text>
         <Text
           style={{
-            color: "grey",
+            color: 'grey',
             fontSize: 15,
             marginVertical: 20,
+            paddingBottom: '25%',
             paddingHorizontal: 20,
-            textAlign: "center",
-          }}
-        >
+            textAlign: 'center',
+          }}>
           Waytoogo is currently based bandarawela. implemented on 2019, Our
           Brands are Online shopping, Printing, wholesale. our main goal is to
           deliver more then expected with ease.
@@ -25,13 +25,13 @@ class AboutUs extends Component {
     );
   }
 }
-const { width } = Dimensions.get("window");
+const {width} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: "80%",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#FFF",
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FFF',
   },
 });
 

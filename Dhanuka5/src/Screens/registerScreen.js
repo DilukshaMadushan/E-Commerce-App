@@ -21,6 +21,8 @@ class registerScreen extends Component {
   state = {
     username: null,
     email: null,
+    phone:null,
+    city:null,
     password: null,
     comfirm_password: null,
     isLoading: false,
@@ -47,41 +49,51 @@ class registerScreen extends Component {
     if (
       this.state.username !== null &&
       this.state.email !== null &&
-      this.state.password !== null &&
-      this.state.comfirm_password !== null
+      this.state.phone !== null
     ) {
-      if (this.state.password == this.state.comfirm_password) {
-        this.setState({ isLoading: true });
-        PostAPI.registerApi(
-          JSON.stringify({
-            user_name: this.state.username,
+      
+      this.setState({ isLoading: true });
+      PostAPI.registerApi(
+        JSON.stringify({
+          user_name: this.state.username,
+          email: this.state.email,
+          password: "123465",
+          billing: {
+            first_name: this.state.username,
+            // last_name: "",
+            // company: "",
+            // address_1: "",
+            // address_2: "",
+            city: this.state.city,
+            // state: "",
+            // postcode: "",
+            country: "SL",
             email: this.state.email,
-            password: this.state.password,
-          })
-        )
-          .then((response) => response.json())
-          .then((responseJson) => {
-            this._storeData("isSigned", "true");
-            this._storeData("profileId", responseJson.id.toString());
-            this.handleSignInIdPassing(responseJson);
-            this.setState({ isLoading: false });
-            //this._storeData('profilePic',responseJson.avatar_url);
-            //this._storeData('profileName',responseJson.user_name);
-            //global.profileId[0] = responseJson.id;
-            //global.profilePic[0] = responseJson.avatar_url;
-            //global.name[0] = responseJson.user_name;
+            phone: this.state.phone
+          },
+        })
+      )
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this._storeData("isSigned", "true");
+          this._storeData("profileId", responseJson.id.toString());
+          this.handleSignInIdPassing(responseJson);
+          this.setState({ isLoading: false });
+          //this._storeData('profilePic',responseJson.avatar_url);
+          //this._storeData('profileName',responseJson.user_name);
+          //global.profileId[0] = responseJson.id;
+          //global.profilePic[0] = responseJson.avatar_url;
+          //global.name[0] = responseJson.user_name;
 
-            this.props.navigation.navigate("Home");
-          })
-          .catch((error) => {
-            console.error(error);
-            alert(error);
-          });
-      } else {
-        alert("password do not match");
-      }
+          this.props.navigation.navigate("Home");
+        })
+        .catch((error) => {
+          console.error(error);
+          alert(error,"Please Try Again ");
+        });
+      
     } else {
-      alert("something is missing");
+      alert("Please Fill All the Fields");
     }
   }
 
@@ -102,7 +114,7 @@ class registerScreen extends Component {
               <View style={styles.TextView}>
                 <TextInput
                   style={styles.TextInput}
-                  placeholder='Enter User Name'
+                  placeholder='User Name'
                   maxLength={40}
                   onChangeText={(text) => this.setState({ username: text })}
                 />
@@ -110,12 +122,32 @@ class registerScreen extends Component {
               <View style={styles.TextView}>
                 <TextInput
                   style={styles.TextInput}
-                  placeholder='Enter Email'
+                  placeholder='Email'
                   maxLength={40}
                   onChangeText={(text) => this.setState({ email: text })}
                 />
               </View>
+
               <View style={styles.TextView}>
+                <TextInput
+                  style={styles.TextInput}
+                  keyboardType="phone-pad"
+                  placeholder='Mobile'
+                  maxLength={10}
+                  onChangeText={(text) => this.setState({ phone: text })}
+                />
+              </View>
+
+              <View style={styles.TextView}>
+                <TextInput
+                  style={styles.TextInput}
+                  placeholder='City'
+                  maxLength={40}
+                  onChangeText={(text) => this.setState({ city: text })}
+                />
+              </View>
+
+              {/* <View style={styles.TextView}>
                 <TextInput
                   style={styles.TextInput}
                   placeholder='Enter Password'
@@ -123,8 +155,8 @@ class registerScreen extends Component {
                   secureTextEntry={true}
                   onChangeText={(text) => this.setState({ password: text })}
                 />
-              </View>
-              <View style={styles.TextView}>
+              </View> */}
+              {/* <View style={styles.TextView}>
                 <TextInput
                   style={styles.TextInput}
                   placeholder='Comfirm Password'
@@ -134,7 +166,8 @@ class registerScreen extends Component {
                     this.setState({ comfirm_password: text })
                   }
                 />
-              </View>
+              </View> */}
+
               <TouchableOpacity
                 style={styles.Button}
                 activeOpacity={0.5}
@@ -145,10 +178,10 @@ class registerScreen extends Component {
                 <Text
                   style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}
                 >
-                  Sign In
+                  Continue Shopping
                 </Text>
               </TouchableOpacity>
-              <View
+              {/* <View
                 style={{
                   flexDirection: "row",
                   paddingTop: 10,
@@ -171,7 +204,7 @@ class registerScreen extends Component {
                     Login
                   </Text>
                 </TouchableOpacity>
-              </View>
+              </View> */}
             </View>
           </ScrollView>
         ) : (
@@ -230,7 +263,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 30,
-    backgroundColor: "rgba(0, 179, 155,0.7)",
+    backgroundColor: "#FF8C00",
   },
 });
 

@@ -5,6 +5,7 @@ import {
   View,
   Image,
   Dimensions,
+  AsyncStorage,
   TouchableOpacity,
 } from 'react-native';
 import Images from '../../common/Images';
@@ -14,8 +15,21 @@ import DrawerCategories from './DrawerCategories';
 import {ScrollView} from 'react-native-gesture-handler';
 
 class SideBar extends Component {
+
+  _storeData = async (key, value) => {
+    try {
+      await AsyncStorage.setItem(key, value);
+      console.log("this is ",key, value);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   handleSignOutUser = () => {
+    this._storeData('isSigned','false');
+    this._storeData('profileId','-5');
     this.props.signOutUser();
+    this.props.navigation.navigate("Auth");
   };
 
   render() {
@@ -34,11 +48,11 @@ class SideBar extends Component {
           )}
           <View style={styles.Profileright}>
             {this.props.isSigned ? (
-              <Text style={{fontSize: 30, fontWeight: 'bold'}}>
+              <Text style={{fontSize: 20, fontWeight: 'bold'}}>
                 {this.props.profile_name}
               </Text>
             ) : (
-              <Text style={{fontSize: 30, fontWeight: 'bold'}}>Guest</Text>
+              <Text style={{fontSize: 20, fontWeight: 'bold'}}>Guest</Text>
             )}
           </View>
         </TouchableOpacity>
@@ -61,14 +75,14 @@ class SideBar extends Component {
           {!this.props.isSigned ? (
             <TouchableOpacity
               style={styles.list}
-              onPress={() => this.props.navigation.navigate('Login')}>
-              <Text style={styles.Text}>Login</Text>
+              onPress={() => this.props.navigation.navigate('Auth')}>
+              <Text style={styles.Text}>Register</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
               style={styles.list}
               onPress={() => this.handleSignOutUser()}>
-              <Text style={styles.Text}>Logout</Text>
+              <Text style={styles.Text}>Reset Account</Text>
             </TouchableOpacity>
           )}
 

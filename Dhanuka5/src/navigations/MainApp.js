@@ -1,7 +1,7 @@
 import React from 'react';
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
-// import AuthLoadingScreen from "../Screens/AuthLoadingScreen";
-// import AuthStack from "../navigations/AuthNavigate";
+import AuthLoadingScreen from "../Screens/AuthLoadingScreen";
+import AuthStack from "../navigations/AuthNavigate";
 import Drawer from "./DrawerNavigate";
 
 import { createStackNavigator } from 'react-navigation-stack';
@@ -12,12 +12,12 @@ import AppScreens from "./AppNavigate";
 const MainApp = createAppContainer(
   createSwitchNavigator(
     {
-      //AuthLoading: AuthLoadingScreen,
+      AuthLoading: AuthLoadingScreen,
       Drawer: Drawer,
-      //Auth: AuthStack,
+      Auth: AuthStack,
     },
     {
-      initialRouteName: "Drawer",
+      initialRouteName: "AuthLoading",
     }
   )
 );

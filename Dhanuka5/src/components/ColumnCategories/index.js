@@ -15,6 +15,7 @@ import styles from "./styles";
 import Images from "../../common/Images";
 import SubCategories from "../ColumnSubCategories";
 import GetAPI from "../../services/GetApi";
+import Spinner from 'react-native-loading-spinner-overlay';
 
 function Item({ title, uri, id, product }) {
   return (
@@ -50,7 +51,7 @@ class Categories extends React.Component {
   state = {
     CategoryList: [],
     MainCategoryList: [],
-    SubCategoryStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    SubCategoryStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0],
     SubCategoryList: [],
     isLoading: true,
   };
@@ -60,6 +61,7 @@ class Categories extends React.Component {
   }
 
   getCategories() {
+    this.setState({ isLoading: true });
     GetAPI.categoryApi()
       .then((response) => response.json())
       .then((json) => {
@@ -147,8 +149,12 @@ class Categories extends React.Component {
               marginTop: width * 0.8,
             }}
           >
-            <ActivityIndicator />
-            <StatusBar barStyle='default' />
+            <Spinner
+                visible={true}
+                textContent={'Loading...'}
+                //textStyle={styles.spinnerTextStyle}
+              />
+            {/* <StatusBar barStyle='default' /> */}
           </View>
         )}
       </View>

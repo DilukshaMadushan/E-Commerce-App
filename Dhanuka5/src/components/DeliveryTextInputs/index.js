@@ -14,6 +14,7 @@ import styles from './styles';
 import {connect} from 'react-redux';
 import GetAPI from '../../services/GetApi';
 import PostAPI from '../../services/PostAPI';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 class DeliveryTextInputs extends Component {
   state = {
@@ -301,8 +302,11 @@ class DeliveryTextInputs extends Component {
               alignItems: 'center',
               marginTop: width * 0.7,
             }}>
-            <ActivityIndicator />
-            <StatusBar barStyle="default" />
+            <Spinner
+                visible={true}
+                textContent={'Loading...'}
+                //textStyle={styles.spinnerTextStyle}
+              />
           </View>
         )}
       </View>

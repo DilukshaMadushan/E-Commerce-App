@@ -8,25 +8,13 @@ class payhereScreen extends Component {
     htmlCode: '',
   };
 
-  componentWillMount() {
-    this.getPaymentsGateway();
-  }
-
-  getPaymentsGateway() {
-    PostAPI.payhereApi()
-      .then((response) => {
-        return response.text();
-      })
-      .then((text) => {
-        console.log(text);
-        this.setState({htmlCode: text});
-      });
-  }
 
   render() {
     const {width} = Dimensions.get('window');
     return (
-      <View></View>
+      <View>
+
+      </View>
       // <WebView originWhitelist={["*"]} source={{ html: this.state.htmlCode }} />
     );
   }

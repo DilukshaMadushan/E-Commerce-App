@@ -14,6 +14,8 @@ import Images from '../../common/Images';
 import {connect} from 'react-redux';
 import {emptyCart} from '../../store/cartItemRedux';
 import PostAPI from '../../services/PostAPI';
+import Toast from '../../Modules/ToastModule';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 class PaymentInputs extends Component {
   state = this.props.navigation.getParam('state');
@@ -119,8 +121,12 @@ class PaymentInputs extends Component {
                 <TouchableOpacity
                   style={styles.paymentMethods}
                   onPress={() => {
-                    this.postPayments();
+                    //this.postPayments();
+                    Toast.payOnce(100, (msg=>{
+                      alert(msg);
+                    }))
                   }}>
+
                   <Image
                     source={Images.PayHere}
                     style={{height: '60%', width: '100%'}}
@@ -184,8 +190,11 @@ class PaymentInputs extends Component {
               alignItems: 'center',
               marginTop: width * 0.7,
             }}>
-            <ActivityIndicator />
-            <StatusBar barStyle="default" />
+            <Spinner
+                visible={true}
+                textContent={'Loading...'}
+                //textStyle={styles.spinnerTextStyle}
+              />
           </View>
         )}
       </View>

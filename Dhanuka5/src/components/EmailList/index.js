@@ -7,12 +7,17 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  Alert,
+  PermissionsAndroid
 } from 'react-native';
 import styles from './styles';
 import email from 'react-native-email';
+import Mailer from 'react-native-mail';
 //import * as ImagePicker from 'expo-image-picker';
 //import Constants from 'expo-constants';
 //import * as Permissions from 'expo-permissions';
+
+import ImagePicker from 'react-native-image-picker';
 import Images from '../../common/Images';
 import AutoheightTextInput from 'react-native-textinput-autoheight';
 
@@ -24,36 +29,63 @@ class EmailList extends Component {
     List: null,
     file_url: null,
     file_type: null,
+    file_name: null
   };
 
   componentWillMount() {
-    this.getPermissionAsync();
+    this.requestCameraPermission();
   }
 
-  getPermissionAsync = async () => {
-    // if (Constants.platform.ios) {
-    //   const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    //   if (status !== 'granted') {
-    //     alert('Sorry, we need camera roll permissions to make this work!');
-    //   }
-    // }
-  };
+  requestCameraPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: "Cool Photo App Camera Permission",
+          message:
+            "Cool Photo App needs access to your camera " +
+            "so you can take awesome pictures.",
+          buttonNeutral: "Ask Me Later",
+          buttonNegative: "Cancel",
+          buttonPositive: "OK"
+        }
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log("You can use the camera");
+      } else {
+        console.log("Camera permission denied");
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  }
   _pickImage = async () => {
-    // try {
-    //   let result = await ImagePicker.launchImageLibraryAsync({
-    //     mediaTypes: ImagePicker.MediaTypeOptions.All,
-    //     allowsEditing: true,
-    //     quality: 1,
-    //   });
-    //   if (!result.cancelled) {
-    //     this.setState({file_url: result.uri});
-    //     this.setState({file_type: result.type});
-    //   }
-    //   console.log(this.state.file_url);
-    //   console.log(result);
-    // } catch (E) {
-    //   console.log(E);
-    // }
+    const options = {
+      title: 'Select Avatar',
+      customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+     
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        
+        this.setState({file_url:response.uri});
+        this.setState({file_type:response.type});
+        this.setState({file_name:response.fileName});
+
+      }
+    });
   };
 
   handleEmail = () => {
@@ -76,20 +108,46 @@ class EmailList extends Component {
         'Your Orders List : ' +
         this.state.List
       ).toString();
-      email(to, {
-        //cc: "Waytoogolk@gmail.com",
-        //bcc: "Waytoogolk@gmail.com",
+      // email(to, {
+      //   //cc: "Waytoogolk@gmail.com",
+      //   //bcc: "Waytoogolk@gmail.com",
+      //   subject: 'Waytoogo Email Delivery',
+      //   body: body,
+      //   isHTML: true,
+      //   attachment: [
+      //     {
+      //       path: this.state.file_url, // The absolute path of the file from which to read data.
+      //       type: this.state.file_type, // Mime Type: jpg, png, doc, ppt, html, pdf, csv
+      //       name: 'Waytoogo Email image',
+      //     },
+      //   ],
+      // }).catch(console.error);
+
+      Mailer.mail({
         subject: 'Waytoogo Email Delivery',
+        recipients: ['Waytoogolk@gmail.com'],
+        ccRecipients: [],
+        bccRecipients: [],
         body: body,
         isHTML: true,
-        attachment: [
-          {
-            path: this.state.file_url, // The absolute path of the file from which to read data.
-            type: this.state.file_type, // Mime Type: jpg, png, doc, ppt, html, pdf, csv
-            name: 'Waytoogo Email image',
-          },
-        ],
-      }).catch(console.error);
+        attachments: [{
+          path: this.state.file_url,  // The absolute path of the file from which to read data.
+          type: 'jpg',   // Mime Type: jpg, png, doc, ppt, html, pdf, csv
+          // mimeType - use only if you want to use custom type
+          //name: this.state.file_name,   // Optional: Custom filename for attachment
+        }]
+      }, (error, event) => {
+        Alert.alert(
+          error,
+          event,
+          [
+            {text: 'Ok', onPress: () => console.log('OK: Email Error Response')},
+            {text: 'Cancel', onPress: () => console.log('CANCEL: Email Error Response')}
+          ],
+          { cancelable: true }
+        )
+      });
+
     } else {
       alert('Something Missing!');
     }
@@ -159,14 +217,14 @@ class EmailList extends Component {
               />
             </View>
           )}
-          {/* <TouchableOpacity
+          <TouchableOpacity
             style={[styles.Button, { backgroundColor: "red" }]}
             onPress={() => this._pickImage()}
           >
             <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
               Select List Image
             </Text>
-          </TouchableOpacity>*/}
+          </TouchableOpacity>
 
           <TouchableOpacity style={styles.Button} onPress={this.handleEmail}>
             <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 20}}>

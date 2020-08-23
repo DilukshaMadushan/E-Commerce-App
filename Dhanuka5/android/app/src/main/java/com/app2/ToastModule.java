@@ -49,8 +49,8 @@ public class ToastModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void payOnce(int amount, Callback successCallback) {
     
-    req.setMerchantId("213083");       // Your Merchant PayHere ID
-    req.setMerchantSecret("8b2fc45d311d61630014693952f8d059"); // Your Merchant secret (Add your app at Settings > Domains & Credentials, to get this))
+    req.setMerchantId("1215003");       // Your Merchant PayHere ID
+    req.setMerchantSecret("123456789"); // Your Merchant secret (Add your app at Settings > Domains & Credentials, to get this))
     req.setCurrency("LKR");             // Currency code LKR/USD/GBP/EUR/AUD
     req.setAmount(amount);             // Final Amount to be charged
     req.setOrderId("230000123");        // Unique Reference ID

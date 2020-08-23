@@ -5,6 +5,7 @@ import {
   View,
   Image,
   Text,
+  AsyncStorage,
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
@@ -14,8 +15,22 @@ import {connect} from 'react-redux';
 import {signOutUser} from '../store/authRedux';
 
 class accountScreen extends Component {
+
+  _storeData = async (key, value) => {
+    try {
+      await AsyncStorage.setItem(key, value);
+      console.log(key, value);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   handleSignOutUser = () => {
+    this._storeData('isSigned','false');
+    this._storeData('profileId','-5');
     this.props.signOutUser();
+    this.props.navigation.navigate("Auth");
   };
 
   render() {
@@ -32,7 +47,7 @@ class accountScreen extends Component {
           )}
           <View style={styles.Profileright}>
             {this.props.isSigned ? (
-              <Text style={{fontSize: 30, fontWeight: 'bold'}}>
+              <Text style={{fontSize: 25, fontWeight: 'bold'}}>
                 {this.props.profile_name}
               </Text>
             ) : (
@@ -48,14 +63,14 @@ class accountScreen extends Component {
             {!this.props.isSigned ? (
               <TouchableOpacity
                 style={styles.list}
-                onPress={() => this.props.navigation.navigate('Login')}>
-                <Text style={styles.Text}>Login</Text>
+                onPress={() => this.props.navigation.navigate('Auth')}>
+                <Text style={styles.Text}>Register</Text>
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
                 style={styles.list}
                 onPress={() => this.handleSignOutUser()}>
-                <Text style={styles.Text}>Logout</Text>
+                <Text style={styles.Text}>Reset Account</Text>
               </TouchableOpacity>
             )}
           </View>
@@ -82,7 +97,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   Profileright: {
-    width: '40%',
+    //width: '40%',
     alignItems: 'center',
   },
   Text: {
@@ -90,6 +105,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'rgba(200,200,200,1)',
     paddingRight: 20,
+    marginLeft:15
   },
 });
 

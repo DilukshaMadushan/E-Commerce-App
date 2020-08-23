@@ -19,8 +19,9 @@ import {connect} from 'react-redux';
 import {addcartItem} from '../../store/cartItemRedux';
 import {addRelatedItemList} from '../../store/relatedProductsRedux';
 import GetAPI from '../../services/GetApi';
+import Spinner from 'react-native-loading-spinner-overlay';
 
-function Item({ItemName, ItemPrice, item, uri, navigation, addItemToCart}) {
+function Item({ItemName, ItemPrice, item, images, navigation, addItemToCart}) {
   item.count = 1;
   const rate = Math.round(Number(item.average_rating));
   return (
@@ -29,7 +30,7 @@ function Item({ItemName, ItemPrice, item, uri, navigation, addItemToCart}) {
         <TouchableOpacity
           activeOpacity={0.5}
           onPress={() => navigation.navigate('ItemView', {item: item})}>
-          <Image style={styles.itemImage} source={{uri: uri}}></Image>
+          <Image style={styles.itemImage} source={(images.length!==0)?{uri:images[0].src}:require("../../images/home/man22.jpg")}></Image>
         </TouchableOpacity>
         <View style={{position: 'absolute', alignSelf: 'flex-end', top: 5}}>
           <Wishlist item={item} />
@@ -137,7 +138,7 @@ class CategoryItems extends Component {
                   renderItem={({item}) => (
                     <Item
                       ItemName={item.name}
-                      uri={item.images[0].src}
+                      images={item.images}
                       item={item}
                       ItemPrice={'Rs ' + item.price}
                       navigation={this.props.navigation}
@@ -161,8 +162,11 @@ class CategoryItems extends Component {
               marginTop: width * 0.8,
               marginBottom: width * 1.3,
             }}>
-            <ActivityIndicator />
-            <StatusBar barStyle="default" />
+            <Spinner
+                visible={true}
+                textContent={'Loading...'}
+                //textStyle={styles.spinnerTextStyle}
+              />
           </View>
         )}
       </View>

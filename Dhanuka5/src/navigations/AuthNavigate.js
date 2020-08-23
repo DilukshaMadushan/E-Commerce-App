@@ -18,13 +18,13 @@ const AuthStack = createStackNavigator(
           backgroundColor: "#FFFFFF",
         },
         //headerTintColor: '#633689',
-        title: "Welcome",
+        title: "",
         headerLeft: null
       })
     },
   },
   {
-    initialRouteName: "Login",
+    initialRouteName: "Register",
   }
 );
 

@@ -3,6 +3,7 @@ import { View, ActivityIndicator, StatusBar, AsyncStorage } from "react-native";
 import { connect } from "react-redux";
 import { signInUser } from "../store/authRedux";
 import GetAPI from "../services/GetApi";
+import Spinner from 'react-native-loading-spinner-overlay';
 
 class AuthLoadingScreen extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class AuthLoadingScreen extends Component {
       const isLoggedIn = await AsyncStorage.getItem("isSigned");
       console.log(isLoggedIn);
       if (isLoggedIn != "true") {
-        this.props.navigation.navigate("Drawer");
+        this.props.navigation.navigate("Auth");
       } else {
         //const token = await AsyncStorage.getItem('token');
         //const profilePic = await AsyncStorage.getItem('profilePic');
@@ -68,8 +69,12 @@ class AuthLoadingScreen extends Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator />
-        <StatusBar barStyle='default' />
+        <Spinner
+                visible={true}
+                textContent={'Loading...'}
+                //textStyle={styles.spinnerTextStyle}
+              />
+        {/* <StatusBar barStyle='default' /> */}
       </View>
     );
   }

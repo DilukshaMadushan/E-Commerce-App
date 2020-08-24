@@ -1,12 +1,14 @@
 import { createStore, combineReducers } from "redux";
 import cartItems from "./cartItemRedux";
 import counterWishlist from "./wishlistRedux";
-import Auth from "./AuthRedux";
+import auth from "./authRedux";
+import relatedProducts from "./relatedProductsRedux";
 
 const rootReducer = combineReducers({
   cartItems: cartItems,
   wishList: counterWishlist,
-  Auth: Auth,
+  auth: auth,
+  relatedProducts: relatedProducts,
 });
 
 const configureStore = () => {

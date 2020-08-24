@@ -1,46 +1,21 @@
-import React, { Component } from "react";
-import { StyleSheet, Dimensions,Button, View } from "react-native";
-import { WebView } from "react-native-webview";
-import PostAPI from "../services/PostAPI";
-import PayHere from 'react-native-pay-here';
+import React, {Component} from 'react';
+import {StyleSheet, Dimensions} from 'react-native';
+//import { WebView } from "react-native-webview";
+import PostAPI from '../services/PostAPI';
 
 class payhereScreen extends Component {
-
   state = {
-    htmlCode: "",
+    htmlCode: '',
   };
 
-  componentWillMount() {
-    //this.getPaymentsGateway();
-  }
-
-  getPaymentsGateway() {
-    PostAPI.payhereApi()
-      .then((response) => {
-        return response.text();
-      })
-      .then((text) => {
-        console.log(text);
-        this.setState({ htmlCode: text });
-      });
-  }
 
   render() {
-    const { width } = Dimensions.get("window");
+    const {width} = Dimensions.get('window');
     return (
-      // <WebView originWhitelist={["*"]} source={{ html: this.state.htmlCode }} />
       <View>
-        <Button
-          title="Press"
-          onPress={()=>{
-            PayHere.PayHereOnce(150,
-              (message)=>{
-                console.log(message);
-              }
-              );
-          }}
-        ></Button>
+
       </View>
+      // <WebView originWhitelist={["*"]} source={{ html: this.state.htmlCode }} />
     );
   }
 }
@@ -48,9 +23,9 @@ class payhereScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#FFFFFF',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

@@ -1,19 +1,41 @@
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import GetAPI from '../../services/GetApi';
 
 class DropDownMenu extends Component {
-  PassDataToParent = (item) => {
-    this.props.updateData(item);
+  state = {
+    id: this.props.id,
+    variationList: [],
+    isLoading: true,
   };
+  componentWillMount() {
+    this.getVariationItemList();
+  }
 
+  getVariationItemList() {
+    GetAPI.getVariationItemsApi(this.state.id)
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        this.setState({variationList: json});
+        this.setState({isLoading: false});
+      });
+  }
+
+  PassDataToParent(id) {
+    this.props.updateData(id);
+  }
   render() {
-    return (
+    return !this.state.isLoading ? (
       <DropDownPicker
         dropDownStyle={{backgroundColor: '#FFF'}}
         placeholder="Select an option"
-        items={this.props.itemOptions.map((item) => {
-          return {value: item, label: item};
+        items={this.state.variationList.map((item) => {
+          return {
+            value: item.id,
+            label: item.attributes[0].option,
+          };
         })}
         defaultIndex={0}
         containerStyle={styles.DropDownView}
@@ -23,6 +45,8 @@ class DropDownMenu extends Component {
           this.PassDataToParent(item.value);
         }}
       />
+    ) : (
+      <View />
     );
   }
 }

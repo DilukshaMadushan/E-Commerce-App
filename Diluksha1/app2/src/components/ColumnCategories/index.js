@@ -15,6 +15,7 @@ import styles from "./styles";
 import Images from "../../common/Images";
 import SubCategories from "../ColumnSubCategories";
 import GetAPI from "../../services/GetApi";
+import Spinner from 'react-native-loading-spinner-overlay';
 
 function Item({ title, uri, id, product }) {
   return (
@@ -50,7 +51,7 @@ class Categories extends React.Component {
   state = {
     CategoryList: [],
     MainCategoryList: [],
-    SubCategoryStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    SubCategoryStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0],
     SubCategoryList: [],
     isLoading: true,
   };
@@ -60,6 +61,7 @@ class Categories extends React.Component {
   }
 
   getCategories() {
+    this.setState({ isLoading: true });
     GetAPI.categoryApi()
       .then((response) => response.json())
       .then((json) => {
@@ -70,6 +72,7 @@ class Categories extends React.Component {
             return cat.parent == 0;
           }),
         });
+        console.log(json.id);
         this.setState({ isLoading: false });
       });
   }
@@ -86,7 +89,10 @@ class Categories extends React.Component {
                 <View>
                   <TouchableOpacity
                     onPress={() => {
-                      if (
+                      this.props.navigation.navigate("Items", {
+                        id: item.id,
+                      });
+                      /*if (
                         this.state.CategoryList.filter(function (cat) {
                           return cat.parent == item.id;
                         }).length == 0
@@ -106,6 +112,7 @@ class Categories extends React.Component {
                           this.setState({ SubCategoryStatus: dup_array });
                         }
                       }
+                    }}*/
                     }}
                   >
                     <Item
@@ -139,11 +146,15 @@ class Categories extends React.Component {
               flex: 1,
               justifyContent: "center",
               alignItems: "center",
-              marginTop: width * 0.7,
+              marginTop: width * 0.8,
             }}
           >
-            <ActivityIndicator />
-            <StatusBar barStyle='default' />
+            <Spinner
+                visible={true}
+                textContent={'Loading...'}
+                //textStyle={styles.spinnerTextStyle}
+              />
+            {/* <StatusBar barStyle='default' /> */}
           </View>
         )}
       </View>

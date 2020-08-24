@@ -8,15 +8,11 @@ import {
   Dimensions,
   ScrollView,
   Alert,
-  PermissionsAndroid
+  PermissionsAndroid,
 } from 'react-native';
 import styles from './styles';
-import email from 'react-native-email';
+//import email from 'react-native-email';
 import Mailer from 'react-native-mail';
-//import * as ImagePicker from 'expo-image-picker';
-//import Constants from 'expo-constants';
-//import * as Permissions from 'expo-permissions';
-
 import ImagePicker from 'react-native-image-picker';
 import Images from '../../common/Images';
 import AutoheightTextInput from 'react-native-textinput-autoheight';
@@ -29,7 +25,7 @@ class EmailList extends Component {
     List: null,
     file_url: null,
     file_type: null,
-    file_name: null
+    file_name: null,
   };
 
   componentWillMount() {
@@ -41,28 +37,28 @@ class EmailList extends Component {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.CAMERA,
         {
-          title: "Cool Photo App Camera Permission",
+          title: 'Cool Photo App Camera Permission',
           message:
-            "Cool Photo App needs access to your camera " +
-            "so you can take awesome pictures.",
-          buttonNeutral: "Ask Me Later",
-          buttonNegative: "Cancel",
-          buttonPositive: "OK"
-        }
+            'Cool Photo App needs access to your camera ' +
+            'so you can take awesome pictures.',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log("You can use the camera");
+        console.log('You can use the camera');
       } else {
-        console.log("Camera permission denied");
+        console.log('Camera permission denied');
       }
     } catch (err) {
       console.warn(err);
     }
-  }
+  };
   _pickImage = async () => {
     const options = {
       title: 'Select Avatar',
-      customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+      customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
       storageOptions: {
         skipBackup: true,
         path: 'images',
@@ -71,7 +67,7 @@ class EmailList extends Component {
 
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
-     
+
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
@@ -79,11 +75,9 @@ class EmailList extends Component {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        
-        this.setState({file_url:response.uri});
-        this.setState({file_type:response.type});
-        this.setState({file_name:response.fileName});
-
+        this.setState({file_url: response.uri});
+        this.setState({file_type: response.type});
+        this.setState({file_name: response.fileName});
       }
     });
   };
@@ -108,46 +102,41 @@ class EmailList extends Component {
         'Your Orders List : ' +
         this.state.List
       ).toString();
-      // email(to, {
-      //   //cc: "Waytoogolk@gmail.com",
-      //   //bcc: "Waytoogolk@gmail.com",
-      //   subject: 'Waytoogo Email Delivery',
-      //   body: body,
-      //   isHTML: true,
-      //   attachment: [
-      //     {
-      //       path: this.state.file_url, // The absolute path of the file from which to read data.
-      //       type: this.state.file_type, // Mime Type: jpg, png, doc, ppt, html, pdf, csv
-      //       name: 'Waytoogo Email image',
-      //     },
-      //   ],
-      // }).catch(console.error);
-
-      Mailer.mail({
-        subject: 'Waytoogo Email Delivery',
-        recipients: ['Waytoogolk@gmail.com'],
-        ccRecipients: [],
-        bccRecipients: [],
-        body: body,
-        isHTML: true,
-        attachments: [{
-          path: this.state.file_url,  // The absolute path of the file from which to read data.
-          type: 'jpg',   // Mime Type: jpg, png, doc, ppt, html, pdf, csv
-          // mimeType - use only if you want to use custom type
-          //name: this.state.file_name,   // Optional: Custom filename for attachment
-        }]
-      }, (error, event) => {
-        Alert.alert(
-          error,
-          event,
-          [
-            {text: 'Ok', onPress: () => console.log('OK: Email Error Response')},
-            {text: 'Cancel', onPress: () => console.log('CANCEL: Email Error Response')}
+      Mailer.mail(
+        {
+          subject: 'Waytoogo Email Delivery',
+          recipients: ['Waytoogolk@gmail.com'],
+          ccRecipients: [],
+          bccRecipients: [],
+          body: body,
+          isHTML: true,
+          attachments: [
+            {
+              path: this.state.file_url, // The absolute path of the file from which to read data.
+              type: 'jpg', // Mime Type: jpg, png, doc, ppt, html, pdf, csv
+              // mimeType - use only if you want to use custom type
+              //name: this.state.file_name,   // Optional: Custom filename for attachment
+            },
           ],
-          { cancelable: true }
-        )
-      });
-
+        },
+        (error, event) => {
+          Alert.alert(
+            error,
+            event,
+            [
+              {
+                text: 'Ok',
+                onPress: () => console.log('OK: Email Error Response'),
+              },
+              {
+                text: 'Cancel',
+                onPress: () => console.log('CANCEL: Email Error Response'),
+              },
+            ],
+            {cancelable: true},
+          );
+        },
+      );
     } else {
       alert('Something Missing!');
     }
@@ -218,10 +207,9 @@ class EmailList extends Component {
             </View>
           )}
           <TouchableOpacity
-            style={[styles.Button, { backgroundColor: "red" }]}
-            onPress={() => this._pickImage()}
-          >
-            <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
+            style={[styles.Button, {backgroundColor: 'red'}]}
+            onPress={() => this._pickImage()}>
+            <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 20}}>
               Select List Image
             </Text>
           </TouchableOpacity>

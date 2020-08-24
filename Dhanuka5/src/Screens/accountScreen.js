@@ -15,7 +15,6 @@ import {connect} from 'react-redux';
 import {signOutUser} from '../store/authRedux';
 
 class accountScreen extends Component {
-
   _storeData = async (key, value) => {
     try {
       await AsyncStorage.setItem(key, value);
@@ -25,12 +24,11 @@ class accountScreen extends Component {
     }
   };
 
-
   handleSignOutUser = () => {
-    this._storeData('isSigned','false');
-    this._storeData('profileId','-5');
+    this._storeData('isSigned', 'false');
+    this._storeData('profileId', '-5');
     this.props.signOutUser();
-    this.props.navigation.navigate("Auth");
+    this.props.navigation.navigate('Auth');
   };
 
   render() {
@@ -62,14 +60,11 @@ class accountScreen extends Component {
 
             {!this.props.isSigned ? (
               <TouchableOpacity
-                style={styles.list}
                 onPress={() => this.props.navigation.navigate('Auth')}>
                 <Text style={styles.Text}>Register</Text>
               </TouchableOpacity>
             ) : (
-              <TouchableOpacity
-                style={styles.list}
-                onPress={() => this.handleSignOutUser()}>
+              <TouchableOpacity onPress={() => this.handleSignOutUser()}>
                 <Text style={styles.Text}>Reset Account</Text>
               </TouchableOpacity>
             )}
@@ -97,15 +92,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   Profileright: {
-    //width: '40%',
+    width: '60%',
     alignItems: 'center',
+    alignSelf: 'center',
   },
   Text: {
     fontSize: 20,
     fontWeight: 'bold',
     color: 'rgba(200,200,200,1)',
-    paddingRight: 20,
-    marginLeft:15
   },
 });
 

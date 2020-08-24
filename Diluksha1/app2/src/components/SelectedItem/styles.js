@@ -5,8 +5,9 @@ const { width, height } = Dimensions.get("window");
 export default StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: 40,
-    height: "100%",
+    backgroundColor: "#FFF",
+    borderBottomWidth: 40,
+    borderColor: "rgba(184,184,184,0.1)",
   },
   ItemImage: {
     width: 0.3 * width,

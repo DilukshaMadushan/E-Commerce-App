@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import { Text,StyleSheet, View, ScrollView } from "react-native";
-// import Categories from "../components/ColumnCategories";
+import { StyleSheet, View, ScrollView } from "react-native";
+import Categories from "../components/ColumnCategories";
 
 class categoryScreen extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <Text>Category Screen</Text>
-        {/* <ScrollView style={styles.categoryScreen}>
+        <ScrollView style={styles.categoryScreen}>
           <Categories />
-        </ScrollView> */}
+        </ScrollView>
       </View>
     );
   }

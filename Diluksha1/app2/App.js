@@ -1,27 +1,15 @@
-import React,{Component} from 'react';
-import {View, Text, Button} from 'react-native';
-import Toast from './src/Modules/ToastModule';
-import MainApp from "./src/navigations/MainApp";
+import React, {Component} from 'react';
+import {Provider} from 'react-redux';
+import configureStore from './src/store/configureStore';
+import MainApp from './src/navigations/MainApp';
 
-export default class App extends Component{
-
-  render(){
-    return(
-          <MainApp /> 
-    )
+export default class App extends Component {
+  render() {
+    const store = configureStore();
+    return (
+      <Provider store={store}>
+        <MainApp />
+      </Provider>
+    );
   }
-} 
-
-
-{/* <Text>Hi this is Our App</Text>
-        <Button 
-          title="Pay"
-          onPress = {()=>{
-            //Toast.show('Diluksha', 10);
-            // Toast.payOnce(120, 
-            //   (msg)=>{
-            //     alert(msg);
-            //   })
-            alert("Clicked");
-          }}
-        /> */}
+}

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { View, Text } from "react-native";
-import styles from "./styles";
-import { Icon } from "react-native-elements";
-import PaymentInputs from "../PaymentInputs";
+import React, {Component} from 'react';
+import {View, Text} from 'react-native';
+import styles from './styles';
+import {Icon} from 'react-native-elements';
+import PaymentInputs from '../PaymentInputs';
 
 class PaymentInfo extends Component {
   render() {
@@ -11,21 +11,19 @@ class PaymentInfo extends Component {
         <View style={styles.Upper}>
           <View style={styles.Cross}>
             <View
-              style={{ flex: 1, backgroundColor: "rgba(0, 179, 155,1)" }}
-            ></View>
+              style={{flex: 1, backgroundColor: 'rgba(0, 179, 155,1)'}}></View>
             <View
-              style={{ flex: 1, backgroundColor: "rgba(0, 179, 155,1)" }}
-            ></View>
-            <View style={{ flex: 1 }}></View>
+              style={{flex: 1, backgroundColor: 'rgba(0, 179, 155,1)'}}></View>
+            <View style={{flex: 1}}></View>
           </View>
           <View style={styles.UpperItems}>
             <Text>cart</Text>
             <View style={(styles.IconView, styles.Border)}>
               <Icon
-                name='shopping-cart'
+                name="shopping-cart"
                 size={15}
-                type='font-awesome'
-                color={"rgba(0, 179, 155,1)"}
+                type="font-awesome"
+                color={'rgba(0, 179, 155,1)'}
               />
             </View>
           </View>
@@ -33,10 +31,10 @@ class PaymentInfo extends Component {
             <Text>Delivery</Text>
             <View style={(styles.IconView, styles.Border)}>
               <Icon
-                name='paper-plane'
+                name="paper-plane"
                 size={15}
-                type='font-awesome'
-                color={"rgba(0, 179, 155,1)"}
+                type="font-awesome"
+                color={'rgba(0, 179, 155,1)'}
               />
             </View>
           </View>
@@ -44,30 +42,29 @@ class PaymentInfo extends Component {
             <Text>Payment</Text>
             <View style={(styles.IconView, styles.Border)}>
               <Icon
-                name='paypal'
+                name="paypal"
                 size={15}
-                type='font-awesome'
-                color={"rgba(0, 179, 155,1)"}
+                type="font-awesome"
+                color={'rgba(0, 179, 155,1)'}
               />
             </View>
           </View>
           <View style={styles.UpperItems}>
             <Text>Order</Text>
             <View style={styles.IconView}>
-              <Icon name='flag' size={20} type='Entypo' color={"black"} />
+              <Icon name="flag" size={20} type="Entypo" color={'black'} />
             </View>
           </View>
         </View>
         <View style={styles.TotalPrice}>
-          <Text style={{ fontSize: 20, flex: 1 }}>
-            {" "}
+          <Text style={{fontSize: 20, flex: 1}}>
             Select Your Payment Method:
           </Text>
         </View>
         <View style={styles.TextInputView}>
           <PaymentInputs
             navigation={this.props.navigation}
-            state={this.props.navigation.getParam("state")}
+            state={this.props.navigation.getParam('state')}
           />
         </View>
       </View>

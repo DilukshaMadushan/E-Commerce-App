@@ -14,14 +14,16 @@ import Images from '../../common/Images';
 import {connect} from 'react-redux';
 import {emptyCart} from '../../store/cartItemRedux';
 import PostAPI from '../../services/PostAPI';
+import GetAPI from '../../services/GetApi';
 import Toast from '../../Modules/ToastModule';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 class PaymentInputs extends Component {
-  state = this.props.navigation.getParam('state');
+  state = [this.props.navigation.getParam('state'), {ShippingCost: null}];
 
   componentWillMount() {
     this.setState({isLoading: false});
+    this.getShippingCost();
   }
 
   postPayments() {
@@ -37,13 +39,15 @@ class PaymentInputs extends Component {
 
       lineItems.push(item_1);
     }
+    const FinalTotal =
+      Number(this.props.TotalPrice) + Number(this.state.ShippingCost);
     PostAPI.paymentInputsApi(
       JSON.stringify({
         payment_method: 'bacs',
         payment_method_title: 'Cache on Delivery',
         set_paid: false,
         customer_id: this.props.signInId,
-        total: this.props.TotalPrice.toString(),
+        total: FinalTotal.toString(),
         billing: {
           first_name: this.state.first_name,
           last_name: this.state.last_name,
@@ -99,9 +103,17 @@ class PaymentInputs extends Component {
         alert(error);
       });
   }
-
+  getShippingCost() {
+    GetAPI.getShippingCostApi()
+      .then((response) => response.json())
+      .then((json) => {
+        this.setState({ShippingCost: json[0].settings.cost.value});
+      });
+  }
   render() {
     const {width} = Dimensions.get('window');
+    const FinalTotal =
+      Number(this.props.TotalPrice) + Number(this.state.ShippingCost);
     return (
       <View>
         {this.state.isLoading == false ? (
@@ -122,11 +134,10 @@ class PaymentInputs extends Component {
                   style={styles.paymentMethods}
                   onPress={() => {
                     //this.postPayments();
-                    Toast.payOnce(100, (msg=>{
+                    Toast.payOnce(100, (msg) => {
                       alert(msg);
-                    }))
+                    });
                   }}>
-
                   <Image
                     source={Images.PayHere}
                     style={{height: '60%', width: '100%'}}
@@ -152,7 +163,9 @@ class PaymentInputs extends Component {
                 <Text style={{flex: 1, paddingStart: 20, fontSize: 17}}>
                   Delivery Payment
                 </Text>
-                <Text style={{paddingEnd: 20, fontSize: 17}}>Rs 100</Text>
+                <Text style={{paddingEnd: 20, fontSize: 17}}>
+                  Rs {this.state.ShippingCost}
+                </Text>
               </View>
               <View
                 style={{
@@ -167,7 +180,7 @@ class PaymentInputs extends Component {
                   Total
                 </Text>
                 <Text style={{paddingEnd: 20, fontSize: 17}}>
-                  Rs {this.props.TotalPrice + 100}
+                  Rs {FinalTotal}
                 </Text>
               </View>
             </ScrollView>
@@ -191,10 +204,10 @@ class PaymentInputs extends Component {
               marginTop: width * 0.7,
             }}>
             <Spinner
-                visible={true}
-                textContent={'Loading...'}
-                //textStyle={styles.spinnerTextStyle}
-              />
+              visible={true}
+              textContent={'Loading...'}
+              //textStyle={styles.spinnerTextStyle}
+            />
           </View>
         )}
       </View>

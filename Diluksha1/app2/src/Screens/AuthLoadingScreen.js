@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { View, ActivityIndicator, StatusBar, AsyncStorage } from "react-native";
 import { connect } from "react-redux";
-import { signInUser } from "../store/AuthRedux";
+import { signInUser } from "../store/authRedux";
 import GetAPI from "../services/GetApi";
+import Spinner from 'react-native-loading-spinner-overlay';
 
 class AuthLoadingScreen extends Component {
   constructor(props) {
@@ -34,15 +35,14 @@ class AuthLoadingScreen extends Component {
       const isLoggedIn = await AsyncStorage.getItem("isSigned");
       console.log(isLoggedIn);
       if (isLoggedIn != "true") {
-        this.props.navigation.navigate("Register");
+        this.props.navigation.navigate("Auth");
       } else {
         //const token = await AsyncStorage.getItem('token');
         //const profilePic = await AsyncStorage.getItem('profilePic');
         //const profileName = await AsyncStorage.getItem('profileName');
-        
+        this.props.navigation.navigate("Drawer");
         var profileId = parseInt(await AsyncStorage.getItem("profileId"));
         this.handleSignInIdPassing(profileId);
-        this.props.navigation.navigate("Drawer");
       }
     }
   };
@@ -69,8 +69,12 @@ class AuthLoadingScreen extends Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator />
-        <StatusBar barStyle='default' />
+        <Spinner
+                visible={true}
+                textContent={'Loading...'}
+                //textStyle={styles.spinnerTextStyle}
+              />
+        {/* <StatusBar barStyle='default' /> */}
       </View>
     );
   }

@@ -1,4 +1,3 @@
-import StarRating from 'react-native-star-rating';
 import React, {Component} from 'react';
 import {
   View,
@@ -7,6 +6,7 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
+import StarRating from 'react-native-star-rating';
 
 class RatingStars extends Component {
   state = {
@@ -25,14 +25,11 @@ class RatingStars extends Component {
         </Text>
         <StarRating
           containerStyle={{paddingVertical: 30}}
-          emptyStar={'ios-star-outline'}
-          fullStar={'ios-star'}
-          iconSet={'Ionicons'}
+          emptyStar={'star-o'}
+          fullStar={'star'}
+          iconSet={'FontAwesome'}
           maxStars={5}
           starSize={40}
-          starStyle={{
-            paddingEnd: 1,
-          }}
           rating={this.state.average_rating}
           fullStarColor={'rgba(0,179,155,1)'}
           selectedStar={(rating) => this.setState({average_rating: rating})}
@@ -51,7 +48,7 @@ class RatingStars extends Component {
 const {width} = Dimensions.get('window');
 const styles = StyleSheet.create({
   Modal: {
-    height: '30%',
+    height: '32%',
     backgroundColor: '#FFF',
     borderRadius: 10,
     padding: 15,
@@ -59,6 +56,7 @@ const styles = StyleSheet.create({
   },
   Button: {
     fontSize: 20,
+    marginBottom: 5,
     fontWeight: 'bold',
     color: 'rgba(0,179,155,1)',
   },

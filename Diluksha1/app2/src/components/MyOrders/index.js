@@ -18,13 +18,11 @@ function Item({ ItemNumber, Date, Status, PaymentMethod, Total }) {
     <View
       style={{
         flexDirection: "column",
-        marginTop: 20,
-        borderTopWidth: 0.3,
-        borderBottomWidth: 1,
+        borderTopWidth: 8,
         padding: 10,
-        borderColor: "rgba(184,184,184,1)",
+        borderColor: "rgba(184,184,184,0.1)",
         width: width,
-        backgroundColor: "#fff",
+        backgroundColor: "#FFF",
       }}
     >
       <View style={{ flexDirection: "row" }}>
@@ -102,7 +100,7 @@ class MyOrders extends Component {
               flex: 1,
               justifyContent: "center",
               alignItems: "center",
-              marginTop: width * 0.7,
+              paddingTop: width * 0.8,
             }}
           >
             <ActivityIndicator />
@@ -118,7 +116,7 @@ class MyOrders extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    signInId: state.Auth.signInId,
+    signInId: state.auth.signInId,
   };
 };
 
